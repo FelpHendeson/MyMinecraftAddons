@@ -54,7 +54,7 @@ Texturas finais, modelos, sons e ícones ainda não existem e só devem ser cria
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão inicial dos packs: `[0, 1, 0]`.
+- Versão atual dos packs: `[0, 1, 1]`.
 - `min_engine_version`: `[1, 20, 0]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -90,6 +90,8 @@ Arquivos exportados devem ficar em `dist/`.
 4. Ativar o pack em um mundo de teste.
 5. Testar a alteração.
 6. Corrigir no PC e repetir.
+
+Ao testar um novo build no celular, incremente a versão dos manifests ou remova os packs antigos do armazenamento do Minecraft antes de importar novamente. Reimportar o mesmo UUID com a mesma versão pode causar erro de duplicação.
 
 ## Validações antes de testar
 

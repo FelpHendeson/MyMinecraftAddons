@@ -45,3 +45,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: criar somente o item `riftborn:fragmento_de_fenda`; não criar receitas, loot tables, mobs, scripts de gameplay ou outros itens.
 - Resultado esperado: validar o fluxo básico de item customizado no Minecraft Bedrock com stack 64, textura registrada e nomes localizados.
 - Observações: a textura criada é placeholder transparente para teste inicial, não textura final.
+
+## 2026-06-08 - Bump técnico para 0.1.1
+
+- Área: Riftborn.
+- Objetivo: incrementar a versão técnica dos manifests de `[0, 1, 0]` para `[0, 1, 1]` para permitir nova importação no Minecraft Bedrock mobile.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `CHANGELOG.md`, `TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não alterar UUIDs, nomes, descrições, itens, receitas, mobs, scripts de gameplay ou estrutura dos packs.
+- Resultado esperado: Behavior Pack, Resource Pack e dependência do BP apontando para o RP na versão `[0, 1, 1]`.
+- Observações: ao importar novos builds no celular, versões repetidas com os mesmos UUIDs podem gerar erro de duplicação.

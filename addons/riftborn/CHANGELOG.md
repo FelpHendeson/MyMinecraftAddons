@@ -21,6 +21,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Guia técnico atualizado para registrar a base técnica inicial dos packs.
 - Documentação do Riftborn atualizada para reconhecer que a base técnica inicial já existe.
 - Fluxo geral atualizado com o comando de build local.
+- Versão técnica dos manifests incrementada para `0.1.1` para permitir nova importação no Minecraft Bedrock.
 
 ### Fixed
 
