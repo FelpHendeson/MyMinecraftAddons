@@ -14,9 +14,15 @@ Base técnica do addon:
 
 ## Itens RPG
 
+Status: iniciado.
+
 Primeiros itens usados para validar progressão e identidade do addon.
 
-Escopo inicial futuro:
+Item inicial:
+
+- `riftborn:fragmento_de_fenda`: material conceitual ligado às fendas dimensionais, criado para validar o fluxo de item customizado.
+
+Escopo planejado:
 
 - Itens simples.
 - Nomes consistentes.

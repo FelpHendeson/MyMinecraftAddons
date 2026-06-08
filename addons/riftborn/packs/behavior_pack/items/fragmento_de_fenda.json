@@ -1,0 +1,15 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "riftborn:fragmento_de_fenda",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": "fragmento_de_fenda"
+    }
+  }
+}

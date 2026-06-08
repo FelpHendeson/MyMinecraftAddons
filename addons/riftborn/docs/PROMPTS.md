@@ -36,3 +36,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar itens customizados, receitas, loot tables funcionais, mobs, scripts funcionais, texturas finais ou gameplay.
 - Resultado esperado: o addon passa a ter manifests válidos, dependência do Behavior Pack para o Resource Pack e estrutura mínima separada por pack.
 - Observações: os diretórios internos usam `.gitkeep` apenas para versionar pastas vazias.
+
+## 2026-06-08 - Primeiro item customizado
+
+- Área: Riftborn.
+- Objetivo: criar o primeiro item customizado do addon, `Fragmento de Fenda`.
+- Arquivos afetados: `packs/behavior_pack/items/fragmento_de_fenda.json`, `textures/item_texture.json`, `textures/items/fragmento_de_fenda.png`, arquivos de idioma e documentação relacionada.
+- Restrições: criar somente o item `riftborn:fragmento_de_fenda`; não criar receitas, loot tables, mobs, scripts de gameplay ou outros itens.
+- Resultado esperado: validar o fluxo básico de item customizado no Minecraft Bedrock com stack 64, textura registrada e nomes localizados.
+- Observações: a textura criada é placeholder transparente para teste inicial, não textura final.
