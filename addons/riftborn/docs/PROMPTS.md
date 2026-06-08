@@ -27,3 +27,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: criar somente estrutura e documentação; não criar `manifest.json`, itens, receitas, texturas, scripts ou mobs.
 - Resultado esperado: projeto independente dentro de `addons/riftborn/`, com contexto, regras, roadmap e guias iniciais.
 - Observações: a premissa define o jogador como um Riftborn trazido por uma fenda dimensional para um mundo antigo, fragmentado e cheio de criaturas, relíquias, guildas e ameaças.
+
+## 2026-06-08 - Manifests e estrutura técnica inicial
+
+- Área: Riftborn.
+- Objetivo: criar a base técnica inicial do addon com os arquivos mínimos de Behavior Pack e Resource Pack.
+- Arquivos afetados: `packs/behavior_pack/manifest.json`, `packs/resource_pack/manifest.json`, pastas reservadas dos packs, `textures/item_texture.json`, arquivos de idioma e documentação relacionada.
+- Restrições: não criar itens customizados, receitas, loot tables funcionais, mobs, scripts funcionais, texturas finais ou gameplay.
+- Resultado esperado: o addon passa a ter manifests válidos, dependência do Behavior Pack para o Resource Pack e estrutura mínima separada por pack.
+- Observações: os diretórios internos usam `.gitkeep` apenas para versionar pastas vazias.

@@ -8,10 +8,14 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 - Estrutura inicial de documentação e organização do projeto.
 - Pastas reservadas para behavior pack, resource pack, assets e distribuição.
+- Manifests iniciais do Behavior Pack e Resource Pack na versão `0.1.0`.
+- Estrutura técnica mínima dos packs com pastas reservadas para itens, receitas, loot tables, entidades, funções, scripts, texturas, textos e sons.
+- Atlas vazio `textures/item_texture.json` e arquivos de idioma `pt_BR.lang` e `en_US.lang`.
 
 ### Changed
 
 - Documentação base revisada para orientar melhor futuras etapas de desenvolvimento.
+- Guia técnico atualizado para registrar a base técnica inicial dos packs.
 
 ### Fixed
 
@@ -19,5 +23,4 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 ### Notes
 
-- Nenhum arquivo funcional de addon foi criado.
-- Ainda não existe `manifest.json`.
+- Nenhum item customizado, receita, mob, script funcional, textura final ou gameplay foi criado.

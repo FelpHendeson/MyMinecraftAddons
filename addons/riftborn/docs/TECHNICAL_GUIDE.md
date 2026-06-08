@@ -1,6 +1,6 @@
 # Guia Técnico
 
-Este guia registra decisões técnicas planejadas para o Riftborn. Nenhum arquivo funcional de addon foi criado nesta etapa.
+Este guia registra decisões técnicas planejadas e a base técnica inicial do Riftborn.
 
 ## Behavior Pack
 
@@ -8,7 +8,6 @@ O Behavior Pack deve conter regras e comportamento do addon.
 
 Conteúdos futuros possíveis:
 
-- Manifests.
 - Itens.
 - Receitas.
 - Loot tables.
@@ -16,7 +15,7 @@ Conteúdos futuros possíveis:
 - Scripts.
 - Entidades customizadas.
 
-Esses arquivos ainda não existem e só devem ser criados quando solicitados.
+O manifest inicial já existe em `packs/behavior_pack/manifest.json`. Os demais conteúdos ainda não existem e só devem ser criados quando solicitados.
 
 ## Resource Pack
 
@@ -24,13 +23,12 @@ O Resource Pack deve conter recursos visuais e de apresentação.
 
 Conteúdos futuros possíveis:
 
-- Texturas.
 - Modelos.
 - Sons.
 - Textos de tradução.
 - Ícones.
 
-Esses arquivos ainda não existem e só devem ser criados quando solicitados.
+O manifest inicial, o atlas vazio de itens e os arquivos de idioma já existem. Texturas finais, modelos, sons e ícones ainda não existem e só devem ser criados quando solicitados.
 
 ## Estrutura esperada
 
@@ -39,6 +37,21 @@ Esses arquivos ainda não existem e só devem ser criados quando solicitados.
 - `assets/`: referências e materiais de apoio.
 - `dist/`: arquivos exportados para teste e distribuição.
 - `docs/`: documentação de design, módulos, prompts e guia técnico.
+
+## Manifests criados
+
+- Behavior Pack: `packs/behavior_pack/manifest.json`.
+- Resource Pack: `packs/resource_pack/manifest.json`.
+- Versão inicial dos packs: `[0, 1, 0]`.
+- `min_engine_version`: `[1, 20, 0]`.
+- O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
+
+UUIDs atuais:
+
+- Header do Behavior Pack: `736b3a47-6b63-4645-8561-add453b60a67`.
+- Módulo do Behavior Pack: `30d5092e-c227-419d-b2e0-30103067f02a`.
+- Header do Resource Pack: `18b8c365-1426-4ab9-8e78-e09b573b299e`.
+- Módulo do Resource Pack: `c4c97fc6-137d-48b0-b529-20ae2a41a483`.
 
 ## Namespace
 
