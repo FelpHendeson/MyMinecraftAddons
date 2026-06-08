@@ -20,7 +20,8 @@ Este arquivo orienta agents que trabalham especificamente em `addons/riftborn/`.
 - Seguir `DEVELOPMENT_RULES.md` para padrões técnicos.
 - Atualizar documentação relevante quando fizer mudanças importantes.
 - Registrar mudanças implementadas em `CHANGELOG.md`.
-- Não criar sistemas avançados antes da base técnica.
+- Considerar que a base técnica inicial já existe, com manifests e estrutura mínima de packs.
+- Não recriar manifests nem alterar UUIDs existentes sem solicitação explícita.
 - Não criar muitos arquivos de uma vez sem necessidade clara.
 - Não criar funcionalidades fora do escopo pedido.
 
@@ -30,11 +31,10 @@ Este arquivo orienta agents que trabalham especificamente em `addons/riftborn/`.
 - Placeholders devem ser identificados como temporários na documentação quando forem introduzidos.
 - Texturas, modelos, sons e ícones só devem ser criados quando forem explicitamente solicitados.
 
-## Proibições nesta etapa
+## Proibições sem escopo explícito
 
-Enquanto o projeto estiver apenas em documentação, não criar:
+Mesmo com a base técnica inicial criada, não criar sem pedido claro:
 
-- `manifest.json`.
 - Itens.
 - Receitas.
 - Texturas.
@@ -44,3 +44,4 @@ Enquanto o projeto estiver apenas em documentação, não criar:
 - Funções.
 - Sistemas de classes.
 - UI customizada.
+- Gameplay.

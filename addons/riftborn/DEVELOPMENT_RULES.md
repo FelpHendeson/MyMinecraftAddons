@@ -4,7 +4,9 @@ Estas regras guiam a evolução técnica do Riftborn.
 
 ## Estado atual
 
-O projeto está em documentação. Nenhum arquivo funcional de addon deve existir nesta etapa.
+Base técnica inicial criada, com manifests e estrutura mínima de Behavior Pack e Resource Pack.
+
+Já existem manifests, atlas vazio de itens, arquivos de idioma e pastas técnicas reservadas. Ainda não existem itens customizados, receitas, loot tables funcionais, mobs, scripts funcionais, texturas finais ou gameplay.
 
 ## Desenvolvimento incremental
 
@@ -50,6 +52,7 @@ O projeto está em documentação. Nenhum arquivo funcional de addon deve existi
 - Não reutilizar UUIDs entre behavior pack, resource pack e módulos.
 - Registrar ou revisar UUIDs quando manifests forem criados.
 - Gerar novos UUIDs quando um pack independente exigir identidade própria.
+- Não regenerar UUIDs de manifests existentes sem necessidade clara e solicitação explícita.
 
 ## Separação entre packs
 
@@ -58,11 +61,10 @@ O projeto está em documentação. Nenhum arquivo funcional de addon deve existi
 - Não colocar textura no Behavior Pack.
 - Não colocar lógica de comportamento no Resource Pack.
 
-## Nesta etapa
+## Funcionalidades fora do escopo atual
 
 Não criar:
 
-- `manifest.json`.
 - Itens.
 - Receitas.
 - Texturas.
@@ -70,4 +72,6 @@ Não criar:
 - Mobs.
 - Loot tables.
 - Funções.
-- Arquivos funcionais de addon.
+- Gameplay.
+
+Esses arquivos só devem ser adicionados quando fizerem parte de uma etapa solicitada.

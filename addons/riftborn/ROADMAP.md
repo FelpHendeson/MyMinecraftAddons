@@ -8,11 +8,16 @@ O roadmap descreve visão futura. Ele não indica que as funcionalidades já exi
 
 ### v0.1 Base técnica
 
-- Criar manifests.
-- Validar estrutura dos packs.
+Status: iniciada, parcialmente concluída.
+
+- Manifests iniciais criados.
+- Estrutura mínima dos packs criada.
+- Atlas vazio de itens e arquivos de idioma criados.
 - Preparar empacotamento inicial.
 
 ### v0.2 Primeiros itens
+
+Status: próxima etapa planejada.
 
 - Criar itens simples para validar namespace e fluxo de teste.
 - Evitar itens complexos ou sistemas dependentes de scripts.

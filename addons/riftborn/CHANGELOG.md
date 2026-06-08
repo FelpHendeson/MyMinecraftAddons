@@ -16,6 +16,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 - Documentação base revisada para orientar melhor futuras etapas de desenvolvimento.
 - Guia técnico atualizado para registrar a base técnica inicial dos packs.
+- Documentação do Riftborn atualizada para reconhecer que a base técnica inicial já existe.
 
 ### Fixed
 
