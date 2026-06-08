@@ -13,6 +13,16 @@ Este é o fluxo base para desenvolver e testar addons de Minecraft Bedrock neste
 7. Corrigir problemas encontrados no PC.
 8. Repetir o ciclo até a alteração funcionar como esperado.
 
+## Build local
+
+Use a ferramenta compartilhada para gerar pacotes importáveis:
+
+```bash
+node shared/tools/build_addon.js riftborn
+```
+
+O comando lê `addons/riftborn/packs/behavior_pack/` e `addons/riftborn/packs/resource_pack/`, gera os `.mcpack` separados e cria um `.mcaddon` em `addons/riftborn/dist/`.
+
 ## Boas práticas
 
 - Usar sempre um mundo de teste separado.
@@ -20,6 +30,7 @@ Este é o fluxo base para desenvolver e testar addons de Minecraft Bedrock neste
 - Registrar mudanças relevantes no `CHANGELOG.md` do addon.
 - Validar nomes, namespaces e estrutura antes de empacotar.
 - Não misturar arquivos de projetos diferentes.
+- Não editar manualmente arquivos gerados em `dist/`; ajuste a origem em `packs/` e gere novamente.
 
 ## Observação
 
