@@ -2,27 +2,73 @@
 
 Este guia registra decisões técnicas planejadas para o Riftborn. Nenhum arquivo funcional de addon foi criado nesta etapa.
 
-## Identidade planejada
+## Behavior Pack
 
-- Namespace: `riftborn`
-- Behavior Pack: `Riftborn BP`
-- Resource Pack: `Riftborn RP`
+O Behavior Pack deve conter regras e comportamento do addon.
 
-## Organização planejada
+Conteúdos futuros possíveis:
 
-- `packs/behavior_pack/`: arquivos de comportamento do addon.
-- `packs/resource_pack/`: arquivos visuais e de recursos do addon.
+- Manifests.
+- Itens.
+- Receitas.
+- Loot tables.
+- Funções.
+- Scripts.
+- Entidades customizadas.
+
+Esses arquivos ainda não existem e só devem ser criados quando solicitados.
+
+## Resource Pack
+
+O Resource Pack deve conter recursos visuais e de apresentação.
+
+Conteúdos futuros possíveis:
+
+- Texturas.
+- Modelos.
+- Sons.
+- Textos de tradução.
+- Ícones.
+
+Esses arquivos ainda não existem e só devem ser criados quando solicitados.
+
+## Estrutura esperada
+
+- `packs/behavior_pack/`: behavior pack futuro.
+- `packs/resource_pack/`: resource pack futuro.
 - `assets/`: referências e materiais de apoio.
-- `dist/`: exports `.mcpack` ou `.mcaddon` gerados futuramente.
+- `dist/`: arquivos exportados para teste e distribuição.
+- `docs/`: documentação de design, módulos, prompts e guia técnico.
 
-## Regras técnicas
+## Namespace
 
-- Manter nomes técnicos em minúsculo, sem acento e preferencialmente com underscore.
-- Usar o namespace `riftborn` para identificadores futuros.
-- Validar mudanças em um mundo de teste do Minecraft Bedrock.
-- Criar conteúdo funcional apenas quando solicitado.
-- Registrar decisões relevantes nos documentos do projeto.
+- Namespace planejado: `riftborn`.
+- Identificadores futuros devem seguir `riftborn:nome_do_recurso`.
+- Não usar namespaces de outros projetos.
 
 ## Empacotamento futuro
 
-Quando houver arquivos funcionais, o projeto poderá ser exportado como `.mcpack` ou `.mcaddon` para teste no Minecraft Bedrock.
+Quando houver arquivos funcionais, o projeto poderá gerar:
+
+- `.mcpack` para behavior pack ou resource pack separado.
+- `.mcaddon` para um pacote contendo behavior pack e resource pack juntos.
+
+Arquivos exportados devem ficar em `dist/`.
+
+## Fluxo de teste no celular
+
+1. Empacotar o addon no PC.
+2. Enviar o `.mcpack` ou `.mcaddon` para o celular.
+3. Abrir o arquivo com Minecraft Bedrock.
+4. Ativar o pack em um mundo de teste.
+5. Testar a alteração.
+6. Corrigir no PC e repetir.
+
+## Validações antes de testar
+
+- Confirmar que os arquivos estão no pack correto.
+- Validar JSON quando houver arquivos JSON.
+- Conferir namespace `riftborn`.
+- Confirmar que UUIDs futuros são únicos.
+- Verificar se a mudança está dentro do escopo da versão.
+- Atualizar documentação e changelog quando necessário.

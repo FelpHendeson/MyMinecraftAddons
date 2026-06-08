@@ -1,23 +1,32 @@
 # Regras Globais para Agents
 
-Este repositório é um workspace para múltiplos addons de Minecraft Bedrock. Antes de alterar qualquer arquivo, identifique qual addon, documento ou área compartilhada está sendo modificada.
+Este arquivo define regras para qualquer agent que trabalhe no workspace `myAddons`.
 
-## Regras gerais
+O repositório contém múltiplos addons. A prioridade é preservar a separação entre projetos, documentação geral e recursos compartilhados.
 
-- Sempre identificar qual addon está sendo alterado.
-- Nunca criar arquivos funcionais de addon diretamente na raiz do repositório.
-- Preservar a separação entre projetos dentro de `addons/`.
-- Trabalhar de forma incremental e com escopo claro.
+## Antes de alterar arquivos
+
+- Identifique qual área será alterada: workspace, `shared/` ou um addon específico.
+- Se a tarefa for sobre um addon, identifique o addon alvo antes de editar.
+- Procure e leia o `AGENTS.md` específico do addon quando ele existir.
+- Confirme se a mudança pedida é documentação, estrutura, conteúdo funcional ou distribuição.
+
+## Regras de escopo
+
+- Não criar arquivos funcionais de addon diretamente na raiz.
+- Não misturar arquivos, contexto ou documentação de addons diferentes.
 - Não criar funcionalidades fora do escopo pedido.
-- Não misturar contexto, documentação, assets ou packs de um addon com outro.
-- Consultar o `AGENTS.md` específico do addon quando ele existir.
+- Trabalhar incrementalmente, com mudanças pequenas e verificáveis.
+- Separar documentação geral em `docs/` e documentação específica dentro do addon correspondente.
 - Usar `shared/` apenas para referências, templates e ferramentas reutilizáveis.
+
+## Convenções
+
 - Manter a documentação em português.
-- Preferir nomes técnicos em minúsculo, sem acento e com underscore quando novos arquivos técnicos forem criados.
+- Para arquivos técnicos futuros, preferir nomes em minúsculo, sem acento e com underscore.
+- Não assumir que uma funcionalidade existe se ela estiver apenas planejada.
+- Diferenciar claramente visão futura, escopo inicial, fora do escopo, regras técnicas e roadmap.
 
-## Organização
+## Arquivos funcionais
 
-- Addons independentes devem ficar em `addons/nome_do_addon/`.
-- Documentação geral do workspace deve ficar em `docs/`.
-- Recursos reutilizáveis devem ficar em `shared/`.
-- Arquivos de pack, scripts, itens, receitas, texturas, mobs e manifests só devem ser criados dentro do addon correto e quando forem explicitamente solicitados.
+Manifests, itens, receitas, texturas, scripts, mobs, loot tables e funções só devem ser criados quando forem explicitamente solicitados e sempre dentro do addon correto.

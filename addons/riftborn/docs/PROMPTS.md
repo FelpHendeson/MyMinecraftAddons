@@ -2,19 +2,28 @@
 
 Este arquivo registra prompts específicos usados para planejar e desenvolver o addon Riftborn.
 
-## Prompts registrados
+Prompts globais do workspace devem ficar em `docs/PROMPTS.md`.
 
-### Contexto inicial
+## Template de registro
 
-Criar documentação específica para `Riftborn: Crônicas do Novo Mundo`, um addon de Minecraft Bedrock com tema de RPG, isekai, fantasia medieval e dark fantasy leve.
+Use este formato para registrar novos prompts do Riftborn:
 
-Premissa principal:
+```md
+## AAAA-MM-DD - Título curto
 
-O jogador é um Riftborn, alguém trazido por uma fenda dimensional para um mundo antigo, fragmentado e cheio de criaturas, relíquias, guildas e ameaças.
+- Área: Riftborn.
+- Objetivo:
+- Arquivos afetados:
+- Restrições:
+- Resultado esperado:
+- Observações:
+```
 
-Regras desta etapa:
+## 2026-06-08 - Criação da estrutura base
 
-- Criar somente estrutura e documentação.
-- Não criar `manifest.json`.
-- Não criar itens, receitas, texturas, scripts ou mobs.
-- Manter o projeto independente dentro de `addons/riftborn/`.
+- Área: Riftborn.
+- Objetivo: criar documentação específica para `Riftborn: Crônicas do Novo Mundo`, um addon de Minecraft Bedrock com tema de RPG, isekai, fantasia medieval e dark fantasy leve.
+- Arquivos afetados: documentação em `addons/riftborn/` e `addons/riftborn/docs/`.
+- Restrições: criar somente estrutura e documentação; não criar `manifest.json`, itens, receitas, texturas, scripts ou mobs.
+- Resultado esperado: projeto independente dentro de `addons/riftborn/`, com contexto, regras, roadmap e guias iniciais.
+- Observações: a premissa define o jogador como um Riftborn trazido por uma fenda dimensional para um mundo antigo, fragmentado e cheio de criaturas, relíquias, guildas e ameaças.

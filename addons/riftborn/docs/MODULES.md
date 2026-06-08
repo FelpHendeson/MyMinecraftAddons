@@ -2,34 +2,64 @@
 
 Este documento organiza os módulos previstos para o Riftborn. Ele não representa implementação atual.
 
-## Base técnica
+## Núcleo do Projeto
 
-Estrutura de packs, manifests, organização de arquivos e empacotamento.
+Base técnica do addon:
 
-## Itens
+- Estrutura de Behavior Pack.
+- Estrutura de Resource Pack.
+- Manifests futuros.
+- Namespace `riftborn`.
+- Empacotamento e teste.
 
-Primeiros itens simples usados para validar namespace, texturas futuras, receitas e loot.
+## Itens RPG
+
+Primeiros itens usados para validar progressão e identidade do addon.
+
+Escopo inicial futuro:
+
+- Itens simples.
+- Nomes consistentes.
+- Integração com receitas e loot.
 
 ## Receitas
 
-Receitas iniciais para testar integração com itens e progressão básica.
+Receitas simples para introduzir itens de forma controlada.
 
-## Loot
+Regras:
 
-Loot customizado para recompensar exploração e combate.
+- Começar com poucas receitas.
+- Evitar cadeias longas no início.
+- Testar no mundo de sobrevivência.
 
-## Origem do jogador
+## Loot Customizado
 
-Contexto inicial do Riftborn e primeiros elementos narrativos.
+Recompensas ligadas à exploração e combate.
 
-## Progressão RPG
+Direção futura:
 
-Sistema simples de avanço antes de classes completas ou skill tree.
+- Loot simples antes de tabelas complexas.
+- Recompensas coerentes com o tema de relíquias e fendas.
+- Ajustes de balanceamento após testes.
 
-## Equipamentos de classe
+## Origem e Identidade
 
-Equipamentos com identidade de arquétipo, planejados para versões posteriores.
+Camada narrativa que apresenta o jogador como Riftborn.
 
-## Criaturas
+Possíveis elementos futuros:
 
-Mobs customizados, mini-chefes e ameaças maiores planejados para fases futuras.
+- Fragmentos de lore.
+- Itens ligados à fenda.
+- Primeiros sinais do mundo antigo.
+
+## Módulos futuros
+
+Módulos que não pertencem ao escopo inicial:
+
+- Sistema completo de classes.
+- Skill tree.
+- UI customizada complexa.
+- Dungeons grandes.
+- Muitos mobs customizados.
+- Bosses.
+- Scripts avançados.
