@@ -54,3 +54,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não alterar UUIDs, nomes, descrições, itens, receitas, mobs, scripts de gameplay ou estrutura dos packs.
 - Resultado esperado: Behavior Pack, Resource Pack e dependência do BP apontando para o RP na versão `[0, 1, 1]`.
 - Observações: ao importar novos builds no celular, versões repetidas com os mesmos UUIDs podem gerar erro de duplicação.
+
+## 2026-06-08 - Melhoria visual do Fragmento de Fenda
+
+- Área: Riftborn.
+- Objetivo: melhorar a apresentação visual e conceitual do item `riftborn:fragmento_de_fenda`.
+- Arquivos afetados: `textures/items/fragmento_de_fenda.png`, `CHANGELOG.md`, `MODULES.md` e este registro de prompt.
+- Restrições: não recriar o item, não alterar identificador, não alterar UUIDs, não criar novos itens, receitas, loot tables, mobs, scripts de gameplay ou estrutura do projeto.
+- Resultado esperado: textura pixel art 16x16 com fundo transparente, silhueta irregular, roxo/violeta/azul profundo, núcleo ciano e brilhos dimensionais sutis.
+- Observações: nomes localizados permanecem `Fragmento de Fenda` e `Rift Fragment`.

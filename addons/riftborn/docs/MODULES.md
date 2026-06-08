@@ -20,7 +20,14 @@ Primeiros itens usados para validar progressão e identidade do addon.
 
 Item inicial:
 
-- `riftborn:fragmento_de_fenda`: material conceitual ligado às fendas dimensionais, criado para validar o fluxo de item customizado.
+- `riftborn:fragmento_de_fenda`: estilhaço cristalino arrancado das rachaduras entre mundos, usado para validar o fluxo de item customizado e representar um material mágico raro.
+
+Direção visual:
+
+- Cristal quebrado com silhueta irregular.
+- Paleta de roxo escuro, violeta e azul profundo.
+- Núcleo interno ciano, como uma miniatura instável de fenda espacial.
+- Pequenos brilhos dimensionais nas bordas.
 
 Escopo planejado:
 

@@ -22,6 +22,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Documentação do Riftborn atualizada para reconhecer que a base técnica inicial já existe.
 - Fluxo geral atualizado com o comando de build local.
 - Versão técnica dos manifests incrementada para `0.1.1` para permitir nova importação no Minecraft Bedrock.
+- Textura do `Fragmento de Fenda` substituída por pixel art 16x16 com silhueta irregular, núcleo ciano e brilho dimensional.
 
 ### Fixed
 
@@ -30,4 +31,5 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 ### Notes
 
 - Nenhuma receita, loot table, mob, script funcional ou gameplay foi criado.
-- A textura do `Fragmento de Fenda` é placeholder para validação inicial do fluxo de item.
+- A textura do `Fragmento de Fenda` ainda pode evoluir, mas já representa melhor o conceito de material mágico raro.
+- Se o Minecraft Bedrock detectar duplicação ao importar novo build, a versão técnica pode precisar ser incrementada em uma etapa separada.
