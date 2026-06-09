@@ -4,9 +4,9 @@ Estas regras guiam a evolução técnica do Riftborn.
 
 ## Estado atual
 
-Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack, itens customizados simples e Script API mínima.
+Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack, itens customizados simples, Script API mínima e Energia de Fenda básica.
 
-Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receita inicial e um script mínimo de ativação do `Emblema de Madeira`. Ainda não existem mobs customizados, funções, mana, habilidades, UI customizada, benefícios de combate ou sistemas avançados.
+Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receita inicial, um script de ativação/desativação do `Emblema de Madeira` e um sistema básico de Energia de Fenda por scoreboard. Ainda não existem mobs customizados, funções, mana, habilidades, UI customizada, benefícios de combate ou sistemas avançados.
 
 ## Desenvolvimento incremental
 
@@ -41,7 +41,7 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 - Não empilhar benefícios de Emblemas diferentes.
 - Caminhos devem ser definidos pelo Emblema ativo, não por classe fixa.
 - Não implementar técnicas, efeitos, mana, habilidades ou gameplay avançado sem uma etapa solicitada.
-- A ativação simples atual só pode marcar tags e enviar mensagem.
+- A Energia de Fenda básica atual só pode manter valores de energia, regenerar até o máximo e exibir actionbar.
 
 ## Regras para Script API
 
@@ -49,6 +49,7 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 - Usar Script API apenas quando componentes JSON simples não resolverem a etapa.
 - Não criar arquitetura complexa antes de necessidade real.
 - Não implementar loops, sistemas globais, mana, habilidades ou UI customizada sem escopo explícito.
+- O loop atual permitido é apenas o de Energia de Fenda básica do `Emblema de Madeira`, com regeneração simples e actionbar.
 - Não alterar UUIDs existentes; novos UUIDs só podem ser criados para novos módulos quando necessário.
 
 ## Padrão de arquivos

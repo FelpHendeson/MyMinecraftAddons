@@ -5,6 +5,12 @@ const WOODEN_EMBLEM_TAG = "riftborn_emblema_madeira";
 const WOODEN_EMBLEM_ITEM_ID = "riftborn:emblema_de_madeira";
 const ACTIVE_WOODEN_EMBLEM_ITEM_ID = "riftborn:emblema_de_madeira_ativo";
 const ACTIVATION_DEBOUNCE_TICKS = 5;
+const WOODEN_EMBLEM_MAX_ENERGY = 20;
+const ENERGY_REGEN_AMOUNT = 1;
+const ENERGY_REGEN_INTERVAL_TICKS = 40;
+const ENERGY_ACTIONBAR_INTERVAL_TICKS = 20;
+const ENERGY_OBJECTIVE_ID = "rb_energy";
+const ENERGY_MAX_OBJECTIVE_ID = "rb_energy_max";
 const EMBLEM_LINEAGE_TAGS = [
   "riftborn_emblema_madeira",
   "riftborn_emblema_cobre",
@@ -15,6 +21,70 @@ const EMBLEM_LINEAGE_TAGS = [
   "riftborn_emblema_sobrevivente"
 ];
 const lastActivationTickByPlayer = new Map();
+
+let lastEnergyRegenTick = system.currentTick;
+
+function getOrCreateObjective(objectiveId, displayName) {
+  let objective = world.scoreboard.getObjective(objectiveId);
+
+  if (!objective) {
+    objective = world.scoreboard.addObjective(objectiveId, displayName);
+  }
+
+  return objective;
+}
+
+function getEnergyObjectives() {
+  return {
+    energy: getOrCreateObjective(ENERGY_OBJECTIVE_ID, "Energia de Fenda"),
+    maxEnergy: getOrCreateObjective(ENERGY_MAX_OBJECTIVE_ID, "Energia de Fenda Max")
+  };
+}
+
+function getScore(objective, player) {
+  try {
+    return objective.getScore(player);
+  } catch {
+    return undefined;
+  }
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function ensureWoodenEmblemEnergy(player) {
+  const { energy, maxEnergy } = getEnergyObjectives();
+  const max = WOODEN_EMBLEM_MAX_ENERGY;
+  const currentScore = getScore(energy, player);
+  const current = currentScore === undefined ? max : clamp(currentScore, 0, max);
+
+  maxEnergy.setScore(player, max);
+  energy.setScore(player, current);
+
+  return { current, max };
+}
+
+function regenerateWoodenEmblemEnergy(player) {
+  const { energy } = getEnergyObjectives();
+  const { current, max } = ensureWoodenEmblemEnergy(player);
+  const regenerated = clamp(current + ENERGY_REGEN_AMOUNT, 0, max);
+
+  energy.setScore(player, regenerated);
+  return { current: regenerated, max };
+}
+
+function hasActiveWoodenEmblem(player) {
+  return player.hasTag(ACTIVE_EMBLEM_TAG) && player.hasTag(WOODEN_EMBLEM_TAG);
+}
+
+function showEnergyActionbar(player, current, max) {
+  player.onScreenDisplay.setActionBar(`\u00a7dEnergia de Fenda: \u00a7f${current}\u00a77/\u00a7f${max}`);
+}
+
+function clearEnergyActionbar(player) {
+  player.onScreenDisplay.setActionBar("");
+}
 
 function canToggleEmblem(player) {
   const currentTick = system.currentTick;
@@ -51,7 +121,9 @@ function activateWoodenEmblem(player) {
 
   player.addTag(ACTIVE_EMBLEM_TAG);
   player.addTag(WOODEN_EMBLEM_TAG);
-  player.sendMessage("§dO Emblema de Madeira pulsa fracamente. A Fenda reconhece sua presença.");
+  const { current, max } = ensureWoodenEmblemEnergy(player);
+  showEnergyActionbar(player, current, max);
+  player.sendMessage("\u00a7dO Emblema de Madeira pulsa fracamente. A Fenda reconhece sua presenca.");
   setMainhandItem(player, ACTIVE_WOODEN_EMBLEM_ITEM_ID);
 }
 
@@ -62,8 +134,29 @@ function deactivateWoodenEmblem(player) {
 
   player.removeTag(ACTIVE_EMBLEM_TAG);
   player.removeTag(WOODEN_EMBLEM_TAG);
-  player.sendMessage("§7O Emblema de Madeira silencia. A Fenda se afasta por enquanto.");
+  clearEnergyActionbar(player);
+  player.sendMessage("\u00a77O Emblema de Madeira silencia. A Fenda se afasta por enquanto.");
   setMainhandItem(player, WOODEN_EMBLEM_ITEM_ID);
+}
+
+function updateActiveWoodenEmblemEnergy() {
+  const shouldRegenerate = system.currentTick - lastEnergyRegenTick >= ENERGY_REGEN_INTERVAL_TICKS;
+
+  if (shouldRegenerate) {
+    lastEnergyRegenTick = system.currentTick;
+  }
+
+  for (const player of world.getPlayers()) {
+    if (!hasActiveWoodenEmblem(player)) {
+      continue;
+    }
+
+    const energyState = shouldRegenerate
+      ? regenerateWoodenEmblemEnergy(player)
+      : ensureWoodenEmblemEnergy(player);
+
+    showEnergyActionbar(player, energyState.current, energyState.max);
+  }
 }
 
 system.beforeEvents.startup.subscribe((event) => {
@@ -102,3 +195,5 @@ world.afterEvents.itemUse.subscribe((event) => {
     deactivateWoodenEmblem(event.source);
   }
 });
+
+system.runInterval(updateActiveWoodenEmblemEnergy, ENERGY_ACTIONBAR_INTERVAL_TICKS);

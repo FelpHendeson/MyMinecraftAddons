@@ -135,3 +135,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar itens, receitas, mobs, funções, `tick.json`, mana, habilidades, UI customizada, sistemas avançados, texturas ou renomear itens existentes; não alterar UUIDs existentes.
 - Resultado esperado: usar `riftborn:emblema_de_madeira` remove tags futuras de outros Emblemas, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, envia mensagem ao jogador e não consome o item.
 - Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 8]` para `[0, 1, 9]` para evitar rebaixar a versão técnica; um UUID novo foi criado somente para o novo módulo de script.
+
+## 2026-06-09 - Energia de Fenda básica do Emblema de Madeira
+
+- Área: Riftborn.
+- Objetivo: implementar o primeiro estado funcional simples de `Energia de Fenda` para jogadores com `Emblema de Madeira` ativo.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/scripts/main.js`, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md`, `DEVELOPMENT_RULES.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, mobs, habilidades, projéteis, efeitos de dano, UI customizada, renomear itens existentes ou alterar UUIDs.
+- Resultado esperado: jogadores com `riftborn_emblema_ativo` e `riftborn_emblema_madeira` têm energia máxima 20, energia inicial 20 quando ainda não existir, regeneração de 1 ponto a cada 40 ticks e exibição por actionbar.
+- Observações: a Energia de Fenda usa scoreboards `rb_energy` e `rb_energy_max`; ainda não existem técnicas, custos de energia, mana, habilidades, dano ou projéteis. Os manifests avançaram para `[0, 1, 12]` para preservar a sequência técnica atual.

@@ -50,7 +50,7 @@ Primeiro emblema planejado:
 - Função: primeiro emblema universal.
 - Material: madeira e Fragmentos de Fenda.
 - Direção: primeiro vínculo do jogador com a Fenda, sem representar classe fixa.
-- Estado atual: item criado com textura, traduções, receita survival inicial e ativação simples por tags; ainda sem Energia de Fenda mecânica, mana, habilidades ou benefícios de combate.
+- Estado atual: item criado com textura, traduções, receita survival inicial, ativação simples por tags e Energia de Fenda básica exibida na actionbar; ainda sem técnicas, custos de energia, mana, habilidades ou benefícios de combate.
 
 Progressão planejada:
 
@@ -79,7 +79,19 @@ Ativação atual:
 - A desativação remove `riftborn_emblema_madeira`.
 - Uma mensagem informa que o Emblema respondeu.
 - O item não é consumido.
-- A ativação ainda não concede mana, habilidades, Energia de Fenda mecânica ou benefícios de combate.
+- A ativação não concede mana, habilidades, técnicas ou benefícios de combate.
+
+Energia de Fenda atual:
+
+- O sistema usa os objetivos scoreboard `rb_energy` e `rb_energy_max`.
+- O `Emblema de Madeira` ativo define energia máxima 20.
+- A energia atual começa em 20 quando ainda não existe para o jogador.
+- Reativar o Emblema não recarrega energia já existente; apenas limita o valor entre 0 e 20.
+- A regeneração inicial é de 1 ponto a cada 40 ticks.
+- A energia não passa do máximo e não fica abaixo de 0.
+- A actionbar exibe `Energia de Fenda: atual/max` enquanto o Emblema está ativo.
+- Desativar o Emblema para a exibição da actionbar, mas não apaga a energia armazenada.
+- Ainda não existem técnicas, custos de energia, habilidades, dano ou projéteis.
 
 ## Receitas
 

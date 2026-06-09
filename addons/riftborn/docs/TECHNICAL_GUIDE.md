@@ -11,7 +11,7 @@ Estrutura atual:
 - Manifest inicial.
 - Pastas reservadas para itens, receitas, loot tables, funções, scripts e entidades.
 - Itens customizados simples em `items/`.
-- Script mínimo em `scripts/main.js` para ativação simples do `Emblema de Madeira`.
+- Script em `scripts/main.js` para ativação, desativação e Energia de Fenda básica do `Emblema de Madeira`.
 
 Conteúdos futuros possíveis, ainda não implementados:
 
@@ -56,7 +56,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 9]`.
+- Versão atual dos packs: `[0, 1, 12]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -83,7 +83,7 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 - `riftborn:emblema_de_madeira_ativo`: estado técnico ativo do `Emblema de Madeira`, com stack máximo 1 e botão de interação `Desativar`.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 
-O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele ainda não possui mana, habilidades, benefícios de combate ou funções. Esses comportamentos pertencem a etapas futuras.
+O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele possui Energia de Fenda básica exibida na actionbar, mas ainda não possui técnicas, custos de energia, mana, habilidades, benefícios de combate ou funções.
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
@@ -106,7 +106,17 @@ A receita usa apenas madeira e Fragmentos de Fenda para manter o primeiro Emblem
 
 - `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira` e `riftborn:desativar_emblema_madeira`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira` quando o jogador usa o item.
 
-A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado ativo e envia uma mensagem ao jogador. A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado inativo e envia uma mensagem ao jogador. O script possui um debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso. O script não consome o item, não cria mana, não concede habilidades e não aplica benefícios de combate.
+A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado ativo e envia uma mensagem ao jogador. A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, limpa a actionbar, troca o item na mão principal para o estado inativo e envia uma mensagem ao jogador. O script possui um debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso.
+
+Energia de Fenda básica:
+
+- O estado é persistido em scoreboards com os objetivos `rb_energy` e `rb_energy_max`.
+- O `Emblema de Madeira` ativo garante energia máxima 20.
+- A energia atual é inicializada em 20 apenas quando ainda não existe para o jogador.
+- Valores existentes são preservados e limitados entre 0 e 20.
+- A regeneração inicial é de 1 ponto a cada 40 ticks.
+- A actionbar exibe `§dEnergia de Fenda: §f{atual}§7/§f{max}` enquanto o jogador possui as tags `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- O script não consome o item, não cria mana, não concede habilidades, não cria técnicas, não adiciona custos de energia, não aplica dano e não dispara projéteis.
 
 ## Empacotamento futuro
 
