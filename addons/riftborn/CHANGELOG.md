@@ -18,6 +18,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Loot table de zumbi com chance inicial de dropar 1 `Fragmento de Fenda` quando morto por jogador ou pet.
 - Loot tables de esqueleto, aranha e creeper com chance de dropar 1 `Fragmento de Fenda` quando mortos por jogador ou pet.
 - Item narrativo `riftborn:livro_do_perdido`, com stack máximo 1, textura placeholder e traduções em português e inglês.
+- Receita shaped de crafting table para `riftborn:emblema_de_madeira`, usando apenas tábuas de madeira e `Fragmento de Fenda`.
 
 ### Changed
 
@@ -36,6 +37,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Versão técnica dos manifests incrementada para `0.1.6` para importar o build com as texturas atualizadas.
 - Drop de `Fragmento de Fenda` rebalanceado para melhorar o início solo: zumbi 15%, esqueleto 15%, aranha 12% e creeper 18%.
 - Versão técnica dos manifests incrementada para `0.1.7` para importar o build com o rebalanceamento de loot.
+- Versão técnica dos manifests incrementada para `0.1.8` para importar o build com a receita survival do `Emblema de Madeira`.
 
 ### Fixed
 
@@ -50,6 +52,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.
 - Nenhuma receita, script, `tick.json`, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa do livro.
 - Nenhum item, receita, loot table, script, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa de substituição de texturas.
+- Nenhum item novo, mob customizado, script, função, `tick.json`, mana, habilidade, ativação de Emblema, textura ou UUID foi criado ou alterado nesta etapa de receita.
+- A receita do `Emblema de Madeira` não usa lápis-lazúli, ametista, ferro ou recursos de mineração avançada.
 - Nenhum UUID foi alterado.
 - A textura do `Fragmento de Fenda` ainda pode evoluir, mas já representa melhor o conceito de material mágico raro.
 - Se o Minecraft Bedrock detectar duplicação ao importar novo build, a versão técnica pode precisar ser incrementada em uma etapa separada.

@@ -117,3 +117,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar itens, receitas, mobs customizados, scripts, funções, texturas ou UUIDs; não alterar nomes ou identidade dos itens existentes.
 - Resultado esperado: zumbi e esqueleto com chance aproximada de 15%, aranha com 12% e creeper com 18%, preservando os drops vanilla básicos.
 - Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 6]` para `[0, 1, 7]` para evitar rebaixar a versão técnica.
+
+## 2026-06-08 - Receita survival do Emblema de Madeira
+
+- Área: Riftborn.
+- Objetivo: criar a receita survival do `Emblema de Madeira`, usando apenas madeira e Fragmentos de Fenda.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/recipes/emblema_de_madeira.json`, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não usar lápis-lazúli, ametista, ferro ou recursos de mineração avançada; não criar itens, mobs customizados, scripts, funções, `tick.json`, mana, habilidades, ativação de Emblema, texturas ou UUIDs.
+- Resultado esperado: receita shaped na crafting table com padrão `FMF/MMM/FMF`, usando `riftborn:fragmento_de_fenda` e a tag `minecraft:planks`, com build funcionando.
+- Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 7]` para `[0, 1, 8]` para evitar rebaixar a versão técnica.

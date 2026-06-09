@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "riftborn:emblema_de_madeira"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "FMF",
+      "MMM",
+      "FMF"
+    ],
+    "key": {
+      "F": {
+        "item": "riftborn:fragmento_de_fenda"
+      },
+      "M": {
+        "tag": "minecraft:planks"
+      }
+    },
+    "result": {
+      "item": "riftborn:emblema_de_madeira",
+      "count": 1
+    }
+  }
+}

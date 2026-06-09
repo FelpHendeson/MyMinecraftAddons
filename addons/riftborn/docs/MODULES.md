@@ -21,7 +21,7 @@ Primeiros itens usados para validar progressão e identidade do addon.
 Item inicial:
 
 - `riftborn:fragmento_de_fenda`: estilhaço cristalino arrancado das rachaduras entre mundos, usado para validar o fluxo de item customizado e representar um material mágico raro.
-- `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, feito de madeira marcada pela Energia de Fenda, com stack máximo 1 e sem receita ou ativação nesta etapa.
+- `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, feito de madeira marcada pela Energia de Fenda, com stack máximo 1 e receita survival inicial.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial, um relato antigo de alguém que também caiu neste mundo, com stack máximo 1 e sem entrega automática nesta etapa.
 
 Direção visual:
@@ -50,7 +50,7 @@ Primeiro emblema planejado:
 - Função: primeiro emblema universal.
 - Material: madeira e Fragmentos de Fenda.
 - Direção: primeiro vínculo do jogador com a Fenda, sem representar classe fixa.
-- Estado atual: item criado com textura e traduções, ainda sem receita, ativação, Energia de Fenda ou habilidades.
+- Estado atual: item criado com textura, traduções e receita survival inicial; ainda sem ativação, Energia de Fenda ou habilidades.
 
 Progressão planejada:
 
@@ -77,6 +77,10 @@ Regras:
 - Começar com poucas receitas.
 - Evitar cadeias longas no início.
 - Testar no mundo de sobrevivência.
+- `Emblema de Madeira` usa receita shaped na crafting table com padrão `FMF/MMM/FMF`.
+- `F` representa `riftborn:fragmento_de_fenda`.
+- `M` representa tábuas de madeira pela tag `minecraft:planks`.
+- A receita não usa lápis-lazúli, ametista, ferro ou recursos de mineração avançada.
 
 ## Loot Customizado
 

@@ -55,7 +55,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 7]`.
+- Versão atual dos packs: `[0, 1, 8]`.
 - `min_engine_version`: `[1, 20, 0]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -80,7 +80,7 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 
-O `Emblema de Madeira` ainda não possui receita, ativação de Energia de Fenda, habilidades, scripts ou funções. Esses comportamentos pertencem a etapas futuras.
+O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json`. Ele ainda não possui ativação de Energia de Fenda, habilidades, scripts ou funções. Esses comportamentos pertencem a etapas futuras.
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
@@ -92,6 +92,12 @@ O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega 
 - `loot_tables/entities/creeper.json`: substitui a loot table vanilla do creeper para adicionar uma chance base aproximada de 18% de dropar 1 `riftborn:fragmento_de_fenda` quando morto por jogador ou pet.
 
 Essas tabelas reproduzem os pools vanilla básicos e adicionam o Fragmento de Fenda em pools separados. Esta é a primeira família de fontes survival planejada para Fragmentos de Fenda e deve ser revisada após testes de balanceamento.
+
+## Receitas atuais
+
+- `recipes/emblema_de_madeira.json`: receita shaped de crafting table para `riftborn:emblema_de_madeira`, usando 4 `riftborn:fragmento_de_fenda` e 5 tábuas de madeira pela tag `minecraft:planks`.
+
+A receita usa apenas madeira e Fragmentos de Fenda para manter o primeiro Emblema acessível ao jogador solo nas primeiras noites.
 
 ## Empacotamento futuro
 
