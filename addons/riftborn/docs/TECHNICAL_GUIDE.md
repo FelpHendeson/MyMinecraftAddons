@@ -52,7 +52,7 @@ Todas as texturas de item atuais usam PNG 32x32 em `textures/items/`. A ferramen
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 3, 2]`.
+- Versão atual dos packs: `[0, 3, 3]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -86,7 +86,7 @@ O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_ma
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
-O `Cajado de Madeira` é um item de equipamento e usa o ícone `cajado_de_madeira`. Ele usa `format_version` `1.21.10`, expõe o botão de toque `Usar` por `minecraft:interact_button` e registra o custom component `riftborn:usar_cajado_de_madeira`. Usar o cajado tenta lançar `Pulso de Energia I`.
+O `Cajado de Madeira` é um item de equipamento e usa o ícone `cajado_de_madeira`. Ele usa `format_version` `1.21.10`, expõe o botão de toque `Mirar` por `minecraft:interact_button` e `use_duration` de 1 segundo. Segurar o cajado concentra o `Pulso de Energia I`; soltar antes do tempo máximo dispara com carga parcial e completar a mira dispara com carga total.
 
 O `Pergaminho Mágico: Pulso de Energia I` é um item simples e usa o ícone `pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica `Pulso de Energia I`. O pergaminho precisa existir no inventário do jogador para a habilidade ser executada e não é consumido.
 
@@ -121,7 +121,7 @@ As receitas iniciais de lâmina são baratas e usam a espada de madeira vanilla 
 
 ## Scripts atuais
 
-- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira`, `riftborn:desativar_emblema_madeira`, `riftborn:usar_cajado_de_madeira` e `riftborn:usar_lamina_de_madeira_fendida`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira`, usar o `Cajado de Madeira` ou usar a `Lâmina de Madeira Fendida`.
+- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira` e `riftborn:usar_lamina_de_madeira_fendida`, escuta `world.afterEvents.itemUse` como fallback do Emblema e da Lâmina, e usa `itemStartUse`, `itemStopUse` e `itemCompleteUse` para o carregamento estilo arco do Cajado de Madeira.
 
 O uso do Emblema chama `toggleWoodenEmblem`, que ativa ou desativa com base nas tags atuais. A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira` e envia uma mensagem ao jogador. A desativação remove essas tags e limpa a actionbar. O script escuta `world.afterEvents.playerSpawn` para restaurar a actionbar após respawn e `world.afterEvents.playerLeave` para limpar Maps de cooldown em memória. Há debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso.
 
@@ -137,7 +137,7 @@ Energia de Fenda básica:
 
 Pulso de Energia I:
 
-- É executado ao usar `riftborn:cajado_de_madeira`.
+- É executado ao soltar ou completar a mira com `riftborn:cajado_de_madeira`.
 - Requer `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
 - Requer energia atual de pelo menos 5.
 - Requer pelo menos 1 `riftborn:pergaminho_magico_pulso_de_energia_i` no inventário ou hotbar.
@@ -146,13 +146,13 @@ Pulso de Energia I:
 - Tem cooldown de 20 ticks por jogador.
 - Usa um projétil mágico scriptado, criado à frente dos olhos do jogador com base em `player.getViewDirection()`.
 - O projétil viaja aproximadamente 10 blocos, com velocidade 0,75 bloco por tick, e expira ao atingir entidade, bloco, alcance máximo ou tempo limite.
-- O loop do projétil testa colisão por amostras entre a posição anterior e a próxima para reduzir falhas quando a mira está diretamente sobre o alvo.
+- O loop do projétil testa colisão por 6 amostras entre a posição anterior e a próxima, com raio de 1,1 bloco e verificação imediata na origem para reduzir falhas quando a mira está diretamente sobre o alvo.
 - Não atinge o próprio jogador e evita entidades sem componente de vida, como itens dropados e projéteis.
 - Aplica 5 de dano e repulsão horizontal normalizada de força aproximada 2, com impulso vertical pequeno de 0,15.
-- Usa partículas vanilla simples não textuais, priorizando `minecraft:blue_flame_particle` e usando `minecraft:basic_flame_particle` como fallback, além de sons vanilla simples quando disponíveis.
+- Usa partículas vanilla `minecraft:electric_spark_particle` e `minecraft:witch_spell_particle`, com impacto visual adicional ao atingir alvo.
 - Não cria entidade customizada, mob, item, receita, projétil customizado por JSON ou UI customizada.
 - A abordagem foi escolhida em Script API porque `minecraft:shooter` não oferece, neste escopo, um ponto simples e estável para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
-- Carregamento completo estilo arco ainda é melhoria futura; o uso atual dispara imediatamente após a validação.
+- Partículas totalmente customizadas exigiriam arquivos `.particle` no Resource Pack em uma etapa futura.
 - O projétil existe apenas em memória do script (`activeEnergyPulseProjectiles`). Ele não sobrevive a `/reload`, reinício do mundo ou recarga do script; projéteis em voo são perdidos nesses casos. Esta é uma limitação técnica aceita nesta etapa.
 - O feedback de cast combina o nome da habilidade e a Energia de Fenda restante na mesma actionbar.
 
@@ -169,7 +169,7 @@ Corte Instável I:
 - Afeta apenas entidades à frente do jogador, com alcance de 3 blocos e raio lateral aproximado de 1,5 bloco.
 - Não atinge o próprio jogador, itens dropados, projéteis ou entidades sem componente de vida.
 - Aplica 5 de dano e knockback horizontal normalizado de força aproximada 1, com impulso vertical pequeno de 0,1.
-- Usa partículas vanilla simples não textuais, priorizando `minecraft:blue_flame_particle` e usando `minecraft:basic_flame_particle` como fallback, além de som vanilla simples quando disponível.
+- Usa partículas vanilla `minecraft:sweep_attack_particle` e `minecraft:basic_crit_particle`, com origem de mira baseada nos olhos do jogador.
 - Não cria projétil, entidade customizada, mob, item, receita, bloco, UI customizada ou UUID.
 - A ativação por uso da lâmina foi escolhida para esta primeira versão por ser mais estável em Bedrock mobile do que depender de evento de ataque; detecção por ataque pode ser avaliada em etapa futura.
 

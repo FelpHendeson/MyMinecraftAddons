@@ -10,12 +10,12 @@ O jogador é um Riftborn: alguém trazido por uma fenda dimensional para um mund
 
 ## Status atual
 
-Versão técnica atual: `0.3.2`.
+Versão técnica atual: `0.3.3`.
 
 ### Implementado
 
 - Manifests, Behavior Pack, Resource Pack e empacotamento local (`.mcpack` / `.mcaddon`).
-- 8 itens customizados, 5 receitas, 4 loot tables e traduções `pt_BR` / `en_US`.
+- 7 itens customizados, 5 receitas, 4 loot tables e traduções `pt_BR` / `en_US`.
 - Script API em `scripts/main.js` com Emblema de Madeira, Energia de Fenda, `Pulso de Energia I` e `Corte Instável I`.
 - Drops de `Fragmento de Fenda` em zumbi, esqueleto, aranha e creeper.
 

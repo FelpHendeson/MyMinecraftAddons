@@ -3,7 +3,6 @@ import { system, world } from "@minecraft/server";
 const ACTIVE_EMBLEM_TAG = "riftborn_emblema_ativo";
 const WOODEN_EMBLEM_TAG = "riftborn_emblema_madeira";
 const WOODEN_EMBLEM_ITEM_ID = "riftborn:emblema_de_madeira";
-const ACTIVE_WOODEN_EMBLEM_ITEM_ID = "riftborn:emblema_de_madeira_ativo";
 const WOODEN_STAFF_ITEM_ID = "riftborn:cajado_de_madeira";
 const ENERGY_PULSE_SCROLL_ITEM_ID = "riftborn:pergaminho_magico_pulso_de_energia_i";
 const RIFTED_WOODEN_BLADE_ITEM_ID = "riftborn:lamina_de_madeira_fendida";
@@ -19,13 +18,20 @@ const ENERGY_PULSE_COST = 5;
 const ENERGY_PULSE_DAMAGE = 5;
 const ENERGY_PULSE_RANGE = 10;
 const ENERGY_PULSE_SPEED = 0.75;
-const ENERGY_PULSE_HIT_RADIUS = 0.7;
+const ENERGY_PULSE_HIT_RADIUS = 1.1;
+const ENERGY_PULSE_PATH_SAMPLES = 6;
+const STAFF_MIN_CHARGE_TICKS = 4;
+const STAFF_MAX_CHARGE_TICKS = 20;
 const ENERGY_PULSE_KNOCKBACK = 2;
 const ENERGY_PULSE_VERTICAL_KNOCKBACK = 0.15;
 const ENERGY_PULSE_COOLDOWN_TICKS = 20;
 const ENERGY_PULSE_PROJECTILE_PARTICLES = [
-  "minecraft:blue_flame_particle",
-  "minecraft:basic_flame_particle"
+  "minecraft:electric_spark_particle",
+  "minecraft:witch_spell_particle"
+];
+const ENERGY_PULSE_IMPACT_PARTICLES = [
+  "minecraft:witch_spell_particle",
+  "minecraft:electric_spark_particle"
 ];
 const UNSTABLE_SLASH_COST = 5;
 const UNSTABLE_SLASH_DAMAGE = 5;
@@ -35,9 +41,10 @@ const UNSTABLE_SLASH_KNOCKBACK = 1;
 const UNSTABLE_SLASH_VERTICAL_KNOCKBACK = 0.1;
 const UNSTABLE_SLASH_COOLDOWN_TICKS = 20;
 const UNSTABLE_SLASH_PARTICLES = [
-  "minecraft:blue_flame_particle",
-  "minecraft:basic_flame_particle"
+  "minecraft:sweep_attack_particle",
+  "minecraft:basic_crit_particle"
 ];
+const UNSTABLE_SLASH_MIN_FORWARD_DISTANCE = 0.5;
 const EMBLEM_LINEAGE_TAGS = [
   "riftborn_emblema_madeira",
   "riftborn_emblema_cobre",
@@ -48,8 +55,8 @@ const EMBLEM_LINEAGE_TAGS = [
   "riftborn_emblema_sobrevivente"
 ];
 const lastActivationTickByPlayer = new Map();
-const lastStaffUseTickByPlayer = new Map();
 const lastBladeUseTickByPlayer = new Map();
+const staffChargeByPlayer = new Map();
 const energyPulseCooldownTickByPlayer = new Map();
 const unstableSlashCooldownTickByPlayer = new Map();
 const lastFailureMessageTickByPlayer = new Map();
@@ -151,18 +158,6 @@ function canToggleEmblem(player) {
   }
 
   lastActivationTickByPlayer.set(player.id, currentTick);
-  return true;
-}
-
-function canUseWoodenStaff(player) {
-  const currentTick = system.currentTick;
-  const lastUseTick = lastStaffUseTickByPlayer.get(player.id);
-
-  if (lastUseTick !== undefined && currentTick - lastUseTick < ACTIVATION_DEBOUNCE_TICKS) {
-    return false;
-  }
-
-  lastStaffUseTickByPlayer.set(player.id, currentTick);
   return true;
 }
 
@@ -271,24 +266,70 @@ function isBlockingBlock(dimension, location) {
   }
 }
 
-function spawnEnergyPulseParticle(dimension, location) {
-  for (const particleId of ENERGY_PULSE_PROJECTILE_PARTICLES) {
+function spawnParticleFromList(dimension, location, particleIds) {
+  for (const particleId of particleIds) {
     try {
       dimension.spawnParticle(particleId, location);
-      return;
+      return true;
     } catch {
     }
   }
+
+  return false;
+}
+
+function spawnEnergyPulseParticle(dimension, location) {
+  spawnParticleFromList(dimension, location, ENERGY_PULSE_PROJECTILE_PARTICLES);
+}
+
+function spawnEnergyPulseImpactParticle(dimension, location) {
+  spawnParticleFromList(dimension, location, ENERGY_PULSE_IMPACT_PARTICLES);
 }
 
 function spawnUnstableSlashParticle(dimension, location) {
-  for (const particleId of UNSTABLE_SLASH_PARTICLES) {
-    try {
-      dimension.spawnParticle(particleId, location);
-      return;
-    } catch {
-    }
+  spawnParticleFromList(dimension, location, UNSTABLE_SLASH_PARTICLES);
+}
+
+function getPlayerAimOrigin(player) {
+  const headLocation = player.getHeadLocation();
+
+  return {
+    x: headLocation.x,
+    y: player.location.y + 0.1,
+    z: headLocation.z
+  };
+}
+
+function getStaffChargeRatio(startTick) {
+  const elapsed = system.currentTick - startTick;
+
+  if (elapsed < STAFF_MIN_CHARGE_TICKS) {
+    return 0;
   }
+
+  return clamp(elapsed / STAFF_MAX_CHARGE_TICKS, 0, 1);
+}
+
+function getEnergyPulseCastFailure(player) {
+  if (!hasActiveWoodenEmblem(player)) {
+    return "\u00a77Nenhum Emblema ativo responde ao cajado.";
+  }
+
+  if (!hasItemInInventory(player, ENERGY_PULSE_SCROLL_ITEM_ID)) {
+    return "\u00a77Voc\u00ea n\u00e3o conhece esta t\u00e9cnica.";
+  }
+
+  const { current } = ensureWoodenEmblemEnergy(player);
+
+  if (current < ENERGY_PULSE_COST) {
+    return "\u00a7cEnergia de Fenda insuficiente.";
+  }
+
+  if (isEnergyPulseOnCooldown(player)) {
+    return "\u00a77Pulso de Energia ainda est\u00e1 se estabilizando.";
+  }
+
+  return undefined;
 }
 
 function showAbilityActionbar(player, abilityName, current, max) {
@@ -330,6 +371,8 @@ function applyEnergyPulseImpact(projectile, target) {
     // Some entities can reject damage or knockback even with a health component.
   }
 
+  spawnEnergyPulseImpactParticle(projectile.dimension, target.location);
+
   try {
     projectile.dimension.playSound("random.pop", target.location, { volume: 0.8, pitch: 1.2 });
   } catch {
@@ -348,23 +391,33 @@ function findEnergyPulseHit(projectile, location) {
   return undefined;
 }
 
-function spawnEnergyPulseProjectile(player) {
+function spawnEnergyPulseProjectile(player, chargeRatio = 1) {
   const direction = normalizeVector(player.getViewDirection());
   const headLocation = player.getHeadLocation();
-  const origin = addVectors(headLocation, scaleVector(direction, 0.8));
-
-  activeEnergyPulseProjectiles.push({
+  const origin = addVectors(headLocation, scaleVector(direction, 1.2));
+  const speed = ENERGY_PULSE_SPEED * (0.65 + chargeRatio * 0.35);
+  const projectile = {
     id: nextEnergyPulseProjectileId++,
     ownerId: player.id,
     dimension: player.dimension,
     origin,
     location: origin,
     direction,
+    speed,
     age: 0,
     traveled: 0,
     hitEntityIds: new Set()
-  });
+  };
 
+  const immediateHit = findEnergyPulseHit(projectile, origin);
+
+  if (immediateHit) {
+    projectile.hitEntityIds.add(immediateHit.id);
+    applyEnergyPulseImpact(projectile, immediateHit);
+    return;
+  }
+
+  activeEnergyPulseProjectiles.push(projectile);
   spawnEnergyPulseParticle(player.dimension, origin);
 }
 
@@ -376,8 +429,8 @@ function updateEnergyPulseProjectiles() {
     projectile.age++;
 
     const previousLocation = projectile.location;
-    const nextLocation = addVectors(previousLocation, scaleVector(projectile.direction, ENERGY_PULSE_SPEED));
-    const samples = 3;
+    const nextLocation = addVectors(previousLocation, scaleVector(projectile.direction, projectile.speed));
+    const samples = ENERGY_PULSE_PATH_SAMPLES;
 
     for (let sample = 1; sample <= samples; sample++) {
       const location = addVectors(previousLocation, scaleVector({
@@ -416,44 +469,68 @@ function updateEnergyPulseProjectiles() {
   }
 }
 
-function tryCastEnergyPulse(player) {
-  if (!canUseWoodenStaff(player)) {
-    return;
+function releaseEnergyPulse(player, chargeRatio) {
+  if (chargeRatio <= 0) {
+    showTemporaryActionbar(player, "\u00a77Segure o cajado para concentrar o Pulso.");
+    return false;
   }
 
-  if (!hasActiveWoodenEmblem(player)) {
-    showTemporaryActionbar(player, "\u00a77Nenhum Emblema ativo responde ao cajado.");
-    return;
-  }
+  const failure = getEnergyPulseCastFailure(player);
 
-  if (!hasItemInInventory(player, ENERGY_PULSE_SCROLL_ITEM_ID)) {
-    showTemporaryActionbar(player, "\u00a77Voc\u00ea n\u00e3o conhece esta t\u00e9cnica.");
-    return;
+  if (failure) {
+    showTemporaryActionbar(player, failure);
+    return false;
   }
 
   const { current } = ensureWoodenEmblemEnergy(player);
-
-  if (current < ENERGY_PULSE_COST) {
-    showTemporaryActionbar(player, "\u00a7cEnergia de Fenda insuficiente.");
-    return;
-  }
-
-  if (isEnergyPulseOnCooldown(player)) {
-    showTemporaryActionbar(player, "\u00a77Pulso de Energia ainda est\u00e1 se estabilizando.");
-    return;
-  }
-
   const energyState = setWoodenEmblemEnergy(player, current - ENERGY_PULSE_COST);
   startEnergyPulseCooldown(player);
-  spawnEnergyPulseProjectile(player);
+  spawnEnergyPulseProjectile(player, chargeRatio);
   showEnergyPulseCastFeedback(player, energyState.current, energyState.max);
+  return true;
+}
+
+function beginStaffCharge(player) {
+  staffChargeByPlayer.set(player.id, {
+    startTick: system.currentTick
+  });
+}
+
+function finishStaffCharge(player, forceFullCharge = false) {
+  const charge = staffChargeByPlayer.get(player.id);
+  staffChargeByPlayer.delete(player.id);
+
+  if (!charge) {
+    return;
+  }
+
+  const chargeRatio = forceFullCharge ? 1 : getStaffChargeRatio(charge.startTick);
+  releaseEnergyPulse(player, chargeRatio);
+}
+
+function updateStaffCharges() {
+  for (const player of world.getPlayers()) {
+    const charge = staffChargeByPlayer.get(player.id);
+
+    if (!charge) {
+      continue;
+    }
+
+    const chargeRatio = getStaffChargeRatio(charge.startTick);
+    const direction = normalizeVector(player.getViewDirection());
+    const tipLocation = addVectors(player.getHeadLocation(), scaleVector(direction, 0.7));
+
+    spawnEnergyPulseParticle(player.dimension, tipLocation);
+    player.onScreenDisplay.setActionBar(`\u00a7dConcentrando Pulso... \u00a7f${Math.round(chargeRatio * 100)}%`);
+  }
 }
 
 function findUnstableSlashTargets(player) {
   const direction = getHorizontalDirection(player.getViewDirection());
+  const baseLocation = getPlayerAimOrigin(player);
   const candidates = player.dimension.getEntities({
-    location: player.location,
-    maxDistance: UNSTABLE_SLASH_RANGE + UNSTABLE_SLASH_RADIUS
+    location: baseLocation,
+    maxDistance: UNSTABLE_SLASH_RANGE + UNSTABLE_SLASH_RADIUS + 1
   });
   const targets = [];
   const targetIds = new Set();
@@ -464,12 +541,12 @@ function findUnstableSlashTargets(player) {
     }
 
     const toTarget = {
-      x: entity.location.x - player.location.x,
-      z: entity.location.z - player.location.z
+      x: entity.location.x - baseLocation.x,
+      z: entity.location.z - baseLocation.z
     };
     const forwardDistance = toTarget.x * direction.x + toTarget.z * direction.z;
 
-    if (forwardDistance <= 0 || forwardDistance > UNSTABLE_SLASH_RANGE) {
+    if (forwardDistance < UNSTABLE_SLASH_MIN_FORWARD_DISTANCE || forwardDistance > UNSTABLE_SLASH_RANGE) {
       continue;
     }
 
@@ -508,7 +585,7 @@ function applyUnstableSlashImpact(player, target) {
 function spawnUnstableSlashFeedback(player) {
   const direction = getHorizontalDirection(player.getViewDirection());
   const right = { x: -direction.z, z: direction.x };
-  const baseLocation = player.location;
+  const baseLocation = getPlayerAimOrigin(player);
 
   for (let distance = 1; distance <= UNSTABLE_SLASH_RANGE; distance++) {
     const arcScale = distance / UNSTABLE_SLASH_RANGE;
@@ -601,7 +678,7 @@ function toggleWoodenEmblem(player) {
 
 function clearPlayerRuntimeState(playerId) {
   lastActivationTickByPlayer.delete(playerId);
-  lastStaffUseTickByPlayer.delete(playerId);
+  staffChargeByPlayer.delete(playerId);
   lastBladeUseTickByPlayer.delete(playerId);
   energyPulseCooldownTickByPlayer.delete(playerId);
   unstableSlashCooldownTickByPlayer.delete(playerId);
@@ -648,26 +725,6 @@ system.beforeEvents.startup.subscribe((event) => {
     }
   });
 
-  event.itemComponentRegistry.registerCustomComponent("riftborn:desativar_emblema_madeira", {
-    onUse({ source }) {
-      if (!source || source.typeId !== "minecraft:player") {
-        return;
-      }
-
-      toggleWoodenEmblem(source);
-    }
-  });
-
-  event.itemComponentRegistry.registerCustomComponent("riftborn:usar_cajado_de_madeira", {
-    onUse({ source }) {
-      if (!source || source.typeId !== "minecraft:player") {
-        return;
-      }
-
-      tryCastEnergyPulse(source);
-    }
-  });
-
   event.itemComponentRegistry.registerCustomComponent("riftborn:usar_lamina_de_madeira_fendida", {
     onUse({ source }) {
       if (!source || source.typeId !== "minecraft:player") {
@@ -684,19 +741,38 @@ world.afterEvents.itemUse.subscribe((event) => {
     return;
   }
 
-  if (event.itemStack?.typeId === WOODEN_EMBLEM_ITEM_ID || event.itemStack?.typeId === ACTIVE_WOODEN_EMBLEM_ITEM_ID) {
+  if (event.itemStack?.typeId === WOODEN_EMBLEM_ITEM_ID) {
     toggleWoodenEmblem(event.source);
-    return;
-  }
-
-  if (event.itemStack?.typeId === WOODEN_STAFF_ITEM_ID) {
-    tryCastEnergyPulse(event.source);
     return;
   }
 
   if (event.itemStack?.typeId === RIFTED_WOODEN_BLADE_ITEM_ID) {
     tryCastUnstableSlash(event.source);
   }
+});
+
+world.afterEvents.itemStartUse.subscribe((event) => {
+  if (!event.source || event.source.typeId !== "minecraft:player" || event.itemStack?.typeId !== WOODEN_STAFF_ITEM_ID) {
+    return;
+  }
+
+  beginStaffCharge(event.source);
+});
+
+world.afterEvents.itemStopUse.subscribe((event) => {
+  if (!event.source || event.source.typeId !== "minecraft:player" || event.itemStack?.typeId !== WOODEN_STAFF_ITEM_ID) {
+    return;
+  }
+
+  finishStaffCharge(event.source, false);
+});
+
+world.afterEvents.itemCompleteUse.subscribe((event) => {
+  if (!event.source || event.source.typeId !== "minecraft:player" || event.itemStack?.typeId !== WOODEN_STAFF_ITEM_ID) {
+    return;
+  }
+
+  finishStaffCharge(event.source, true);
 });
 
 world.afterEvents.playerSpawn.subscribe((event) => {
@@ -712,4 +788,5 @@ world.afterEvents.playerLeave.subscribe((event) => {
 });
 
 system.runInterval(updateActiveWoodenEmblemEnergy, ENERGY_ACTIONBAR_INTERVAL_TICKS);
+system.runInterval(updateStaffCharges, 2);
 system.runInterval(updateEnergyPulseProjectiles, 1);

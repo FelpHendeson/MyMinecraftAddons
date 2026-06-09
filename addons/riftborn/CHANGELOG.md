@@ -2,6 +2,31 @@
 
 Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
+## [0.3.3] - 2026-06-09
+
+### Added
+
+- `Pulso de Energia I` agora usa carregamento estilo arco: segure o `Cajado de Madeira` para mirar e solte para disparar.
+- Feedback de concentração no cajado com porcentagem de carga e partículas na ponta da mira.
+
+### Changed
+
+- Partículas do `Pulso de Energia I` trocadas para faíscas elétricas e magia roxa (`electric_spark_particle`, `witch_spell_particle`).
+- Partículas do `Corte Instável I` trocadas para corte de espada e crítico (`sweep_attack_particle`, `basic_crit_particle`).
+- Cajado de Madeira usa botão `Mirar`, `use_duration` de 1 segundo e desaceleração durante a mira.
+- Detecção de colisão do projétil melhorada com raio maior, mais amostras no caminho e verificação imediata na origem.
+- `Corte Instável I` passa a mirar a partir dos olhos do jogador, melhorando acertos em alvos bem próximos.
+- Versão técnica dos manifests incrementada para `0.3.3`.
+
+### Removed
+
+- Item técnico `riftborn:emblema_de_madeira_ativo` e custom component legado do cajado.
+
+### Notes
+
+- Texturas de item padronizadas em 32x32 para melhor nitidez.
+- Para partículas totalmente customizadas no futuro, será necessário criar definições `.particle` no Resource Pack.
+
 ## [0.3.2] - 2026-06-09
 
 ### Added
