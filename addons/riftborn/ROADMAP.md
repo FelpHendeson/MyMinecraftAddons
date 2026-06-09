@@ -72,9 +72,10 @@ Status: próxima etapa planejada.
 
 ### v0.9 Lâmina Mágica inicial
 
-- Criar futuramente Lâmina Mágica Grau I a partir de espada vanilla.
-- Criar futuramente Pergaminho de Lâmina: Corte Instável I.
+- Criar Lâmina Mágica Grau I a partir de espada vanilla.
+- Criar Pergaminho de Lâmina: Corte Instável I.
 - Validar que Lâminas Mágicas expandem espadas vanilla sem inutilizá-las.
+- Preparar implementação futura de Corte Instável I.
 
 ### v0.10 Emblema de Cobre e caminhos
 
@@ -129,6 +130,7 @@ MVP recomendado:
 4. Implementar Pulso de Energia I.
 5. Criar Lâmina Mágica Grau I.
 6. Criar Pergaminho de Lâmina: Corte Instável I.
+7. Implementar Corte Instável I.
 
 ## Controle de escopo
 

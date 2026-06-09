@@ -60,6 +60,8 @@ Pergaminhos são itens que definem quais habilidades ativas podem ser usadas. El
 
 O primeiro Pergaminho Mágico é o `Pergaminho Mágico: Pulso de Energia I`, com identificador `riftborn:pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica `Pulso de Energia I`, primeira habilidade ativa funcional do Riftborn. No estado atual, a técnica é executada pelo `Cajado de Madeira` quando o jogador possui `Emblema de Madeira` ativo, Energia de Fenda suficiente e o pergaminho compatível no inventário. A técnica dispara um projétil mágico scriptado que viaja pela direção da mira.
 
+A primeira Lâmina Mágica é a `Lâmina de Madeira Fendida`, com identificador `riftborn:lamina_de_madeira_fendida`. Ela usa uma espada de madeira vanilla como base infundida por Fragmento de Fenda. O primeiro Pergaminho de Lâmina é `Pergaminho de Lâmina: Corte Instável I`, com identificador `riftborn:pergaminho_lamina_corte_instavel_i`. Esses itens criam a base de Habilidades de Lâmina, mas ainda não executam habilidade.
+
 Graus vão de I a V. Grau I é a entrada do sistema, com baixo custo de Energia de Fenda. Graus maiores aumentam custo, poder e efeitos. Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente por causa do consumo elevado.
 
 Emblemas devem ganhar XP ao matar monstros, subir de nível e melhorar passivas ou atributos extras dados pelo Emblema. Catalisadores também podem conceder passivas de build.

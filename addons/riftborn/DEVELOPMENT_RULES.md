@@ -56,6 +56,8 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 - Cajados devem ser a família inicial de catalisadores mágicos.
 - Lâminas Mágicas devem ser a família inicial de catalisadores de lâmina.
 - O primeiro cajado deve usar o identificador `riftborn:cajado_de_madeira`.
+- A primeira Lâmina Mágica deve usar o identificador `riftborn:lamina_de_madeira_fendida`.
+- O primeiro Pergaminho de Lâmina deve usar o identificador `riftborn:pergaminho_lamina_corte_instavel_i`.
 - Pergaminhos definem habilidades ativas disponíveis.
 - Pergaminhos devem ser compatíveis com o catalisador usado.
 - Graus devem ir de I a V.

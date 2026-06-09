@@ -1,0 +1,23 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "riftborn:lamina_de_madeira_fendida"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:wooden_sword"
+      },
+      {
+        "item": "riftborn:fragmento_de_fenda"
+      }
+    ],
+    "result": {
+      "item": "riftborn:lamina_de_madeira_fendida",
+      "count": 1
+    }
+  }
+}

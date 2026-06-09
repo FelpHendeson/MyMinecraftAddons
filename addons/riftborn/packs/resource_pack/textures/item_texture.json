@@ -16,6 +16,12 @@
     },
     "pergaminho_magico_pulso_de_energia_i": {
       "textures": "textures/items/pergaminho_magico_pulso_de_energia_i"
+    },
+    "lamina_de_madeira_fendida": {
+      "textures": "textures/items/lamina_de_madeira_fendida"
+    },
+    "pergaminho_lamina_corte_instavel_i": {
+      "textures": "textures/items/pergaminho_lamina_corte_instavel_i"
     }
   }
 }

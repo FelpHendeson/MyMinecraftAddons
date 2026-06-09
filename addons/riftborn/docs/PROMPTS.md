@@ -189,3 +189,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar novos catalisadores, receitas, mobs, habilidades além do `Pulso de Energia I`, UI customizada, alterar UUIDs ou reestruturar o projeto.
 - Resultado esperado: o Cajado de Madeira dispara um projétil mágico scriptado que nasce à frente do jogador, segue a mira, causa 5 de dano, aplica knockback horizontal normalizado, consome 5 Energia de Fenda no disparo e expira ao atingir alvo, bloco, alcance ou tempo limite.
 - Observações: a solução usa Script API em vez de `minecraft:shooter` para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo. O carregamento completo estilo arco e VFX dedicados ficam para melhoria futura.
+
+## 2026-06-09 - Base inicial de Habilidades de Lâmina
+
+- Área: Riftborn.
+- Objetivo: criar `riftborn:lamina_de_madeira_fendida` e `riftborn:pergaminho_lamina_corte_instavel_i`, primeiros itens da trilha de Habilidades de Lâmina.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/lamina_de_madeira_fendida.json`, `packs/behavior_pack/items/pergaminho_lamina_corte_instavel_i.json`, `packs/behavior_pack/recipes/lamina_de_madeira_fendida.json`, `packs/behavior_pack/recipes/pergaminho_lamina_corte_instavel_i.json`, `textures/item_texture.json`, texturas dos dois itens, arquivos de idioma, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `ROADMAP.md`, `DEVELOPMENT_RULES.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não implementar `Corte Instável I`, dano de lâmina, hitbox de corte, partículas de corte, scripts novos, mobs, novas habilidades, alterar Energia de Fenda, alterar Emblema, alterar Pulso de Energia ou alterar UUIDs.
+- Resultado esperado: Lâmina de Madeira Fendida com stack máximo 1, Pergaminho de Lâmina: Corte Instável I com stack máximo 16, texturas 16x16 transparentes, traduções, receitas baratas e manifests na versão `[0, 3, 0]`.
+- Observações: a Lâmina usa `minecraft:wooden_sword` e Fragmento de Fenda; o Pergaminho usa papel, Fragmento de Fenda e graveto. A execução de `Corte Instável I` fica para etapa futura.

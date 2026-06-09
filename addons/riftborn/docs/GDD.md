@@ -114,6 +114,13 @@ Variações planejadas:
 
 Lâminas Mágicas são catalisadores de lâmina criados a partir de espadas vanilla. Elas não devem inutilizar as espadas do Minecraft; devem expandi-las.
 
+Primeira lâmina:
+
+- `Lâmina de Madeira Fendida`: Catalisador de Lâmina de Grau I.
+- Base: espada de madeira vanilla infundida por Fragmento de Fenda.
+- Função planejada: executar Pergaminhos de Lâmina de Grau I.
+- Estado atual: item, textura, tradução e receita criados; ainda sem habilidade ativa.
+
 Variações planejadas:
 
 - Lâmina Condutora: menor custo de energia.
@@ -166,6 +173,8 @@ Primeiras habilidades:
 - Pulso de Energia I: primeira habilidade mágica funcional.
 - Corte Instável I: primeira habilidade de lâmina planejada.
 
+`Corte Instável I` deve futuramente ser executado pela `Lâmina de Madeira Fendida` quando o jogador possuir Emblema ativo, Energia de Fenda suficiente e o Pergaminho de Lâmina compatível.
+
 `Pulso de Energia I` já está implementado como habilidade inicial simples. Outras habilidades ainda são planejamento de design.
 
 ## Passivas
@@ -197,8 +206,9 @@ Sequência recomendada para validar a nova arquitetura:
 2. Criar o Cajado de Madeira Grau I.
 3. Criar o Pergaminho Mágico: Pulso de Energia I.
 4. Implementar Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
-5. Criar futuramente a Lâmina Mágica Grau I.
-6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.
+5. Criar a Lâmina Mágica Grau I.
+6. Criar o Pergaminho de Lâmina: Corte Instável I.
+7. Implementar futuramente Corte Instável I usando Lâmina, Pergaminho e Emblema ativo.
 
 ## Caminhos planejados
 

@@ -56,7 +56,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 2, 4]`.
+- Versão atual dos packs: `[0, 3, 0]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -84,6 +84,8 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 - `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, com stack máximo 1.
 - `riftborn:pergaminho_magico_pulso_de_energia_i`: primeiro Pergaminho Mágico de Grau I, com stack máximo 16.
+- `riftborn:lamina_de_madeira_fendida`: primeira Lâmina Mágica de Grau I, com stack máximo 1.
+- `riftborn:pergaminho_lamina_corte_instavel_i`: primeiro Pergaminho de Lâmina de Grau I, com stack máximo 16.
 
 O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele possui Energia de Fenda básica exibida na actionbar e permite a execução de `Pulso de Energia I` quando combinado com Cajado e Pergaminho compatíveis.
 
@@ -92,6 +94,8 @@ O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega 
 O `Cajado de Madeira` é um item de equipamento e usa o ícone `cajado_de_madeira`. Ele usa `format_version` `1.21.10`, expõe o botão de toque `Usar` por `minecraft:interact_button` e registra o custom component `riftborn:usar_cajado_de_madeira`. Usar o cajado tenta lançar `Pulso de Energia I`.
 
 O `Pergaminho Mágico: Pulso de Energia I` é um item simples e usa o ícone `pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica `Pulso de Energia I`. O pergaminho precisa existir no inventário do jogador para a habilidade ser executada e não é consumido.
+
+`Lâmina de Madeira Fendida` e `Pergaminho de Lâmina: Corte Instável I` são itens simples sem custom component. Eles criam a base de Habilidades de Lâmina, mas ainda não executam `Corte Instável I`, não causam dano de lâmina, não criam hitbox de corte e não alteram scripts.
 
 ## Loot tables atuais
 
@@ -107,12 +111,16 @@ Essas tabelas reproduzem os pools vanilla básicos e adicionam o Fragmento de Fe
 - `recipes/emblema_de_madeira.json`: receita shaped de crafting table para `riftborn:emblema_de_madeira`, usando 4 `riftborn:fragmento_de_fenda` e 5 tábuas de madeira pela tag `minecraft:planks`.
 - `recipes/cajado_de_madeira.json`: receita shaped de crafting table para `riftborn:cajado_de_madeira`, usando 1 `riftborn:fragmento_de_fenda` e 2 `minecraft:stick` no padrão `.F./.G./.G.`.
 - `recipes/pergaminho_magico_pulso_de_energia_i.json`: receita shapeless de crafting table para `riftborn:pergaminho_magico_pulso_de_energia_i`, usando 1 `minecraft:paper` e 1 `riftborn:fragmento_de_fenda`.
+- `recipes/lamina_de_madeira_fendida.json`: receita shapeless de crafting table para `riftborn:lamina_de_madeira_fendida`, usando 1 `minecraft:wooden_sword` e 1 `riftborn:fragmento_de_fenda`.
+- `recipes/pergaminho_lamina_corte_instavel_i.json`: receita shapeless de crafting table para `riftborn:pergaminho_lamina_corte_instavel_i`, usando 1 `minecraft:paper`, 1 `riftborn:fragmento_de_fenda` e 1 `minecraft:stick`.
 
 A receita usa apenas madeira e Fragmentos de Fenda para manter o primeiro Emblema acessível ao jogador solo nas primeiras noites.
 
 A receita do `Cajado de Madeira` usa apenas gravetos e Fragmento de Fenda para manter o primeiro Catalisador Mágico acessível, sem adicionar habilidades nesta etapa.
 
 A receita do `Pergaminho Mágico: Pulso de Energia I` é barata para permitir acesso inicial à primeira técnica planejada após obter papel e Fragmentos de Fenda. Ela não consome Emblema ou Cajado.
+
+As receitas iniciais de lâmina são baratas e usam a espada de madeira vanilla como base para mostrar armas vanilla sendo infundidas pela Fenda. Elas não consomem Emblema e não usam lápis-lazúli, ametista, ferro ou diamante.
 
 ## Scripts atuais
 

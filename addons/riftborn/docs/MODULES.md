@@ -25,6 +25,8 @@ Item inicial:
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial, um relato antigo de alguém que também caiu neste mundo, com stack máximo 1 e sem entrega automática nesta etapa.
 - `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, feito de madeira comum e Fragmentos de Fenda, com stack máximo 1 e receita survival inicial.
 - `riftborn:pergaminho_magico_pulso_de_energia_i`: primeiro Pergaminho Mágico de Grau I, que registra a técnica planejada `Pulso de Energia I`, com stack máximo 16 e receita survival inicial.
+- `riftborn:lamina_de_madeira_fendida`: primeira Lâmina Mágica de Grau I, criada a partir de espada de madeira vanilla e Fragmento de Fenda, com stack máximo 1 e receita survival inicial.
+- `riftborn:pergaminho_lamina_corte_instavel_i`: primeiro Pergaminho de Lâmina de Grau I, que registra a técnica planejada `Corte Instável I`, com stack máximo 16 e receita survival inicial.
 
 Direção visual:
 
@@ -149,9 +151,19 @@ Variações planejadas:
 
 ### Lâminas Mágicas
 
-Status: planejado.
+Status: iniciado.
 
 Lâminas Mágicas são catalisadores de lâmina criados a partir de espadas vanilla como base.
+
+Primeira lâmina:
+
+- Nome: `Lâmina de Madeira Fendida`.
+- Identificador: `riftborn:lamina_de_madeira_fendida`.
+- Grau: I.
+- Família: Catalisador de Lâmina, Lâmina Mágica.
+- Função planejada: executar Pergaminhos de Lâmina de Grau I quando o jogador tiver Emblema ativo, Energia de Fenda suficiente e pergaminho compatível.
+- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidade, não causa dano de lâmina, não cria hitbox de corte e não interage com scripts.
+- Design: deve expandir a espada de madeira vanilla, não inutilizar a progressão vanilla.
 
 Variações planejadas:
 
@@ -169,7 +181,7 @@ Pergaminhos definem habilidades ativas. O jogador deve precisar de um pergaminho
 Famílias planejadas:
 
 - Pergaminhos Mágicos. O primeiro item implementado é `riftborn:pergaminho_magico_pulso_de_energia_i`.
-- Pergaminhos de Lâmina.
+- Pergaminhos de Lâmina. O primeiro item implementado é `riftborn:pergaminho_lamina_corte_instavel_i`.
 
 Regras planejadas:
 
@@ -188,6 +200,17 @@ Primeiro pergaminho:
 - Função atual: permitir que o `Cajado de Madeira` lance `Pulso de Energia I` quando o jogador tiver Emblema de Madeira ativo e Energia de Fenda suficiente.
 - Parâmetros atuais: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance aproximado de 10 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
 - Estado atual: item, textura, tradução, receita e execução de habilidade criados. O pergaminho não é consumido.
+
+Primeiro pergaminho de lâmina:
+
+- Nome: `Pergaminho de Lâmina: Corte Instável I`.
+- Identificador: `riftborn:pergaminho_lamina_corte_instavel_i`.
+- Grau: I.
+- Família: Pergaminho de Lâmina.
+- Técnica registrada: `Corte Instável I`.
+- Função planejada: permitir futuramente que a `Lâmina de Madeira Fendida` lance `Corte Instável I` quando o jogador tiver Emblema ativo e Energia de Fenda suficiente.
+- Parâmetros planejados: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e área frontal curta.
+- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidade, não causa dano e não cria hitbox de corte.
 
 ## Graus
 
@@ -261,6 +284,9 @@ Regras:
 - No `Cajado de Madeira`, `F` representa `riftborn:fragmento_de_fenda` e `G` representa `minecraft:stick`.
 - `Pergaminho Mágico: Pulso de Energia I` usa receita shapeless na crafting table com 1 `minecraft:paper` e 1 `riftborn:fragmento_de_fenda`.
 - A receita do primeiro Pergaminho Mágico não usa lápis-lazúli, ametista, ferro, diamante, Emblema ou Cajado.
+- `Lâmina de Madeira Fendida` usa receita shapeless na crafting table com 1 `minecraft:wooden_sword` e 1 `riftborn:fragmento_de_fenda`.
+- `Pergaminho de Lâmina: Corte Instável I` usa receita shapeless na crafting table com 1 `minecraft:paper`, 1 `riftborn:fragmento_de_fenda` e 1 `minecraft:stick`.
+- As receitas iniciais de lâmina não usam lápis-lazúli, ametista, ferro, diamante, Emblema ou Catalisador como ingrediente consumido.
 
 ## Loot Customizado
 
@@ -319,8 +345,9 @@ Sequência recomendada:
 2. Criar o Cajado de Madeira Grau I.
 3. Criar o Pergaminho Mágico: Pulso de Energia I.
 4. Implementar Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
-5. Criar futuramente a Lâmina Mágica Grau I.
-6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.
+5. Criar a Lâmina Mágica Grau I.
+6. Criar o Pergaminho de Lâmina: Corte Instável I.
+7. Implementar futuramente `Corte Instável I` com Emblema ativo, Energia de Fenda, Lâmina de Madeira Fendida e Pergaminho de Lâmina compatível.
 
 ## Módulos futuros
 

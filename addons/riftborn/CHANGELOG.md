@@ -27,6 +27,10 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Item `riftborn:pergaminho_magico_pulso_de_energia_i`, primeiro Pergaminho Mágico de Grau I, com textura placeholder e traduções em português e inglês.
 - Receita shapeless de crafting table para `riftborn:pergaminho_magico_pulso_de_energia_i`, usando papel e `Fragmento de Fenda`.
 - Habilidade ativa `Pulso de Energia I`, executada pelo `Cajado de Madeira` quando o jogador possui `Emblema de Madeira` ativo, Energia de Fenda suficiente e o pergaminho compatível.
+- Item `riftborn:lamina_de_madeira_fendida`, primeira Lâmina Mágica de Grau I, com textura placeholder e traduções em português e inglês.
+- Receita shapeless de crafting table para `riftborn:lamina_de_madeira_fendida`, usando espada de madeira vanilla e `Fragmento de Fenda`.
+- Item `riftborn:pergaminho_lamina_corte_instavel_i`, primeiro Pergaminho de Lâmina de Grau I, com textura placeholder e traduções em português e inglês.
+- Receita shapeless de crafting table para `riftborn:pergaminho_lamina_corte_instavel_i`, usando papel, `Fragmento de Fenda` e graveto.
 
 ### Changed
 
@@ -63,6 +67,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - `Pulso de Energia I` refatorado para projétil mágico scriptado que nasce à frente dos olhos do jogador e viaja na direção da mira.
 - Comportamento antigo de raycast instantâneo e partículas de encantamento foi removido.
 - Versão técnica dos manifests incrementada para `0.2.4` para importar o build com projétil mágico real.
+- Versão técnica dos manifests incrementada para `0.3.0` para importar o build com a base inicial de Habilidades de Lâmina.
 
 ### Fixed
 
@@ -82,6 +87,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Nenhum item, receita, mob, projétil customizado, UI customizada ou UUID foi criado ou alterado nesta etapa de habilidade.
 - O projétil do `Pulso de Energia I` é controlado por Script API em vez de `minecraft:shooter`, para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
 - O carregamento estilo arco completo ainda fica como melhoria futura; o disparo atual é imediato, mas o projétil viaja pelo mundo e expira ao atingir alvo, bloco ou alcance.
+- A `Lâmina de Madeira Fendida` e o `Pergaminho de Lâmina: Corte Instável I` ainda não executam habilidade, não causam dano de lâmina, não criam hitbox de corte e não alteram scripts.
 - Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
 - As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.
