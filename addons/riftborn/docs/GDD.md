@@ -52,10 +52,115 @@ Regras planejadas:
 
 - Apenas um Emblema pode estar ativo por vez.
 - Ativar um Emblema substitui o anterior.
+- O Emblema ativo deve persistir após a morte.
+- O Emblema ativo deve persistir mesmo se o item físico sair do inventário.
+- O Emblema só deve ser desativado por ação manual do jogador ou pela ativação de outro Emblema.
+- O Emblema desbloqueia Energia de Fenda.
+- O Emblema ganha XP ao matar monstros.
+- O Emblema sobe de nível.
+- Cada nível melhora atributos extras ou passivas concedidas pelo Emblema.
 - O Emblema ativo define o caminho ativo, técnicas disponíveis e benefícios futuros.
 - Benefícios só acumulam dentro da mesma linhagem de Emblemas.
 - Benefícios de Emblemas diferentes não devem ser empilhados.
 - O jogador começa sem classe fixa.
+
+## Energia de Fenda
+
+Energia de Fenda é a energia usada pelo sistema de habilidades. Ela só deve existir quando o jogador possuir um Emblema ativo.
+
+Direção planejada:
+
+- Habilidades ativas consomem Energia de Fenda.
+- Emblemas melhores podem ter mais energia máxima.
+- Emblemas melhores podem ter regeneração maior.
+- Emblemas melhores podem usar a energia com mais eficiência.
+- Emblemas fracos podem usar habilidades de grau alto, mas de forma pouco eficiente.
+- O sistema deve começar com valores simples antes de balanceamento avançado.
+
+## Catalisadores
+
+Catalisadores são itens futuros usados para lançar habilidades ativas. Eles não substituem o Emblema; o Emblema define o vínculo e a Energia de Fenda, enquanto o Catalisador executa a técnica.
+
+Famílias iniciais planejadas:
+
+- Cajados: catalisadores mágicos.
+- Lâminas Mágicas: catalisadores de lâmina.
+
+Regras planejadas:
+
+- Catalisadores possuem graus de I a V.
+- Tipos diferentes de catalisador permitem builds diferentes.
+- Catalisadores podem conceder passivas especiais.
+- Catalisadores devem expandir equipamentos existentes sem invalidar a progressão vanilla.
+
+### Cajados
+
+Cajados são catalisadores mágicos. Eles devem ser craftados futuramente com gravetos, materiais progressivos e Fragmentos de Fenda.
+
+Variações planejadas:
+
+- Cajado Condutor: menor custo de energia.
+- Cajado Instável: mais dano, mais custo.
+- Cajado Rúnico: efeitos especiais.
+- Cajado Vital: utilidade ou defesa.
+
+### Lâminas Mágicas
+
+Lâminas Mágicas são catalisadores de lâmina criados a partir de espadas vanilla. Elas não devem inutilizar as espadas do Minecraft; devem expandi-las.
+
+Variações planejadas:
+
+- Lâmina Condutora: menor custo de energia.
+- Lâmina Pesada: mais dano, maior cooldown.
+- Lâmina Rápida: menor cooldown, menor dano.
+- Lâmina Instável: mais dano, maior consumo.
+
+## Pergaminhos
+
+Pergaminhos definem as habilidades ativas disponíveis para o jogador. O jogador deve precisar de um pergaminho compatível para usar a habilidade correspondente.
+
+Famílias planejadas:
+
+- Pergaminhos Mágicos.
+- Pergaminhos de Lâmina.
+
+Regras planejadas:
+
+- Cada pergaminho possui grau.
+- O pergaminho precisa ser compatível com o catalisador usado.
+- O sistema deve futuramente definir prioridade de seleção.
+- Sugestão inicial: detectar pergaminhos compatíveis na hotbar antes do inventário.
+
+## Graus
+
+Graus representam tiers de Catalisadores, Pergaminhos e habilidades. Eles vão de I a V.
+
+Direção planejada:
+
+- Grau I é inicial e custa pouca Energia de Fenda.
+- Habilidades de Grau I custam em média 5 Energia de Fenda.
+- Graus II a V aumentam custo, poder e efeitos.
+- Habilidades de grau alto podem ser usadas com Emblema fraco, mas devem consumir energia de forma pesada.
+
+## Habilidades ativas
+
+Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatíveis.
+
+Primeiras habilidades planejadas:
+
+- Pulso de Energia I: primeira habilidade mágica.
+- Corte Instável I: primeira habilidade de lâmina.
+
+Essas habilidades são planejamento de design. Elas ainda não estão implementadas.
+
+## Passivas
+
+Passivas devem vir de duas fontes principais:
+
+- Emblemas: passivas globais ligadas ao progresso do jogador.
+- Catalisadores: passivas de build ligadas ao tipo de execução.
+
+Níveis de Emblema devem melhorar passivas gradualmente. As primeiras passivas devem ser simples e crescer em etapas pequenas.
 
 ## Primeiro Emblema
 
@@ -67,7 +172,18 @@ Função: primeiro emblema universal do jogador.
 
 Material: madeira e Fragmentos de Fenda.
 
-O `Emblema de Madeira` não representa uma classe. Ele serve como o primeiro vínculo do jogador com a Fenda e deve desbloquear futuramente Energia de Fenda e técnicas básicas universais.
+O `Emblema de Madeira` não representa uma classe. Ele serve como o primeiro vínculo do jogador com a Fenda, já possui Energia de Fenda básica no estado atual e deve desbloquear futuramente técnicas básicas universais.
+
+## MVP recomendado
+
+Sequência recomendada para validar a nova arquitetura:
+
+1. Documentar o sistema de Emblemas, Catalisadores, Pergaminhos, Graus, Energia de Fenda, XP e passivas.
+2. Criar futuramente o Cajado de Madeira Grau I.
+3. Criar futuramente o Pergaminho Mágico: Pulso de Energia I.
+4. Implementar futuramente Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
+5. Criar futuramente a Lâmina Mágica Grau I.
+6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.
 
 ## Caminhos planejados
 

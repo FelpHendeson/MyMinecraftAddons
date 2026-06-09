@@ -64,6 +64,13 @@ Regras planejadas:
 
 - Apenas um Emblema pode estar ativo por vez.
 - Ativar um Emblema substitui o anterior.
+- O Emblema ativo deve persistir após a morte.
+- O Emblema ativo deve persistir mesmo se o item físico for removido do inventário.
+- O Emblema só deve ser desativado manualmente ou substituído por outro Emblema ativo.
+- Emblemas desbloqueiam Energia de Fenda.
+- Emblemas ganham XP ao matar monstros.
+- Emblemas sobem de nível.
+- Níveis de Emblema aumentam atributos extras ou passivas do Emblema.
 - Benefícios só acumulam dentro da mesma linhagem.
 - Benefícios de Emblemas diferentes não podem ser empilhados.
 - O Emblema ativo define o caminho ativo, técnicas disponíveis e benefícios futuros.
@@ -92,6 +99,107 @@ Energia de Fenda atual:
 - A actionbar exibe `Energia de Fenda: atual/max` enquanto o Emblema está ativo.
 - Desativar o Emblema para a exibição da actionbar, mas não apaga a energia armazenada.
 - Ainda não existem técnicas, custos de energia, habilidades, dano ou projéteis.
+
+## Catalisadores
+
+Status: planejado.
+
+Catalisadores são itens futuros usados para executar habilidades ativas. Eles não substituem o Emblema: o Emblema mantém o vínculo, a Energia de Fenda e a progressão persistente; o Catalisador canaliza a técnica usada no momento.
+
+Famílias iniciais:
+
+- Cajados: catalisadores mágicos.
+- Lâminas Mágicas: catalisadores de lâmina.
+
+Regras planejadas:
+
+- Catalisadores possuem graus de I a V.
+- Catalisadores podem conceder passivas especiais.
+- Tipos diferentes de catalisador devem permitir builds diferentes.
+- Catalisadores não devem invalidar equipamentos vanilla; devem expandir a progressão.
+
+### Cajados
+
+Status: planejado.
+
+Cajados são catalisadores mágicos. Futuramente devem usar gravetos, materiais progressivos e Fragmentos de Fenda.
+
+Variações planejadas:
+
+- Cajado Condutor: menor custo de energia.
+- Cajado Instável: mais dano e mais custo.
+- Cajado Rúnico: efeitos especiais.
+- Cajado Vital: utilidade ou defesa.
+
+### Lâminas Mágicas
+
+Status: planejado.
+
+Lâminas Mágicas são catalisadores de lâmina criados a partir de espadas vanilla como base.
+
+Variações planejadas:
+
+- Lâmina Condutora: menor custo.
+- Lâmina Pesada: mais dano e maior cooldown.
+- Lâmina Rápida: menor cooldown e menor dano.
+- Lâmina Instável: mais dano e maior consumo.
+
+## Pergaminhos
+
+Status: planejado.
+
+Pergaminhos definem habilidades ativas. O jogador deve precisar de um pergaminho compatível para usar a habilidade correspondente.
+
+Famílias planejadas:
+
+- Pergaminhos Mágicos.
+- Pergaminhos de Lâmina.
+
+Regras planejadas:
+
+- Cada pergaminho possui grau.
+- O pergaminho precisa ser compatível com o catalisador.
+- A prioridade de seleção deve ser definida futuramente.
+- Sugestão inicial: procurar pergaminhos compatíveis na hotbar antes do inventário.
+
+## Graus
+
+Status: planejado.
+
+Graus vão de I a V e organizam Catalisadores, Pergaminhos e habilidades.
+
+Direção planejada:
+
+- Grau I é inicial e custa pouca Energia de Fenda.
+- Habilidades de Grau I custam em média 5 Energia de Fenda.
+- Graus II a V aumentam custo, poder e efeitos.
+- Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente.
+
+## Habilidades ativas planejadas
+
+Status: planejado.
+
+Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatíveis.
+
+Primeiras habilidades planejadas:
+
+- `Pulso de Energia I`: primeira habilidade mágica.
+- `Corte Instável I`: primeira habilidade de lâmina.
+
+Essas habilidades ainda não existem no addon.
+
+## XP, níveis e passivas
+
+Status: planejado.
+
+Emblemas devem ganhar XP ao matar monstros e subir de nível. Cada nível deve melhorar atributos extras ou passivas dadas pelo Emblema.
+
+Fontes de passivas planejadas:
+
+- Emblemas: passivas globais de progressão.
+- Catalisadores: passivas de build.
+
+Passivas devem começar simples e evoluir gradualmente.
 
 ## Receitas
 
@@ -153,6 +261,19 @@ Caminhos previstos:
 - Caminho da Precisão.
 - Caminho das Sombras.
 - Caminho do Sobrevivente.
+
+## MVP recomendado
+
+Status: planejado.
+
+Sequência recomendada:
+
+1. Documentar o sistema.
+2. Criar futuramente o Cajado de Madeira Grau I.
+3. Criar futuramente o Pergaminho Mágico: Pulso de Energia I.
+4. Implementar futuramente Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
+5. Criar futuramente a Lâmina Mágica Grau I.
+6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.
 
 ## Módulos futuros
 

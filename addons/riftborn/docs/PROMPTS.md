@@ -144,3 +144,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar itens, receitas, mobs, habilidades, projéteis, efeitos de dano, UI customizada, renomear itens existentes ou alterar UUIDs.
 - Resultado esperado: jogadores com `riftborn_emblema_ativo` e `riftborn_emblema_madeira` têm energia máxima 20, energia inicial 20 quando ainda não existir, regeneração de 1 ponto a cada 40 ticks e exibição por actionbar.
 - Observações: a Energia de Fenda usa scoreboards `rb_energy` e `rb_energy_max`; ainda não existem técnicas, custos de energia, mana, habilidades, dano ou projéteis. Os manifests avançaram para `[0, 1, 12]` para preservar a sequência técnica atual.
+
+## 2026-06-09 - Arquitetura de Emblemas, Catalisadores e Pergaminhos
+
+- Área: Riftborn.
+- Objetivo: atualizar a documentação de design para estruturar oficialmente o sistema planejado de Emblemas, Catalisadores, Pergaminhos, Graus, Energia de Fenda, XP de Emblema, níveis, passivas e habilidades ativas.
+- Arquivos afetados: `PROJECT_CONTEXT.md`, `docs/GDD.md`, `docs/MODULES.md`, `ROADMAP.md`, `DEVELOPMENT_RULES.md`, `AGENTS.md`, `CHANGELOG.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, scripts, mobs, habilidades, projéteis, efeitos de dano, UI customizada, manifests ou UUIDs.
+- Resultado esperado: documentação registra Emblema ativo persistente, Catalisadores como canal de execução, Pergaminhos como definição de habilidades, Graus I a V, XP e níveis de Emblema, passivas de Emblema e Catalisador, e MVP recomendado.
+- Observações: o MVP recomendado documentado é Cajado de Madeira Grau I, Pergaminho Mágico: Pulso de Energia I, implementação futura de Pulso de Energia I, Lâmina Mágica Grau I e Pergaminho de Lâmina: Corte Instável I. Nenhum gameplay foi implementado nesta etapa.

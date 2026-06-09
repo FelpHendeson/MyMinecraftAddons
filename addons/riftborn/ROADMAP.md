@@ -45,22 +45,47 @@ Status: próxima etapa planejada.
 - Tratar Rift/Fenda como fonte, energia ou fenômeno dimensional.
 - Tratar Emblema como item físico central que canaliza a Energia de Fenda.
 - Definir a regra de apenas um Emblema ativo por vez.
+- Planejar persistência do Emblema ativo após morte e remoção do item físico.
+- Planejar XP e níveis de Emblema.
+- Planejar passivas globais concedidas por Emblemas.
 - Evitar classes fixas como sistema principal.
 - Evitar skill tree complexa.
 
-### v0.7 Emblema de Cobre e caminhos
+### v0.7 Catalisadores e Pergaminhos iniciais
+
+- Planejar Catalisadores como canal de execução de habilidades.
+- Planejar Cajados como primeira família mágica.
+- Planejar Lâminas Mágicas como primeira família de lâmina.
+- Planejar Pergaminhos Mágicos e Pergaminhos de Lâmina.
+- Definir Graus I a V para Catalisadores, Pergaminhos e habilidades.
+- Preparar o MVP com Cajado de Madeira Grau I e Pergaminho Mágico: Pulso de Energia I.
+- Evitar implementar muitas habilidades antes de validar a primeira.
+
+### v0.8 Primeira habilidade mágica
+
+- Implementar futuramente Pulso de Energia I usando Emblema ativo, Energia de Fenda, Cajado compatível e Pergaminho compatível.
+- Validar custo, regeneração, cooldown e feedback visual simples.
+- Manter o escopo sem árvore de habilidades completa.
+
+### v0.9 Lâmina Mágica inicial
+
+- Criar futuramente Lâmina Mágica Grau I a partir de espada vanilla.
+- Criar futuramente Pergaminho de Lâmina: Corte Instável I.
+- Validar que Lâminas Mágicas expandem espadas vanilla sem inutilizá-las.
+
+### v0.10 Emblema de Cobre e caminhos
 
 - Planejar o `Emblema de Cobre` como melhoria universal.
 - Introduzir caminhos definidos pelo Emblema ativo.
 - Preparar a transição futura para Emblemas de Ferro como início das especializações.
 - Manter a progressão controlada.
 
-### v0.8 Primeiro mob customizado
+### v0.11 Primeiro mob customizado
 
 - Criar uma criatura simples para validar fluxo de mob customizado.
 - Evitar muitos mobs na mesma versão.
 
-### v0.9 Primeiro mini-chefe
+### v0.12 Primeiro mini-chefe
 
 - Criar um desafio maior, mas ainda limitado.
 - Validar loot e balanceamento básico.
@@ -81,6 +106,26 @@ Direção planejada:
 - Emblemas lendários: endgame.
 
 O Emblema ativo deve definir o caminho ativo, técnicas disponíveis e benefícios futuros. Ativar um Emblema substitui o anterior, e benefícios de Emblemas diferentes não devem ser empilhados.
+
+## Catalisadores, Pergaminhos e Graus
+
+Direção planejada:
+
+- Catalisadores executam habilidades, mas não substituem Emblemas.
+- Cajados executam habilidades mágicas.
+- Lâminas Mágicas executam habilidades de lâmina.
+- Pergaminhos definem as habilidades ativas disponíveis.
+- Graus I a V controlam custo, poder e efeitos.
+- Habilidades de Grau I devem custar pouca Energia de Fenda, em média 5 pontos.
+
+MVP recomendado:
+
+1. Documentar o sistema.
+2. Criar Cajado de Madeira Grau I.
+3. Criar Pergaminho Mágico: Pulso de Energia I.
+4. Implementar Pulso de Energia I.
+5. Criar Lâmina Mágica Grau I.
+6. Criar Pergaminho de Lâmina: Corte Instável I.
 
 ## Controle de escopo
 

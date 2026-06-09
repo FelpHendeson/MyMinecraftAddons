@@ -37,11 +37,29 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 
 - Apenas um Emblema pode estar ativo por vez.
 - Ativar um Emblema substitui o anterior.
+- O Emblema ativo deve ser tratado como estado persistente do jogador.
+- O Emblema ativo planejado deve sobreviver à morte e à remoção do item físico do inventário.
+- O Emblema só deve ser desativado por ação manual do jogador ou pela ativação de outro Emblema.
+- Emblemas podem ganhar XP e níveis em etapas futuras.
+- Níveis de Emblema devem melhorar atributos extras ou passivas gradualmente.
 - Benefícios só acumulam dentro da mesma linhagem de Emblemas.
 - Não empilhar benefícios de Emblemas diferentes.
 - Caminhos devem ser definidos pelo Emblema ativo, não por classe fixa.
 - Não implementar técnicas, efeitos, mana, habilidades ou gameplay avançado sem uma etapa solicitada.
 - A Energia de Fenda básica atual só pode manter valores de energia, regenerar até o máximo e exibir actionbar.
+
+## Regras de design para Energia, Catalisadores e Pergaminhos
+
+- Energia de Fenda é a energia do sistema e deve depender de Emblema ativo.
+- Habilidades ativas futuras devem consumir Energia de Fenda.
+- Catalisadores futuros executam habilidades, mas não substituem Emblemas.
+- Cajados devem ser a família inicial de catalisadores mágicos.
+- Lâminas Mágicas devem ser a família inicial de catalisadores de lâmina.
+- Pergaminhos futuros definem habilidades ativas disponíveis.
+- Pergaminhos devem ser compatíveis com o catalisador usado.
+- Graus devem ir de I a V.
+- Grau I deve ser a entrada do sistema e ter baixo custo de energia.
+- Habilidades, custos, cooldowns, dano, projéteis e efeitos só devem ser implementados quando solicitados explicitamente.
 
 ## Regras para Script API
 

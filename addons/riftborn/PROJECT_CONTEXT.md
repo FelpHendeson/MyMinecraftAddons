@@ -44,6 +44,22 @@ Emblema representa o item central carregado, ativado e evoluído pelo jogador. E
 
 O primeiro item central planejado é o `Emblema de Madeira`, com identificador planejado `riftborn:emblema_de_madeira`. Ele é um emblema universal feito de madeira e Fragmentos de Fenda, não representa classe fixa e serve como o primeiro vínculo do jogador com a Fenda.
 
+## Arquitetura de progressão planejada
+
+O sistema de progressão do Riftborn deve ser organizado em Emblemas, Energia de Fenda, Catalisadores, Pergaminhos, Graus, XP de Emblema, níveis e passivas.
+
+Emblemas são o núcleo persistente do jogador Riftborn. Apenas um Emblema pode estar ativo por vez. O Emblema ativo deve continuar ativo após a morte e mesmo se o item físico for removido do inventário. Ele só deve deixar de estar ativo quando o jogador desativar manualmente ou ativar outro Emblema.
+
+Energia de Fenda é a energia do sistema. Ela só existe com Emblema ativo e deve ser usada futuramente para lançar habilidades. Emblemas melhores podem oferecer mais energia, melhor regeneração ou maior eficiência.
+
+Catalisadores são itens futuros usados para executar habilidades ativas. Eles não substituem o Emblema; servem como canal de execução das técnicas. As famílias iniciais planejadas são Cajados, para habilidades mágicas, e Lâminas Mágicas, para habilidades de lâmina.
+
+Pergaminhos são itens futuros que definem quais habilidades ativas podem ser usadas. Eles devem existir em famílias mágicas e de lâmina, possuir grau e exigir compatibilidade com o catalisador usado.
+
+Graus vão de I a V. Grau I é a entrada do sistema, com baixo custo de Energia de Fenda. Graus maiores aumentam custo, poder e efeitos. Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente por causa do consumo elevado.
+
+Emblemas devem ganhar XP ao matar monstros, subir de nível e melhorar passivas ou atributos extras dados pelo Emblema. Catalisadores também podem conceder passivas de build.
+
 ## Planejamento técnico
 
 - Namespace planejado: `riftborn`.

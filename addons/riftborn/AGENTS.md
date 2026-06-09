@@ -11,6 +11,7 @@ Este arquivo orienta agents que trabalham especificamente em `addons/riftborn/`.
 - Behavior Pack planejado: `Riftborn BP`.
 - Resource Pack planejado: `Riftborn RP`.
 - Conceito central planejado: Emblemas são os itens físicos de progressão; Rift/Fenda é a fonte, energia ou fenômeno dimensional.
+- Arquitetura planejada: Emblemas mantêm progressão persistente; Catalisadores executam habilidades; Pergaminhos definem habilidades; Graus I a V organizam progressão e custo.
 
 ## Regras obrigatórias
 
@@ -27,6 +28,8 @@ Este arquivo orienta agents que trabalham especificamente em `addons/riftborn/`.
 - Não criar funcionalidades fora do escopo pedido.
 - Ao documentar progressão, usar Sistema de Emblemas para o item central do jogador.
 - Manter `Rift` e `Fenda` como conceitos ligados à Energia de Fenda e fenômenos dimensionais.
+- Não tratar Catalisadores como substitutos de Emblemas.
+- Não tratar Pergaminhos como fonte de Energia de Fenda.
 - Não tratar classes fixas como sistema principal do addon.
 
 ## Assets e placeholders
