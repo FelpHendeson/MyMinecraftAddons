@@ -186,7 +186,7 @@ Primeiro pergaminho:
 - Família: Pergaminho Mágico.
 - Técnica registrada: `Pulso de Energia I`.
 - Função atual: permitir que o `Cajado de Madeira` lance `Pulso de Energia I` quando o jogador tiver Emblema de Madeira ativo e Energia de Fenda suficiente.
-- Parâmetros atuais: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance 5 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Parâmetros atuais: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance aproximado de 10 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
 - Estado atual: item, textura, tradução, receita e execução de habilidade criados. O pergaminho não é consumido.
 
 ## Graus
@@ -222,11 +222,14 @@ Pulso de Energia I:
 - É executado ao usar `riftborn:cajado_de_madeira`.
 - Custa 5 Energia de Fenda mesmo se não atingir nenhum alvo.
 - Tem cooldown de 20 ticks por jogador.
-- Atinge entidades vivas à frente do jogador em alcance de 5 blocos e raio lateral aproximado de 1,25 bloco.
+- Dispara um projétil mágico scriptado à frente dos olhos do jogador, alinhado com a direção da mira.
+- O projétil viaja pelo mundo, usa partículas vanilla não textuais e expira ao atingir entidade, bloco, alcance ou tempo limite.
+- Atinge entidades vivas no caminho do projétil.
 - Causa 5 de dano.
 - Aplica repulsão horizontal normalizada para evitar força extra em diagonais.
 - Não atinge o próprio jogador.
-- Não cria projétil customizado.
+- Não cria entidade customizada de projétil por JSON nesta etapa.
+- O carregamento completo estilo arco ainda é melhoria futura; o disparo atual é imediato.
 
 ## XP, níveis e passivas
 

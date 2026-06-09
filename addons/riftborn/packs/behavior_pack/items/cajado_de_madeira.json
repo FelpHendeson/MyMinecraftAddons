@@ -12,7 +12,7 @@
       "minecraft:icon": "cajado_de_madeira",
       "minecraft:interact_button": "Usar",
       "minecraft:use_modifiers": {
-        "use_duration": 0.1
+        "use_duration": 0.35
       },
       "riftborn:usar_cajado_de_madeira": {}
     }

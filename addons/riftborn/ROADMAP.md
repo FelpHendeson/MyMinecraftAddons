@@ -65,7 +65,9 @@ Status: próxima etapa planejada.
 ### v0.8 Primeira habilidade mágica
 
 - Pulso de Energia I usa Emblema ativo, Energia de Fenda, Cajado compatível e Pergaminho compatível.
+- Pulso de Energia I foi refatorado para projétil mágico scriptado alinhado à mira.
 - Validar custo, regeneração, cooldown e feedback visual simples.
+- Melhorar futuramente carregamento estilo arco e VFX dedicados.
 - Manter o escopo sem árvore de habilidades completa.
 
 ### v0.9 Lâmina Mágica inicial

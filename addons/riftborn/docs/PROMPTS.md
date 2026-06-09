@@ -179,4 +179,13 @@ Use este formato para registrar novos prompts do Riftborn:
 - Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/cajado_de_madeira.json`, `packs/behavior_pack/scripts/main.js`, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `ROADMAP.md`, `DEVELOPMENT_RULES.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
 - Restrições: não criar itens, receitas, mobs, novas habilidades além do `Pulso de Energia I`, projétil customizado, UI customizada, renomear itens existentes ou alterar UUIDs.
 - Resultado esperado: usar `riftborn:cajado_de_madeira` tenta lançar `Pulso de Energia I`, exigindo `Emblema de Madeira` ativo, 5 Energia de Fenda, `Pergaminho Mágico: Pulso de Energia I` no inventário e cooldown disponível.
-- Observações: a habilidade custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano, alcance de 5 blocos, repulsão horizontal normalizada aproximada de 2 blocos e não consome o pergaminho. O Cajado recebeu custom component para ser usado como catalisador.
+- Observações: a primeira versão da habilidade custava 5 Energia de Fenda, tinha cooldown de 20 ticks por jogador, causava 5 de dano, usava alcance de 5 blocos, aplicava repulsão horizontal normalizada aproximada de 2 blocos e não consumia o pergaminho. O Cajado recebeu custom component para ser usado como catalisador.
+
+## 2026-06-09 - Refatoração do Pulso de Energia I para projétil
+
+- Área: Riftborn.
+- Objetivo: refatorar `Pulso de Energia I` para funcionar como projétil mágico real, disparado pela mira do jogador.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/cajado_de_madeira.json`, `packs/behavior_pack/scripts/main.js`, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `ROADMAP.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar novos catalisadores, receitas, mobs, habilidades além do `Pulso de Energia I`, UI customizada, alterar UUIDs ou reestruturar o projeto.
+- Resultado esperado: o Cajado de Madeira dispara um projétil mágico scriptado que nasce à frente do jogador, segue a mira, causa 5 de dano, aplica knockback horizontal normalizado, consome 5 Energia de Fenda no disparo e expira ao atingir alvo, bloco, alcance ou tempo limite.
+- Observações: a solução usa Script API em vez de `minecraft:shooter` para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo. O carregamento completo estilo arco e VFX dedicados ficam para melhoria futura.

@@ -56,7 +56,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 2, 2]`.
+- Versão atual dos packs: `[0, 2, 4]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -137,13 +137,17 @@ Pulso de Energia I:
 - Requer energia atual de pelo menos 5.
 - Requer pelo menos 1 `riftborn:pergaminho_magico_pulso_de_energia_i` no inventário ou hotbar.
 - Não consome o pergaminho.
-- Custa 5 Energia de Fenda mesmo quando não atinge alvo.
+- Custa 5 Energia de Fenda no disparo, mesmo quando não atinge alvo.
 - Tem cooldown de 20 ticks por jogador.
-- Afeta entidades vivas à frente do jogador, em alcance de 5 blocos e raio lateral aproximado de 1,25 bloco.
+- Usa um projétil mágico scriptado, criado à frente dos olhos do jogador com base em `player.getViewDirection()`.
+- O projétil viaja aproximadamente 10 blocos, com velocidade 0,75 bloco por tick, e expira ao atingir entidade, bloco, alcance máximo ou tempo limite.
+- O loop do projétil testa colisão por amostras entre a posição anterior e a próxima para reduzir falhas quando a mira está diretamente sobre o alvo.
 - Não atinge o próprio jogador e evita entidades sem componente de vida, como itens dropados e projéteis.
 - Aplica 5 de dano e repulsão horizontal normalizada de força aproximada 2, com impulso vertical pequeno de 0,15.
-- Usa partículas vanilla simples `minecraft:enchanting_table_particle` e som `random.orb` quando disponíveis.
-- Não cria projétil customizado, mob, item, receita ou UI customizada.
+- Usa partículas vanilla simples não textuais, priorizando `minecraft:blue_flame_particle` e usando `minecraft:basic_flame_particle` como fallback, além de sons vanilla simples quando disponíveis.
+- Não cria entidade customizada, mob, item, receita, projétil customizado por JSON ou UI customizada.
+- A abordagem foi escolhida em Script API porque `minecraft:shooter` não oferece, neste escopo, um ponto simples e estável para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
+- Carregamento completo estilo arco ainda é melhoria futura; o uso atual dispara imediatamente após a validação.
 
 ## Empacotamento futuro
 

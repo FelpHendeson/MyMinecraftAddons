@@ -142,7 +142,8 @@ Primeiro pergaminho:
 - `Pergaminho Mágico: Pulso de Energia I`: Pergaminho Mágico de Grau I.
 - Técnica registrada: `Pulso de Energia I`.
 - Função atual: permitir que o `Cajado de Madeira` lance a primeira habilidade mágica ofensiva.
-- Parâmetros atuais da habilidade: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance 5 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Parâmetros atuais da habilidade: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance aproximado de 10 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Comportamento atual: projétil mágico scriptado que nasce à frente do jogador, segue a mira e expira ao atingir entidade, bloco, alcance máximo ou tempo limite.
 - Estado atual: item, textura, tradução, receita e execução de habilidade criados.
 
 ## Graus

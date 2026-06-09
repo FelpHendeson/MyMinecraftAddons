@@ -60,6 +60,9 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Versão técnica dos manifests incrementada para `0.2.0` para importar o build com o primeiro Catalisador Mágico.
 - Versão técnica dos manifests incrementada para `0.2.1` para importar o build com o primeiro Pergaminho Mágico.
 - Versão técnica dos manifests incrementada para `0.2.2` para importar o build com a primeira habilidade ativa.
+- `Pulso de Energia I` refatorado para projétil mágico scriptado que nasce à frente dos olhos do jogador e viaja na direção da mira.
+- Comportamento antigo de raycast instantâneo e partículas de encantamento foi removido.
+- Versão técnica dos manifests incrementada para `0.2.4` para importar o build com projétil mágico real.
 
 ### Fixed
 
@@ -77,6 +80,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - `Pulso de Energia I` custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano em entidades válidas à frente e aplica repulsão horizontal normalizada.
 - O pergaminho não é consumido ao lançar `Pulso de Energia I`.
 - Nenhum item, receita, mob, projétil customizado, UI customizada ou UUID foi criado ou alterado nesta etapa de habilidade.
+- O projétil do `Pulso de Energia I` é controlado por Script API em vez de `minecraft:shooter`, para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
+- O carregamento estilo arco completo ainda fica como melhoria futura; o disparo atual é imediato, mas o projétil viaja pelo mundo e expira ao atingir alvo, bloco ou alcance.
 - Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
 - As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.

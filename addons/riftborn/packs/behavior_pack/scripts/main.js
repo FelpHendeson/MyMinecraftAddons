@@ -15,11 +15,16 @@ const ENERGY_OBJECTIVE_ID = "rb_energy";
 const ENERGY_MAX_OBJECTIVE_ID = "rb_energy_max";
 const ENERGY_PULSE_COST = 5;
 const ENERGY_PULSE_DAMAGE = 5;
-const ENERGY_PULSE_RANGE = 5;
-const ENERGY_PULSE_RADIUS = 1.25;
+const ENERGY_PULSE_RANGE = 10;
+const ENERGY_PULSE_SPEED = 0.75;
+const ENERGY_PULSE_HIT_RADIUS = 0.7;
 const ENERGY_PULSE_KNOCKBACK = 2;
 const ENERGY_PULSE_VERTICAL_KNOCKBACK = 0.15;
 const ENERGY_PULSE_COOLDOWN_TICKS = 20;
+const ENERGY_PULSE_PROJECTILE_PARTICLES = [
+  "minecraft:blue_flame_particle",
+  "minecraft:basic_flame_particle"
+];
 const EMBLEM_LINEAGE_TAGS = [
   "riftborn_emblema_madeira",
   "riftborn_emblema_cobre",
@@ -33,8 +38,10 @@ const lastActivationTickByPlayer = new Map();
 const lastStaffUseTickByPlayer = new Map();
 const energyPulseCooldownTickByPlayer = new Map();
 const lastFailureMessageTickByPlayer = new Map();
+const activeEnergyPulseProjectiles = [];
 
 let lastEnergyRegenTick = system.currentTick;
+let nextEnergyPulseProjectileId = 1;
 
 function getOrCreateObjective(objectiveId, displayName) {
   let objective = world.scoreboard.getObjective(objectiveId);
@@ -185,89 +192,167 @@ function getHorizontalDirection(vector) {
   };
 }
 
-function getEnergyPulseTargets(player) {
-  const origin = player.getHeadLocation();
-  const direction = player.getViewDirection();
-  const dimension = player.dimension;
-  const targets = [];
-  const seenIds = new Set();
+function normalizeVector(vector) {
+  const length = Math.hypot(vector.x, vector.y, vector.z);
 
-  for (const entity of dimension.getEntities({ location: player.location, maxDistance: ENERGY_PULSE_RANGE + ENERGY_PULSE_RADIUS })) {
-    if (entity.id === player.id || seenIds.has(entity.id) || !entity.hasComponent("minecraft:health")) {
-      continue;
-    }
-
-    const targetLocation = {
-      x: entity.location.x,
-      y: entity.location.y + 0.8,
-      z: entity.location.z
-    };
-    const toTarget = {
-      x: targetLocation.x - origin.x,
-      y: targetLocation.y - origin.y,
-      z: targetLocation.z - origin.z
-    };
-    const forwardDistance = toTarget.x * direction.x + toTarget.y * direction.y + toTarget.z * direction.z;
-
-    if (forwardDistance <= 0 || forwardDistance > ENERGY_PULSE_RANGE) {
-      continue;
-    }
-
-    const totalDistanceSquared = toTarget.x ** 2 + toTarget.y ** 2 + toTarget.z ** 2;
-    const lateralDistanceSquared = totalDistanceSquared - forwardDistance ** 2;
-
-    if (lateralDistanceSquared > ENERGY_PULSE_RADIUS ** 2) {
-      continue;
-    }
-
-    seenIds.add(entity.id);
-    targets.push(entity);
+  if (length <= 0.0001) {
+    return { x: 0, y: 0, z: 1 };
   }
 
-  return targets;
+  return {
+    x: vector.x / length,
+    y: vector.y / length,
+    z: vector.z / length
+  };
 }
 
-function applyEnergyPulseEffects(player, targets) {
-  for (const target of targets) {
+function distanceSquared(a, b) {
+  return (a.x - b.x) ** 2 + (a.y - b.y) ** 2 + (a.z - b.z) ** 2;
+}
+
+function addVectors(a, b) {
+  return {
+    x: a.x + b.x,
+    y: a.y + b.y,
+    z: a.z + b.z
+  };
+}
+
+function scaleVector(vector, scale) {
+  return {
+    x: vector.x * scale,
+    y: vector.y * scale,
+    z: vector.z * scale
+  };
+}
+
+function isBlockingBlock(dimension, location) {
+  try {
+    const block = dimension.getBlock(location);
+    return !!block && block.typeId !== "minecraft:air" && block.typeId !== "minecraft:cave_air" && block.typeId !== "minecraft:void_air";
+  } catch {
+    return false;
+  }
+}
+
+function spawnEnergyPulseParticle(dimension, location) {
+  for (const particleId of ENERGY_PULSE_PROJECTILE_PARTICLES) {
     try {
-      target.applyDamage(ENERGY_PULSE_DAMAGE);
-
-      const awayFromPlayer = getHorizontalDirection({
-        x: target.location.x - player.location.x,
-        z: target.location.z - player.location.z
-      });
-
-      target.applyKnockback({
-        x: awayFromPlayer.x * ENERGY_PULSE_KNOCKBACK,
-        z: awayFromPlayer.z * ENERGY_PULSE_KNOCKBACK
-      }, ENERGY_PULSE_VERTICAL_KNOCKBACK);
+      dimension.spawnParticle(particleId, location);
+      return;
     } catch {
-      // Some entities can reject damage or knockback even with a health component.
     }
   }
 }
 
-function showEnergyPulseFeedback(player) {
-  const origin = player.getHeadLocation();
-  const direction = player.getViewDirection();
-
+function showEnergyPulseCastFeedback(player) {
   player.onScreenDisplay.setActionBar("\u00a7dPulso de Energia I!");
 
   try {
     player.dimension.playSound("random.orb", player.location, { volume: 0.8, pitch: 1.4 });
   } catch {
   }
+}
 
-  for (let step = 1; step <= ENERGY_PULSE_RANGE; step++) {
-    const location = {
-      x: origin.x + direction.x * step,
-      y: origin.y + direction.y * step,
-      z: origin.z + direction.z * step
-    };
+function applyEnergyPulseImpact(projectile, target) {
+  try {
+    target.applyDamage(ENERGY_PULSE_DAMAGE);
 
-    try {
-      player.dimension.spawnParticle("minecraft:enchanting_table_particle", location);
-    } catch {
+    const awayFromCaster = getHorizontalDirection({
+      x: target.location.x - projectile.origin.x,
+      z: target.location.z - projectile.origin.z
+    });
+
+    target.applyKnockback({
+      x: awayFromCaster.x * ENERGY_PULSE_KNOCKBACK,
+      z: awayFromCaster.z * ENERGY_PULSE_KNOCKBACK
+    }, ENERGY_PULSE_VERTICAL_KNOCKBACK);
+  } catch {
+    // Some entities can reject damage or knockback even with a health component.
+  }
+
+  try {
+    projectile.dimension.playSound("random.pop", target.location, { volume: 0.8, pitch: 1.2 });
+  } catch {
+  }
+}
+
+function findEnergyPulseHit(projectile, location) {
+  for (const entity of projectile.dimension.getEntities({ location, maxDistance: ENERGY_PULSE_HIT_RADIUS })) {
+    if (entity.id === projectile.ownerId || projectile.hitEntityIds.has(entity.id) || !entity.hasComponent("minecraft:health")) {
+      continue;
+    }
+
+    return entity;
+  }
+
+  return undefined;
+}
+
+function spawnEnergyPulseProjectile(player) {
+  const direction = normalizeVector(player.getViewDirection());
+  const headLocation = player.getHeadLocation();
+  const origin = addVectors(headLocation, scaleVector(direction, 0.8));
+
+  activeEnergyPulseProjectiles.push({
+    id: nextEnergyPulseProjectileId++,
+    ownerId: player.id,
+    dimension: player.dimension,
+    origin,
+    location: origin,
+    direction,
+    age: 0,
+    traveled: 0,
+    hitEntityIds: new Set()
+  });
+
+  spawnEnergyPulseParticle(player.dimension, origin);
+}
+
+function updateEnergyPulseProjectiles() {
+  for (let index = activeEnergyPulseProjectiles.length - 1; index >= 0; index--) {
+    const projectile = activeEnergyPulseProjectiles[index];
+    let shouldRemove = false;
+
+    projectile.age++;
+
+    const previousLocation = projectile.location;
+    const nextLocation = addVectors(previousLocation, scaleVector(projectile.direction, ENERGY_PULSE_SPEED));
+    const samples = 3;
+
+    for (let sample = 1; sample <= samples; sample++) {
+      const location = addVectors(previousLocation, scaleVector({
+        x: nextLocation.x - previousLocation.x,
+        y: nextLocation.y - previousLocation.y,
+        z: nextLocation.z - previousLocation.z
+      }, sample / samples));
+
+      if (isBlockingBlock(projectile.dimension, location)) {
+        shouldRemove = true;
+        break;
+      }
+
+      const target = findEnergyPulseHit(projectile, location);
+
+      if (target) {
+        projectile.hitEntityIds.add(target.id);
+        applyEnergyPulseImpact(projectile, target);
+        shouldRemove = true;
+        break;
+      }
+
+      spawnEnergyPulseParticle(projectile.dimension, location);
+    }
+
+    projectile.location = nextLocation;
+    projectile.traveled = Math.sqrt(distanceSquared(projectile.origin, projectile.location));
+
+    if (projectile.traveled >= ENERGY_PULSE_RANGE || projectile.age > 30) {
+      shouldRemove = true;
+    }
+
+    if (shouldRemove) {
+      activeEnergyPulseProjectiles.splice(index, 1);
     }
   }
 }
@@ -301,8 +386,8 @@ function tryCastEnergyPulse(player) {
 
   setWoodenEmblemEnergy(player, current - ENERGY_PULSE_COST);
   startEnergyPulseCooldown(player);
-  applyEnergyPulseEffects(player, getEnergyPulseTargets(player));
-  showEnergyPulseFeedback(player);
+  spawnEnergyPulseProjectile(player);
+  showEnergyPulseCastFeedback(player);
 }
 
 function setMainhandItem(player, itemId) {
@@ -419,3 +504,4 @@ world.afterEvents.itemUse.subscribe((event) => {
 });
 
 system.runInterval(updateActiveWoodenEmblemEnergy, ENERGY_ACTIONBAR_INTERVAL_TICKS);
+system.runInterval(updateEnergyPulseProjectiles, 1);
