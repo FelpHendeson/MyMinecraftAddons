@@ -10,17 +10,17 @@ Estrutura atual:
 
 - Manifest inicial.
 - Pastas reservadas para itens, receitas, loot tables, funções, scripts e entidades.
+- Itens customizados simples em `items/`.
 
 Conteúdos futuros possíveis, ainda não implementados:
 
-- Itens.
 - Receitas.
 - Loot tables.
 - Funções.
 - Scripts.
 - Entidades customizadas.
 
-O manifest inicial já existe em `packs/behavior_pack/manifest.json`. Os demais conteúdos ainda não existem e só devem ser criados quando solicitados.
+O manifest inicial já existe em `packs/behavior_pack/manifest.json`. Novos conteúdos de comportamento só devem ser criados quando solicitados.
 
 ## Resource Pack
 
@@ -29,18 +29,19 @@ O Resource Pack deve conter recursos visuais e de apresentação.
 Estrutura atual:
 
 - Manifest inicial.
-- Atlas vazio `textures/item_texture.json`.
+- Atlas de itens `textures/item_texture.json`.
 - Arquivos de idioma `texts/pt_BR.lang` e `texts/en_US.lang`.
-- Pastas reservadas para texturas de itens e sons.
+- Texturas de itens em `textures/items/`.
+- Pasta reservada para sons.
 
 Conteúdos futuros possíveis, ainda não implementados:
 
 - Modelos.
 - Sons.
-- Textos de tradução.
-- Ícones.
+- Textos de tradução adicionais.
+- Ícones adicionais.
 
-Texturas finais, modelos, sons e ícones ainda não existem e só devem ser criados quando solicitados.
+Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando solicitados.
 
 ## Estrutura esperada
 
@@ -54,7 +55,7 @@ Texturas finais, modelos, sons e ícones ainda não existem e só devem ser cria
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 1]`.
+- Versão atual dos packs: `[0, 1, 3]`.
 - `min_engine_version`: `[1, 20, 0]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -72,6 +73,13 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 - Namespace planejado: `riftborn`.
 - Identificadores futuros devem seguir `riftborn:nome_do_recurso`.
 - Não usar namespaces de outros projetos.
+
+## Itens atuais
+
+- `riftborn:fragmento_de_fenda`: material mágico raro ligado às fendas dimensionais.
+- `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1.
+
+O `Emblema de Madeira` ainda não possui receita, ativação de Energia de Fenda, habilidades, scripts ou funções. Esses comportamentos pertencem a etapas futuras.
 
 ## Empacotamento futuro
 

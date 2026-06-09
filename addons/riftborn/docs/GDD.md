@@ -37,28 +37,62 @@ O tom deve ser de fantasia medieval com mistério e perigo moderado. A dark fant
 - Progressão gradual.
 - Exploração recompensadora.
 - Equipamentos com identidade.
+- Emblemas como símbolo de despertar, vínculo e autoridade do jogador.
 - Lore fragmentada.
 - Ameaças crescentes.
 - Sistemas simples antes de sistemas complexos.
 
-## Classes planejadas
+## Sistema de Emblemas
 
-Classes são visão futura e não fazem parte do escopo inicial.
+O Emblema é o item físico central do jogador. Ele canaliza a Energia de Fenda, representa o despertar do jogador como Riftborn e estabelece o vínculo inicial com o fenômeno dimensional da Fenda.
 
-Arquétipos possíveis:
+Rift e Fenda devem ser tratados como fonte, energia ou fenômeno. Emblema deve ser usado para o item carregado, ativado e evoluído pelo jogador.
 
-- Guerreiro: combate direto e equipamentos resistentes.
-- Patrulheiro: mobilidade, exploração e ataques à distância.
-- Arcanista: relíquias, magia e conhecimento antigo.
-- Devoto: suporte, proteção e vínculo com forças misteriosas.
+Regras planejadas:
+
+- Apenas um Emblema pode estar ativo por vez.
+- Ativar um Emblema substitui o anterior.
+- O Emblema ativo define o caminho ativo, técnicas disponíveis e benefícios futuros.
+- Benefícios só acumulam dentro da mesma linhagem de Emblemas.
+- Benefícios de Emblemas diferentes não devem ser empilhados.
+- O jogador começa sem classe fixa.
+
+## Primeiro Emblema
+
+Nome: `Emblema de Madeira`.
+
+Identificador planejado: `riftborn:emblema_de_madeira`.
+
+Função: primeiro emblema universal do jogador.
+
+Material: madeira e Fragmentos de Fenda.
+
+O `Emblema de Madeira` não representa uma classe. Ele serve como o primeiro vínculo do jogador com a Fenda e deve desbloquear futuramente Energia de Fenda e técnicas básicas universais.
+
+## Caminhos planejados
+
+Caminhos são definidos pelo Emblema ativo, não por classe fixa. Eles são visão futura e não fazem parte do escopo inicial.
+
+Possíveis caminhos:
+
+- Caminho da Lâmina: combate direto e equipamentos resistentes.
+- Caminho Arcano: relíquias, magia e conhecimento antigo.
+- Caminho da Precisão: mobilidade, exploração e ataques à distância.
+- Caminho das Sombras: furtividade, risco e técnicas oportunistas.
+- Caminho do Sobrevivente: resistência, coleta e adaptação.
 
 ## Progressão planejada
 
-A progressão deve começar simples. Antes de skill tree ou classes completas, o projeto deve validar itens, receitas, loot e recompensas básicas.
+A progressão deve começar simples. Antes de skill tree ou caminhos completos, o projeto deve validar itens, receitas, loot e recompensas básicas.
 
 Possíveis camadas futuras:
 
-- Equipamentos por arquétipo.
+- Emblema de Madeira como início universal.
+- Emblema de Cobre como melhoria universal.
+- Emblemas de Ferro como início das especializações.
+- Emblemas avançados como caminhos mais específicos.
+- Emblemas lendários como progressão de endgame.
+- Equipamentos por caminho.
 - Materiais raros.
 - Recompensas de dungeons.
 - Relíquias com efeitos especiais.

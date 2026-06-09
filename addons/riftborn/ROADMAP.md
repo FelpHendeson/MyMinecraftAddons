@@ -36,15 +36,23 @@ Status: próxima etapa planejada.
 
 - Definir a primeira camada narrativa do Riftborn.
 - Criar elementos simples que comuniquem a chegada pela fenda.
+- Planejar o `Emblema de Madeira` como primeiro vínculo do jogador com a Fenda.
 
-### v0.6 Progressão RPG simples
+### v0.6 Sistema de Emblemas inicial
 
-- Adicionar progressão inicial sem sistema completo de classes.
+- Adicionar progressão inicial baseada no `Emblema de Madeira`.
+- Usar o identificador planejado `riftborn:emblema_de_madeira`.
+- Tratar Rift/Fenda como fonte, energia ou fenômeno dimensional.
+- Tratar Emblema como item físico central que canaliza a Energia de Fenda.
+- Definir a regra de apenas um Emblema ativo por vez.
+- Evitar classes fixas como sistema principal.
 - Evitar skill tree complexa.
 
-### v0.7 Equipamentos de classe
+### v0.7 Emblema de Cobre e caminhos
 
-- Introduzir equipamentos com identidade de arquétipo.
+- Planejar o `Emblema de Cobre` como melhoria universal.
+- Introduzir caminhos definidos pelo Emblema ativo.
+- Preparar a transição futura para Emblemas de Ferro como início das especializações.
 - Manter a progressão controlada.
 
 ### v0.8 Primeiro mob customizado
@@ -60,7 +68,19 @@ Status: próxima etapa planejada.
 ### v1.0 Capítulo 1: A Fenda
 
 - Consolidar a primeira experiência jogável.
-- Unir base técnica, primeiros itens, progressão simples e narrativa inicial.
+- Unir base técnica, primeiros itens, Sistema de Emblemas inicial e narrativa da Fenda.
+
+## Progressão por Emblemas
+
+Direção planejada:
+
+- Emblema de Madeira: início universal.
+- Emblema de Cobre: melhoria universal.
+- Emblemas de Ferro: início das especializações.
+- Emblemas avançados: caminhos mais específicos.
+- Emblemas lendários: endgame.
+
+O Emblema ativo deve definir o caminho ativo, técnicas disponíveis e benefícios futuros. Ativar um Emblema substitui o anterior, e benefícios de Emblemas diferentes não devem ser empilhados.
 
 ## Controle de escopo
 

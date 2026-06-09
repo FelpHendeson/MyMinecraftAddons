@@ -2,7 +2,7 @@
 
 `Riftborn: Crônicas do Novo Mundo` é um addon planejado para Minecraft Bedrock Edition.
 
-A proposta é transformar gradualmente o Minecraft em uma experiência de RPG com progressão, classes, loot, equipamentos, dungeons, guildas e história, sem abandonar a base de exploração e sobrevivência do jogo.
+A proposta é transformar gradualmente o Minecraft em uma experiência de RPG com progressão por Emblemas, caminhos de especialização, loot, equipamentos, dungeons, guildas e história, sem abandonar a base de exploração e sobrevivência do jogo.
 
 ## Premissa
 
@@ -10,9 +10,9 @@ O jogador é um Riftborn: alguém trazido por uma fenda dimensional para um mund
 
 ## Status atual
 
-O projeto está em fase de organização e documentação.
+O projeto possui base técnica funcional com manifests, estrutura de Behavior Pack e Resource Pack, itens iniciais e empacotamento local.
 
-Nesta etapa, não existem arquivos funcionais de addon. Ainda não há `manifest.json`, itens, receitas, texturas, scripts, mobs ou sistemas implementados.
+Já existem itens customizados simples para validar o fluxo do addon. Ainda não há receitas, scripts, mobs, funções, habilidades, ativação de Emblemas ou sistemas de gameplay implementados.
 
 ## Escopo inicial futuro
 

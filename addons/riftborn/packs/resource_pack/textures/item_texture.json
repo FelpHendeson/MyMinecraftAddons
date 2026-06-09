@@ -4,6 +4,9 @@
   "texture_data": {
     "fragmento_de_fenda": {
       "textures": "textures/items/fragmento_de_fenda"
+    },
+    "emblema_de_madeira": {
+      "textures": "textures/items/emblema_de_madeira"
     }
   }
 }

@@ -14,6 +14,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Ferramenta compartilhada de build para gerar `.mcpack` e `.mcaddon`.
 - Primeiros arquivos exportados em `dist/` para teste de importação no Minecraft Bedrock.
 - Primeiro item customizado: `riftborn:fragmento_de_fenda`, com textura placeholder e traduções em português e inglês.
+- Item `riftborn:emblema_de_madeira`, primeiro Emblema universal do jogador, com stack máximo 1, textura e traduções em português e inglês.
 
 ### Changed
 
@@ -23,6 +24,9 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Fluxo geral atualizado com o comando de build local.
 - Versão técnica dos manifests incrementada para `0.1.1` para permitir nova importação no Minecraft Bedrock.
 - Textura do `Fragmento de Fenda` substituída por pixel art 16x16 com silhueta irregular, núcleo ciano e brilho dimensional.
+- Conceito de progressão refinado: Rift/Fenda passa a representar fonte, energia ou fenômeno dimensional, enquanto Emblema passa a ser o item físico central do jogador.
+- Primeiro item central planejado renomeado conceitualmente para `Emblema de Madeira`, com identificador planejado `riftborn:emblema_de_madeira`.
+- Versão técnica dos manifests incrementada para `0.1.3` para importar o novo build com o `Emblema de Madeira`.
 
 ### Fixed
 
@@ -30,6 +34,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 ### Notes
 
-- Nenhuma receita, loot table, mob, script funcional ou gameplay foi criado.
+- Nenhuma receita, loot table, mob, script funcional, função, habilidade ou gameplay foi criado.
+- O `Emblema de Madeira` ainda não ativa Energia de Fenda e ainda não concede habilidades.
+- Nenhum UUID foi alterado.
 - A textura do `Fragmento de Fenda` ainda pode evoluir, mas já representa melhor o conceito de material mágico raro.
 - Se o Minecraft Bedrock detectar duplicação ao importar novo build, a versão técnica pode precisar ser incrementada em uma etapa separada.

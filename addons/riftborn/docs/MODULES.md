@@ -21,6 +21,7 @@ Primeiros itens usados para validar progressão e identidade do addon.
 Item inicial:
 
 - `riftborn:fragmento_de_fenda`: estilhaço cristalino arrancado das rachaduras entre mundos, usado para validar o fluxo de item customizado e representar um material mágico raro.
+- `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, feito de madeira marcada pela Energia de Fenda, com stack máximo 1 e sem receita ou ativação nesta etapa.
 
 Direção visual:
 
@@ -34,6 +35,37 @@ Escopo planejado:
 - Itens simples.
 - Nomes consistentes.
 - Integração com receitas e loot.
+
+## Sistema de Emblemas
+
+Status: iniciado.
+
+Sistema central de progressão do jogador. O Emblema é o item físico carregado, ativado e evoluído pelo jogador. Rift e Fenda representam a Energia de Fenda e o fenômeno dimensional; Emblema representa o objeto que canaliza essa energia.
+
+Primeiro emblema planejado:
+
+- Nome: `Emblema de Madeira`.
+- Identificador: `riftborn:emblema_de_madeira`.
+- Função: primeiro emblema universal.
+- Material: madeira e Fragmentos de Fenda.
+- Direção: primeiro vínculo do jogador com a Fenda, sem representar classe fixa.
+- Estado atual: item criado com textura e traduções, ainda sem receita, ativação, Energia de Fenda ou habilidades.
+
+Progressão planejada:
+
+- Emblema de Madeira: início universal.
+- Emblema de Cobre: melhoria universal.
+- Emblemas de Ferro: início das especializações.
+- Emblemas avançados: caminhos mais específicos.
+- Emblemas lendários: endgame.
+
+Regras planejadas:
+
+- Apenas um Emblema pode estar ativo por vez.
+- Ativar um Emblema substitui o anterior.
+- Benefícios só acumulam dentro da mesma linhagem.
+- Benefícios de Emblemas diferentes não podem ser empilhados.
+- O Emblema ativo define o caminho ativo, técnicas disponíveis e benefícios futuros.
 
 ## Receitas
 
@@ -62,14 +94,28 @@ Camada narrativa que apresenta o jogador como Riftborn.
 Possíveis elementos futuros:
 
 - Fragmentos de lore.
-- Itens ligados à fenda.
+- Emblemas ligados à Energia de Fenda.
 - Primeiros sinais do mundo antigo.
+
+## Caminhos
+
+Status: planejado.
+
+Caminhos futuros devem ser definidos pelo Emblema ativo, não por classe fixa.
+
+Caminhos previstos:
+
+- Caminho da Lâmina.
+- Caminho Arcano.
+- Caminho da Precisão.
+- Caminho das Sombras.
+- Caminho do Sobrevivente.
 
 ## Módulos futuros
 
 Módulos que não pertencem ao escopo inicial:
 
-- Sistema completo de classes.
+- Sistema completo de caminhos e especializações por Emblemas.
 - Skill tree.
 - UI customizada complexa.
 - Dungeons grandes.

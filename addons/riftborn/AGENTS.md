@@ -10,6 +10,7 @@ Este arquivo orienta agents que trabalham especificamente em `addons/riftborn/`.
 - Namespace planejado: `riftborn`.
 - Behavior Pack planejado: `Riftborn BP`.
 - Resource Pack planejado: `Riftborn RP`.
+- Conceito central planejado: Emblemas são os itens físicos de progressão; Rift/Fenda é a fonte, energia ou fenômeno dimensional.
 
 ## Regras obrigatórias
 
@@ -24,6 +25,9 @@ Este arquivo orienta agents que trabalham especificamente em `addons/riftborn/`.
 - Não recriar manifests nem alterar UUIDs existentes sem solicitação explícita.
 - Não criar muitos arquivos de uma vez sem necessidade clara.
 - Não criar funcionalidades fora do escopo pedido.
+- Ao documentar progressão, usar Sistema de Emblemas para o item central do jogador.
+- Manter `Rift` e `Fenda` como conceitos ligados à Energia de Fenda e fenômenos dimensionais.
+- Não tratar classes fixas como sistema principal do addon.
 
 ## Assets e placeholders
 
@@ -43,5 +47,6 @@ Mesmo com a base técnica inicial criada, não criar sem pedido claro:
 - Loot tables.
 - Funções.
 - Sistemas de classes.
+- Sistemas de Emblemas com efeitos funcionais.
 - UI customizada.
 - Gameplay.

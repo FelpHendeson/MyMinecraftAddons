@@ -4,9 +4,9 @@ Estas regras guiam a evolução técnica do Riftborn.
 
 ## Estado atual
 
-Base técnica inicial criada, com manifests e estrutura mínima de Behavior Pack e Resource Pack.
+Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack e itens customizados simples.
 
-Já existem manifests, atlas vazio de itens, arquivos de idioma e pastas técnicas reservadas. Ainda não existem itens customizados, receitas, loot tables funcionais, mobs, scripts funcionais, texturas finais ou gameplay.
+Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas e os primeiros itens customizados. Ainda não existem receitas, loot tables funcionais, mobs, scripts funcionais, funções, habilidades, ativação de Emblemas ou gameplay.
 
 ## Desenvolvimento incremental
 
@@ -29,6 +29,18 @@ Já existem manifests, atlas vazio de itens, arquivos de idioma e pastas técnic
 - Preferir underscore para separar palavras: `fragmento_de_fenda`.
 - Evitar espaços em nomes de arquivos técnicos.
 - Documentação pode usar títulos em português com acentos.
+- Usar `emblema` para itens físicos centrais de progressão.
+- Manter `rift` e `fenda` para energia, fonte ou fenômeno dimensional.
+- O primeiro emblema planejado deve usar o identificador `riftborn:emblema_de_madeira`.
+
+## Regras de design para Emblemas
+
+- Apenas um Emblema pode estar ativo por vez.
+- Ativar um Emblema substitui o anterior.
+- Benefícios só acumulam dentro da mesma linhagem de Emblemas.
+- Não empilhar benefícios de Emblemas diferentes.
+- Caminhos devem ser definidos pelo Emblema ativo, não por classe fixa.
+- Não implementar Emblemas, técnicas, efeitos ou gameplay sem uma etapa solicitada.
 
 ## Padrão de arquivos
 

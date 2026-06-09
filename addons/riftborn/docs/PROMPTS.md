@@ -63,3 +63,21 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não recriar o item, não alterar identificador, não alterar UUIDs, não criar novos itens, receitas, loot tables, mobs, scripts de gameplay ou estrutura do projeto.
 - Resultado esperado: textura pixel art 16x16 com fundo transparente, silhueta irregular, roxo/violeta/azul profundo, núcleo ciano e brilhos dimensionais sutis.
 - Observações: nomes localizados permanecem `Fragmento de Fenda` e `Rift Fragment`.
+
+## 2026-06-08 - Refinamento de Emblemas e Energia de Fenda
+
+- Área: Riftborn.
+- Objetivo: atualizar a nomenclatura e o conceito central de progressão, trocando a ideia de Rift como amuleto/item para Emblema como item físico central que canaliza a Energia de Fenda.
+- Arquivos afetados: `README.md`, `PROJECT_CONTEXT.md`, `docs/GDD.md`, `docs/MODULES.md`, `ROADMAP.md`, `DEVELOPMENT_RULES.md`, `AGENTS.md`, `CHANGELOG.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, scripts, texturas, mobs, gameplay, manifests ou UUIDs; realizar apenas documentação, design e alinhamento de nomenclatura.
+- Resultado esperado: documentação passa a tratar `Emblema de Madeira` como primeiro item central planejado, com identificador planejado `riftborn:emblema_de_madeira`, mantendo Rift/Fenda como fonte, energia ou fenômeno dimensional.
+- Observações: o jogador começa sem classe fixa; caminhos futuros são definidos pelo Emblema ativo, com apenas um Emblema ativo por vez.
+
+## 2026-06-08 - Criação do Emblema de Madeira
+
+- Área: Riftborn.
+- Objetivo: criar o item `riftborn:emblema_de_madeira`, primeiro Emblema universal do sistema de progressão.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/emblema_de_madeira.json`, `textures/item_texture.json`, `textures/items/emblema_de_madeira.png`, arquivos de idioma, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar receitas, scripts, `tick.json`, funções, mana, habilidades, ativação de Emblema, mobs ou UUIDs.
+- Resultado esperado: item com stack máximo 1, textura 16x16 transparente, nome em PT-BR e EN-US, manifests na versão `[0, 1, 3]` e build funcionando.
+- Observações: a textura foi derivada da imagem fornecida, com fundo removido e nome final alinhado ao conceito de Emblema.
