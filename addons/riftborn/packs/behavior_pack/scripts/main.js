@@ -26,13 +26,23 @@ const STAFF_MAX_CHARGE_TICKS = 20;
 const ENERGY_PULSE_KNOCKBACK = 2;
 const ENERGY_PULSE_VERTICAL_KNOCKBACK = 0.15;
 const ENERGY_PULSE_COOLDOWN_TICKS = 20;
+const RIFTBORN_PULSO_NUCLEO_PARTICLE = "riftborn:pulso_nucleo";
+const RIFTBORN_PULSO_CARGA_PARTICLE = "riftborn:pulso_carga";
+const RIFTBORN_PULSO_IMPACTO_PARTICLE = "riftborn:pulso_impacto";
+const RIFTBORN_CORTE_ARCO_PARTICLE = "riftborn:corte_arco";
+const RIFTBORN_CORTE_LINHA_PARTICLE = "riftborn:corte_linha";
+const RIFTBORN_CORTE_IMPACTO_PARTICLE = "riftborn:corte_impacto";
 const ENERGY_PULSE_PROJECTILE_PARTICLES = [
-  "minecraft:electric_spark_particle",
+  RIFTBORN_PULSO_NUCLEO_PARTICLE,
   "minecraft:witch_spell_particle"
 ];
 const ENERGY_PULSE_IMPACT_PARTICLES = [
-  "minecraft:witch_spell_particle",
+  RIFTBORN_PULSO_IMPACTO_PARTICLE,
   "minecraft:electric_spark_particle"
+];
+const STAFF_CHARGE_PARTICLES = [
+  RIFTBORN_PULSO_CARGA_PARTICLE,
+  "minecraft:witch_spell_particle"
 ];
 const UNSTABLE_SLASH_COST = 5;
 const UNSTABLE_SLASH_DAMAGE = 5;
@@ -41,11 +51,17 @@ const UNSTABLE_SLASH_RADIUS = 1.5;
 const UNSTABLE_SLASH_KNOCKBACK = 1;
 const UNSTABLE_SLASH_VERTICAL_KNOCKBACK = 0.1;
 const UNSTABLE_SLASH_COOLDOWN_TICKS = 20;
-const UNSTABLE_SLASH_PARTICLES = [
-  "minecraft:dragon_breath_trail",
-  "minecraft:witch_spell_particle",
-  "minecraft:enchanting_table_particle",
-  "minecraft:basic_smoke_particle"
+const UNSTABLE_SLASH_ARC_PARTICLES = [
+  RIFTBORN_CORTE_ARCO_PARTICLE,
+  "minecraft:witch_spell_particle"
+];
+const UNSTABLE_SLASH_LINE_PARTICLES = [
+  RIFTBORN_CORTE_LINHA_PARTICLE,
+  "minecraft:dragon_breath_trail"
+];
+const UNSTABLE_SLASH_IMPACT_PARTICLES = [
+  RIFTBORN_CORTE_IMPACTO_PARTICLE,
+  "minecraft:electric_spark_particle"
 ];
 const UNSTABLE_SLASH_MIN_FORWARD_DISTANCE = 0.5;
 const EMBLEM_LINEAGE_TAGS = [
@@ -289,13 +305,20 @@ function spawnEnergyPulseImpactParticle(dimension, location) {
   spawnParticleFromList(dimension, location, ENERGY_PULSE_IMPACT_PARTICLES);
 }
 
-function spawnUnstableSlashParticle(dimension, location) {
-  for (const particleId of UNSTABLE_SLASH_PARTICLES) {
-    try {
-      dimension.spawnParticle(particleId, location);
-    } catch {
-    }
-  }
+function spawnUnstableSlashArcParticle(dimension, location) {
+  spawnParticleFromList(dimension, location, UNSTABLE_SLASH_ARC_PARTICLES);
+}
+
+function spawnUnstableSlashLineParticle(dimension, location) {
+  spawnParticleFromList(dimension, location, UNSTABLE_SLASH_LINE_PARTICLES);
+}
+
+function spawnUnstableSlashImpactParticle(dimension, location) {
+  spawnParticleFromList(dimension, location, UNSTABLE_SLASH_IMPACT_PARTICLES);
+}
+
+function spawnStaffChargeParticle(dimension, location) {
+  spawnParticleFromList(dimension, location, STAFF_CHARGE_PARTICLES);
 }
 
 function getPlayerAimOrigin(player) {
@@ -565,7 +588,7 @@ function updateStaffCharges() {
     const direction = normalizeVector(player.getViewDirection());
     const tipLocation = addVectors(player.getHeadLocation(), scaleVector(direction, 0.7));
 
-    spawnEnergyPulseParticle(player.dimension, tipLocation);
+    spawnStaffChargeParticle(player.dimension, tipLocation);
     player.onScreenDisplay.setActionBar(`\u00a7dConcentrando Pulso... \u00a7f${Math.round(chargeRatio * 100)}%`);
   }
 }
@@ -625,6 +648,12 @@ function applyUnstableSlashImpact(player, target) {
   } catch {
     // Some entities can reject damage or knockback even with a health component.
   }
+
+  spawnUnstableSlashImpactParticle(player.dimension, {
+    x: target.location.x,
+    y: target.location.y + 1,
+    z: target.location.z
+  });
 }
 
 function spawnUnstableSlashFeedback(player) {
@@ -632,19 +661,27 @@ function spawnUnstableSlashFeedback(player) {
   const right = { x: -direction.z, z: direction.x };
   const baseLocation = getPlayerAimOrigin(player);
 
-  for (let distance = 0.5; distance <= UNSTABLE_SLASH_RANGE; distance += 0.5) {
-    const arcScale = distance / UNSTABLE_SLASH_RANGE;
+  for (let distance = 0.8; distance <= UNSTABLE_SLASH_RANGE; distance += 0.85) {
+    const arcScale = 0.45 + (distance / UNSTABLE_SLASH_RANGE) * 0.55;
 
-    for (const offset of [-1, -0.5, 0, 0.5, 1]) {
-      for (const height of [0.8, 1.2, 1.6]) {
-        const location = {
-          x: baseLocation.x + direction.x * distance + right.x * offset * arcScale,
-          y: baseLocation.y + height,
-          z: baseLocation.z + direction.z * distance + right.z * offset * arcScale
-        };
+    for (const height of [1, 1.45]) {
+      const arcLocation = {
+        x: baseLocation.x + direction.x * distance,
+        y: baseLocation.y + height,
+        z: baseLocation.z + direction.z * distance
+      };
 
-        spawnUnstableSlashParticle(player.dimension, location);
-      }
+      spawnUnstableSlashArcParticle(player.dimension, arcLocation);
+    }
+
+    for (const side of [-1, 1]) {
+      const lineLocation = {
+        x: baseLocation.x + direction.x * distance + right.x * side * arcScale * 0.65,
+        y: baseLocation.y + 1.2,
+        z: baseLocation.z + direction.z * distance + right.z * side * arcScale * 0.65
+      };
+
+      spawnUnstableSlashLineParticle(player.dimension, lineLocation);
     }
   }
 

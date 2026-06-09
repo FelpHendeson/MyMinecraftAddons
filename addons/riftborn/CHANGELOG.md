@@ -2,6 +2,22 @@
 
 Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
+## [0.3.5] - 2026-06-09
+
+### Added
+
+- Partículas customizadas do Riftborn no Resource Pack para `Pulso de Energia I` e `Corte Instável I`.
+- Texturas em `textures/particle/` para núcleo, carga, impacto, arco, linha e faísca de corte.
+- Ferramenta `shared/tools/convert_vfx_texture.py` para converter arte VFX com fundo xadrez em PNG RGBA.
+
+### Changed
+
+- `Pulso de Energia I` usa `riftborn:pulso_nucleo`, `riftborn:pulso_carga` e `riftborn:pulso_impacto`.
+- `Corte Instável I` usa `riftborn:corte_arco`, `riftborn:corte_linha` e `riftborn:corte_impacto` em camadas.
+- Feedback do corte reorganizado com menos spam e mais leitura de arco anime + rastro lateral.
+- Impacto do corte agora gera faísca customizada no alvo atingido.
+- Versão técnica dos manifests incrementada para `0.3.5`.
+
 ## [0.3.4] - 2026-06-09
 
 ### Fixed

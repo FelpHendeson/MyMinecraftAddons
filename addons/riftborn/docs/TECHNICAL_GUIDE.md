@@ -149,10 +149,9 @@ Pulso de Energia I:
 - O loop do projétil testa colisão por 6 amostras entre a posição anterior e a próxima, com raio de 1,1 bloco e verificação imediata na origem para reduzir falhas quando a mira está diretamente sobre o alvo.
 - Não atinge o próprio jogador e evita entidades sem componente de vida, como itens dropados e projéteis.
 - Aplica 5 de dano e repulsão horizontal normalizada de força aproximada 2, com impulso vertical pequeno de 0,15.
-- Usa partículas vanilla `minecraft:electric_spark_particle` e `minecraft:witch_spell_particle`, com impacto visual adicional ao atingir alvo.
+- Usa partículas customizadas `riftborn:pulso_nucleo`, `riftborn:pulso_carga` e `riftborn:pulso_impacto`, com fallback vanilla se o Resource Pack não estiver ativo.
 - Não cria entidade customizada, mob, item, receita, projétil customizado por JSON ou UI customizada.
 - A abordagem foi escolhida em Script API porque `minecraft:shooter` não oferece, neste escopo, um ponto simples e estável para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
-- Partículas totalmente customizadas exigiriam arquivos `.particle` no Resource Pack em uma etapa futura.
 - O projétil existe apenas em memória do script (`activeEnergyPulseProjectiles`). Ele não sobrevive a `/reload`, reinício do mundo ou recarga do script; projéteis em voo são perdidos nesses casos. Esta é uma limitação técnica aceita nesta etapa.
 - O feedback de cast combina o nome da habilidade e a Energia de Fenda restante na mesma actionbar.
 
@@ -169,7 +168,7 @@ Corte Instável I:
 - Afeta apenas entidades à frente do jogador, com alcance de 3 blocos e raio lateral aproximado de 1,5 bloco.
 - Não atinge o próprio jogador, itens dropados, projéteis ou entidades sem componente de vida.
 - Aplica 5 de dano e knockback horizontal normalizado de força aproximada 1, com impulso vertical pequeno de 0,1.
-- Usa partículas vanilla `minecraft:sweep_attack_particle` e `minecraft:basic_crit_particle`, com origem de mira baseada nos olhos do jogador.
+- Usa partículas customizadas `riftborn:corte_arco`, `riftborn:corte_linha` e `riftborn:corte_impacto` em camadas, com origem de mira baseada nos olhos do jogador e faísca no alvo atingido.
 - Não cria projétil, entidade customizada, mob, item, receita, bloco, UI customizada ou UUID.
 - A ativação por uso da lâmina foi escolhida para esta primeira versão por ser mais estável em Bedrock mobile do que depender de evento de ataque; detecção por ataque pode ser avaliada em etapa futura.
 
