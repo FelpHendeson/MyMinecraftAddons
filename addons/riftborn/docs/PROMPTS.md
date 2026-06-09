@@ -171,3 +171,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não implementar habilidade, dano, projétil, partículas, scripts, mobs, alterar Energia de Fenda, alterar ativação de Emblema, alterar Cajado de Madeira, renomear itens existentes ou alterar UUIDs.
 - Resultado esperado: item com stack máximo 16, textura placeholder 16x16 transparente, nome em PT-BR e EN-US, receita shapeless com papel e `Fragmento de Fenda`, manifests na versão `[0, 2, 1]` e build funcionando.
 - Observações: o pergaminho registra `Pulso de Energia I`, mas ainda não executa habilidade. Parâmetros planejados futuros: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e repulsão horizontal normalizada de aproximadamente 2 blocos.
+
+## 2026-06-09 - Implementação do Pulso de Energia I
+
+- Área: Riftborn.
+- Objetivo: implementar `Pulso de Energia I`, primeira habilidade ativa funcional do Riftborn.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/cajado_de_madeira.json`, `packs/behavior_pack/scripts/main.js`, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `ROADMAP.md`, `DEVELOPMENT_RULES.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, mobs, novas habilidades além do `Pulso de Energia I`, projétil customizado, UI customizada, renomear itens existentes ou alterar UUIDs.
+- Resultado esperado: usar `riftborn:cajado_de_madeira` tenta lançar `Pulso de Energia I`, exigindo `Emblema de Madeira` ativo, 5 Energia de Fenda, `Pergaminho Mágico: Pulso de Energia I` no inventário e cooldown disponível.
+- Observações: a habilidade custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano, alcance de 5 blocos, repulsão horizontal normalizada aproximada de 2 blocos e não consome o pergaminho. O Cajado recebeu custom component para ser usado como catalisador.

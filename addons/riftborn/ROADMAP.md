@@ -59,12 +59,12 @@ Status: próxima etapa planejada.
 - Criar o Pergaminho Mágico: Pulso de Energia I.
 - Planejar Pergaminhos de Lâmina.
 - Definir Graus I a V para Catalisadores, Pergaminhos e habilidades.
-- Preparar o próximo passo do MVP com a execução de Pulso de Energia I.
+- Implementar Pulso de Energia I como primeira habilidade ativa funcional.
 - Evitar implementar muitas habilidades antes de validar a primeira.
 
 ### v0.8 Primeira habilidade mágica
 
-- Implementar futuramente Pulso de Energia I usando Emblema ativo, Energia de Fenda, Cajado compatível e Pergaminho compatível.
+- Pulso de Energia I usa Emblema ativo, Energia de Fenda, Cajado compatível e Pergaminho compatível.
 - Validar custo, regeneração, cooldown e feedback visual simples.
 - Manter o escopo sem árvore de habilidades completa.
 

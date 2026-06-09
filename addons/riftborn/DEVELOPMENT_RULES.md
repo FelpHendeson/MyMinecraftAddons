@@ -6,7 +6,7 @@ Estas regras guiam a evolução técnica do Riftborn.
 
 Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack, itens customizados simples, Script API mínima e Energia de Fenda básica.
 
-Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receita inicial, um script de ativação/desativação do `Emblema de Madeira` e um sistema básico de Energia de Fenda por scoreboard. Ainda não existem mobs customizados, funções, mana, habilidades, UI customizada, benefícios de combate ou sistemas avançados.
+Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receitas iniciais, um script de ativação/desativação do `Emblema de Madeira`, Energia de Fenda por scoreboard e a habilidade inicial `Pulso de Energia I`. Ainda não existem mobs customizados, funções, mana, UI customizada, benefícios passivos de combate ou sistemas avançados.
 
 ## Desenvolvimento incremental
 
@@ -52,11 +52,11 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 
 - Energia de Fenda é a energia do sistema e deve depender de Emblema ativo.
 - Habilidades ativas futuras devem consumir Energia de Fenda.
-- Catalisadores futuros executam habilidades, mas não substituem Emblemas.
+- Catalisadores executam habilidades, mas não substituem Emblemas.
 - Cajados devem ser a família inicial de catalisadores mágicos.
 - Lâminas Mágicas devem ser a família inicial de catalisadores de lâmina.
 - O primeiro cajado deve usar o identificador `riftborn:cajado_de_madeira`.
-- Pergaminhos futuros definem habilidades ativas disponíveis.
+- Pergaminhos definem habilidades ativas disponíveis.
 - Pergaminhos devem ser compatíveis com o catalisador usado.
 - Graus devem ir de I a V.
 - Grau I deve ser a entrada do sistema e ter baixo custo de energia.

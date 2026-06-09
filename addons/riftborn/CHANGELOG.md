@@ -26,6 +26,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Receita shaped de crafting table para `riftborn:cajado_de_madeira`, usando `Fragmento de Fenda` e gravetos.
 - Item `riftborn:pergaminho_magico_pulso_de_energia_i`, primeiro Pergaminho Mágico de Grau I, com textura placeholder e traduções em português e inglês.
 - Receita shapeless de crafting table para `riftborn:pergaminho_magico_pulso_de_energia_i`, usando papel e `Fragmento de Fenda`.
+- Habilidade ativa `Pulso de Energia I`, executada pelo `Cajado de Madeira` quando o jogador possui `Emblema de Madeira` ativo, Energia de Fenda suficiente e o pergaminho compatível.
 
 ### Changed
 
@@ -58,6 +59,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Documentação de design atualizada para tratar o Emblema ativo como estado persistente, separar Catalisadores e Pergaminhos do Emblema, e registrar o MVP recomendado com Cajado de Madeira Grau I e Pulso de Energia I.
 - Versão técnica dos manifests incrementada para `0.2.0` para importar o build com o primeiro Catalisador Mágico.
 - Versão técnica dos manifests incrementada para `0.2.1` para importar o build com o primeiro Pergaminho Mágico.
+- Versão técnica dos manifests incrementada para `0.2.2` para importar o build com a primeira habilidade ativa.
 
 ### Fixed
 
@@ -66,12 +68,15 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 ### Notes
 
-- Nenhuma nova receita, item, mob, função, habilidade, mana, UI customizada ou sistema avançado foi criado.
-- O `Emblema de Madeira` agora ativa tags simples e Energia de Fenda básica ao ser usado, mas ainda não possui técnicas, custos de energia, mana, habilidades ou benefícios de combate.
+- `Pulso de Energia I` é a primeira habilidade ativa funcional; ainda não existem novas famílias de habilidades, mana separada, UI customizada ou sistema avançado.
+- O `Emblema de Madeira` ativa tags e Energia de Fenda básica ao ser usado; técnicas dependem de Catalisadores e Pergaminhos compatíveis.
 - A actionbar é o primeiro feedback visual simples do sistema de Energia de Fenda.
 - A arquitetura de Catalisadores, Pergaminhos, Graus, XP, passivas e habilidades ativas ainda é planejamento; nenhum item, receita, script, mob, habilidade, projétil, efeito de dano, manifest ou UUID foi criado ou alterado nesta etapa de documentação.
-- O `Cajado de Madeira` ainda não lança habilidades, não consome Energia de Fenda, não usa Pergaminhos e não altera o sistema de Emblemas.
-- O `Pergaminho Mágico: Pulso de Energia I` ainda não lança habilidades, não causa dano, não cria projéteis, não dispara partículas e não altera Energia de Fenda.
+- O `Cajado de Madeira` agora executa `Pulso de Energia I` quando usado com os requisitos corretos.
+- O `Pergaminho Mágico: Pulso de Energia I` agora é requisito para lançar a habilidade, mas não é consumido.
+- `Pulso de Energia I` custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano em entidades válidas à frente e aplica repulsão horizontal normalizada.
+- O pergaminho não é consumido ao lançar `Pulso de Energia I`.
+- Nenhum item, receita, mob, projétil customizado, UI customizada ou UUID foi criado ou alterado nesta etapa de habilidade.
 - Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
 - As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.

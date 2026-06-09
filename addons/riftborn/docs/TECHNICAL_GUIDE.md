@@ -56,7 +56,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 2, 1]`.
+- Versão atual dos packs: `[0, 2, 2]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -85,13 +85,13 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 - `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, com stack máximo 1.
 - `riftborn:pergaminho_magico_pulso_de_energia_i`: primeiro Pergaminho Mágico de Grau I, com stack máximo 16.
 
-O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele possui Energia de Fenda básica exibida na actionbar, mas ainda não possui técnicas, custos de energia, mana, habilidades, benefícios de combate ou funções.
+O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele possui Energia de Fenda básica exibida na actionbar e permite a execução de `Pulso de Energia I` quando combinado com Cajado e Pergaminho compatíveis.
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
-O `Cajado de Madeira` é um item simples de equipamento e usa o ícone `cajado_de_madeira`. Ele ainda não possui custom component, script, habilidade, custo de Energia de Fenda, interação com Pergaminhos ou efeito de combate.
+O `Cajado de Madeira` é um item de equipamento e usa o ícone `cajado_de_madeira`. Ele usa `format_version` `1.21.10`, expõe o botão de toque `Usar` por `minecraft:interact_button` e registra o custom component `riftborn:usar_cajado_de_madeira`. Usar o cajado tenta lançar `Pulso de Energia I`.
 
-O `Pergaminho Mágico: Pulso de Energia I` é um item simples e usa o ícone `pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica planejada `Pulso de Energia I`, mas ainda não possui custom component, script, habilidade, dano, projétil, partículas, custo de Energia de Fenda ou interação com Cajados.
+O `Pergaminho Mágico: Pulso de Energia I` é um item simples e usa o ícone `pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica `Pulso de Energia I`. O pergaminho precisa existir no inventário do jogador para a habilidade ser executada e não é consumido.
 
 ## Loot tables atuais
 
@@ -116,7 +116,7 @@ A receita do `Pergaminho Mágico: Pulso de Energia I` é barata para permitir ac
 
 ## Scripts atuais
 
-- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira` e `riftborn:desativar_emblema_madeira`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira` quando o jogador usa o item.
+- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira`, `riftborn:desativar_emblema_madeira` e `riftborn:usar_cajado_de_madeira`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira` ou usar o `Cajado de Madeira`.
 
 A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado ativo e envia uma mensagem ao jogador. A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, limpa a actionbar, troca o item na mão principal para o estado inativo e envia uma mensagem ao jogador. O script possui um debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso.
 
@@ -128,7 +128,22 @@ Energia de Fenda básica:
 - Valores existentes são preservados e limitados entre 0 e 20.
 - A regeneração inicial é de 1 ponto a cada 40 ticks.
 - A actionbar exibe `§dEnergia de Fenda: §f{atual}§7/§f{max}` enquanto o jogador possui as tags `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
-- O script não consome o item, não cria mana, não concede habilidades, não cria técnicas, não adiciona custos de energia, não aplica dano e não dispara projéteis.
+- A Energia de Fenda básica não cria mana separada, não causa dano por si só e não dispara projéteis. Custos e dano aparecem apenas quando uma habilidade ativa, como `Pulso de Energia I`, é executada.
+
+Pulso de Energia I:
+
+- É executado ao usar `riftborn:cajado_de_madeira`.
+- Requer `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- Requer energia atual de pelo menos 5.
+- Requer pelo menos 1 `riftborn:pergaminho_magico_pulso_de_energia_i` no inventário ou hotbar.
+- Não consome o pergaminho.
+- Custa 5 Energia de Fenda mesmo quando não atinge alvo.
+- Tem cooldown de 20 ticks por jogador.
+- Afeta entidades vivas à frente do jogador, em alcance de 5 blocos e raio lateral aproximado de 1,25 bloco.
+- Não atinge o próprio jogador e evita entidades sem componente de vida, como itens dropados e projéteis.
+- Aplica 5 de dano e repulsão horizontal normalizada de força aproximada 2, com impulso vertical pequeno de 0,15.
+- Usa partículas vanilla simples `minecraft:enchanting_table_particle` e som `random.orb` quando disponíveis.
+- Não cria projétil customizado, mob, item, receita ou UI customizada.
 
 ## Empacotamento futuro
 

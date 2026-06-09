@@ -132,8 +132,8 @@ Primeiro cajado:
 - Identificador: `riftborn:cajado_de_madeira`.
 - Grau: I.
 - Família: Catalisador Mágico, Cajado.
-- Função planejada: lançar Pergaminhos Mágicos de Grau I quando o jogador tiver Emblema ativo e pergaminho compatível.
-- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidades, não consome Energia de Fenda e não interage com Pergaminhos.
+- Função atual: executar `Pulso de Energia I` quando o jogador tiver Emblema de Madeira ativo, Energia de Fenda suficiente e pergaminho compatível.
+- Estado atual: item, textura, tradução, receita e primeira habilidade ativa integrados.
 
 Descrição narrativa:
 
@@ -185,9 +185,9 @@ Primeiro pergaminho:
 - Grau: I.
 - Família: Pergaminho Mágico.
 - Técnica registrada: `Pulso de Energia I`.
-- Função planejada: permitir futuramente que o `Cajado de Madeira` lance `Pulso de Energia I` quando o jogador tiver Emblema ativo e Energia de Fenda suficiente.
-- Parâmetros planejados: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e repulsão horizontal normalizada de aproximadamente 2 blocos.
-- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidade, não causa dano, não cria projéteis e não dispara partículas.
+- Função atual: permitir que o `Cajado de Madeira` lance `Pulso de Energia I` quando o jogador tiver Emblema de Madeira ativo e Energia de Fenda suficiente.
+- Parâmetros atuais: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance 5 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Estado atual: item, textura, tradução, receita e execução de habilidade criados. O pergaminho não é consumido.
 
 ## Graus
 
@@ -208,12 +208,25 @@ Status: planejado.
 
 Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatíveis.
 
-Primeiras habilidades planejadas:
+Primeiras habilidades:
 
-- `Pulso de Energia I`: primeira habilidade mágica.
-- `Corte Instável I`: primeira habilidade de lâmina.
+- `Pulso de Energia I`: primeira habilidade mágica funcional.
+- `Corte Instável I`: primeira habilidade de lâmina planejada.
 
-Essas habilidades ainda não existem no addon.
+`Pulso de Energia I` já existe no addon como habilidade simples de Grau I.
+
+Pulso de Energia I:
+
+- Requer `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- Requer pelo menos 1 `riftborn:pergaminho_magico_pulso_de_energia_i` no inventário.
+- É executado ao usar `riftborn:cajado_de_madeira`.
+- Custa 5 Energia de Fenda mesmo se não atingir nenhum alvo.
+- Tem cooldown de 20 ticks por jogador.
+- Atinge entidades vivas à frente do jogador em alcance de 5 blocos e raio lateral aproximado de 1,25 bloco.
+- Causa 5 de dano.
+- Aplica repulsão horizontal normalizada para evitar força extra em diagonais.
+- Não atinge o próprio jogador.
+- Não cria projétil customizado.
 
 ## XP, níveis e passivas
 
@@ -302,7 +315,7 @@ Sequência recomendada:
 1. Documentar o sistema.
 2. Criar o Cajado de Madeira Grau I.
 3. Criar o Pergaminho Mágico: Pulso de Energia I.
-4. Implementar futuramente Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
+4. Implementar Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
 5. Criar futuramente a Lâmina Mágica Grau I.
 6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.
 

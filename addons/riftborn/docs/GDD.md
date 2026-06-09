@@ -100,8 +100,8 @@ Cajados são catalisadores mágicos. Eles devem ser craftados futuramente com gr
 Primeiro cajado:
 
 - `Cajado de Madeira`: Catalisador Mágico de Grau I.
-- Função planejada: lançar Pergaminhos Mágicos de Grau I.
-- Estado atual: item, textura, tradução e receita criados; ainda sem habilidade ativa.
+- Função atual: executar `Pulso de Energia I` quando o jogador possui Emblema de Madeira ativo, Energia de Fenda suficiente e o pergaminho compatível.
+- Estado atual: item, textura, tradução, receita e primeira habilidade ativa integrados.
 
 Variações planejadas:
 
@@ -141,9 +141,9 @@ Primeiro pergaminho:
 
 - `Pergaminho Mágico: Pulso de Energia I`: Pergaminho Mágico de Grau I.
 - Técnica registrada: `Pulso de Energia I`.
-- Função planejada: permitir futuramente que o `Cajado de Madeira` lance a primeira habilidade mágica ofensiva.
-- Parâmetros planejados da habilidade: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e repulsão horizontal normalizada de aproximadamente 2 blocos.
-- Estado atual: item, textura, tradução e receita criados; ainda sem execução de habilidade.
+- Função atual: permitir que o `Cajado de Madeira` lance a primeira habilidade mágica ofensiva.
+- Parâmetros atuais da habilidade: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance 5 blocos e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Estado atual: item, textura, tradução, receita e execução de habilidade criados.
 
 ## Graus
 
@@ -160,12 +160,12 @@ Direção planejada:
 
 Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatíveis.
 
-Primeiras habilidades planejadas:
+Primeiras habilidades:
 
-- Pulso de Energia I: primeira habilidade mágica.
-- Corte Instável I: primeira habilidade de lâmina.
+- Pulso de Energia I: primeira habilidade mágica funcional.
+- Corte Instável I: primeira habilidade de lâmina planejada.
 
-Essas habilidades são planejamento de design. Elas ainda não estão implementadas.
+`Pulso de Energia I` já está implementado como habilidade inicial simples. Outras habilidades ainda são planejamento de design.
 
 ## Passivas
 
@@ -195,7 +195,7 @@ Sequência recomendada para validar a nova arquitetura:
 1. Documentar o sistema de Emblemas, Catalisadores, Pergaminhos, Graus, Energia de Fenda, XP e passivas.
 2. Criar o Cajado de Madeira Grau I.
 3. Criar o Pergaminho Mágico: Pulso de Energia I.
-4. Implementar futuramente Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
+4. Implementar Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
 5. Criar futuramente a Lâmina Mágica Grau I.
 6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.
 
