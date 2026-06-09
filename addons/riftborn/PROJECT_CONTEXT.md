@@ -50,17 +50,17 @@ O sistema de progressão do Riftborn deve ser organizado em Emblemas, Energia de
 
 Emblemas são o núcleo persistente do jogador Riftborn. Apenas um Emblema pode estar ativo por vez. O Emblema ativo deve continuar ativo após a morte e mesmo se o item físico for removido do inventário. Ele só deve deixar de estar ativo quando o jogador desativar manualmente ou ativar outro Emblema.
 
-Energia de Fenda é a energia do sistema. Ela só existe com Emblema ativo e deve ser usada futuramente para lançar habilidades. Emblemas melhores podem oferecer mais energia, melhor regeneração ou maior eficiência.
+Energia de Fenda é a energia do sistema. Ela só existe com Emblema ativo e já é consumida pelas habilidades iniciais `Pulso de Energia I` e `Corte Instável I`. Emblemas melhores podem oferecer mais energia, melhor regeneração ou maior eficiência.
 
 Catalisadores são itens usados para executar habilidades ativas. Eles não substituem o Emblema; servem como canal de execução das técnicas. As famílias iniciais planejadas são Cajados, para habilidades mágicas, e Lâminas Mágicas, para habilidades de lâmina.
 
-O primeiro Catalisador Mágico é o `Cajado de Madeira`, com identificador `riftborn:cajado_de_madeira`. Ele é um cajado rudimentar de Grau I feito de gravetos e Fragmento de Fenda. No estado atual, é apenas item, textura, tradução e receita; habilidades com cajado dependem de Pergaminhos e etapas futuras.
+O primeiro Catalisador Mágico é o `Cajado de Madeira`, com identificador `riftborn:cajado_de_madeira`. Ele é um cajado rudimentar de Grau I feito de gravetos e Fragmento de Fenda. No estado atual, executa `Pulso de Energia I` quando usado com Emblema de Madeira ativo, Energia de Fenda suficiente e o pergaminho compatível.
 
 Pergaminhos são itens que definem quais habilidades ativas podem ser usadas. Eles devem existir em famílias mágicas e de lâmina, possuir grau e exigir compatibilidade com o catalisador usado.
 
 O primeiro Pergaminho Mágico é o `Pergaminho Mágico: Pulso de Energia I`, com identificador `riftborn:pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica `Pulso de Energia I`, primeira habilidade ativa funcional do Riftborn. No estado atual, a técnica é executada pelo `Cajado de Madeira` quando o jogador possui `Emblema de Madeira` ativo, Energia de Fenda suficiente e o pergaminho compatível no inventário. A técnica dispara um projétil mágico scriptado que viaja pela direção da mira.
 
-A primeira Lâmina Mágica é a `Lâmina de Madeira Fendida`, com identificador `riftborn:lamina_de_madeira_fendida`. Ela usa uma espada de madeira vanilla como base infundida por Fragmento de Fenda. O primeiro Pergaminho de Lâmina é `Pergaminho de Lâmina: Corte Instável I`, com identificador `riftborn:pergaminho_lamina_corte_instavel_i`. Esses itens criam a base de Habilidades de Lâmina, mas ainda não executam habilidade.
+A primeira Lâmina Mágica é a `Lâmina de Madeira Fendida`, com identificador `riftborn:lamina_de_madeira_fendida`. Ela usa uma espada de madeira vanilla como base infundida por Fragmento de Fenda. O primeiro Pergaminho de Lâmina é `Pergaminho de Lâmina: Corte Instável I`, com identificador `riftborn:pergaminho_lamina_corte_instavel_i`. No estado atual, usar a lâmina executa `Corte Instável I` quando o jogador possui Emblema de Madeira ativo, Energia de Fenda suficiente e o pergaminho compatível no inventário.
 
 Graus vão de I a V. Grau I é a entrada do sistema, com baixo custo de Energia de Fenda. Graus maiores aumentam custo, poder e efeitos. Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente por causa do consumo elevado.
 

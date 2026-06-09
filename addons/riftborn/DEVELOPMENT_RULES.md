@@ -6,7 +6,7 @@ Estas regras guiam a evolução técnica do Riftborn.
 
 Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack, itens customizados simples, Script API mínima e Energia de Fenda básica.
 
-Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receitas iniciais, um script de ativação/desativação do `Emblema de Madeira`, Energia de Fenda por scoreboard e a habilidade inicial `Pulso de Energia I`. Ainda não existem mobs customizados, funções, mana, UI customizada, benefícios passivos de combate ou sistemas avançados.
+Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receitas iniciais, um script de ativação/desativação do `Emblema de Madeira`, Energia de Fenda por scoreboard, a habilidade mágica `Pulso de Energia I` e a habilidade de lâmina `Corte Instável I`. Ainda não existem mobs customizados, funções, mana, UI customizada, benefícios passivos de combate ou sistemas avançados.
 
 ## Desenvolvimento incremental
 
@@ -51,7 +51,7 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 ## Regras de design para Energia, Catalisadores e Pergaminhos
 
 - Energia de Fenda é a energia do sistema e deve depender de Emblema ativo.
-- Habilidades ativas futuras devem consumir Energia de Fenda.
+- Habilidades ativas devem consumir Energia de Fenda.
 - Catalisadores executam habilidades, mas não substituem Emblemas.
 - Cajados devem ser a família inicial de catalisadores mágicos.
 - Lâminas Mágicas devem ser a família inicial de catalisadores de lâmina.
@@ -70,7 +70,7 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 - Usar Script API apenas quando componentes JSON simples não resolverem a etapa.
 - Não criar arquitetura complexa antes de necessidade real.
 - Não implementar loops, sistemas globais, mana, habilidades ou UI customizada sem escopo explícito.
-- O loop atual permitido é apenas o de Energia de Fenda básica do `Emblema de Madeira`, com regeneração simples e actionbar.
+- Os loops atuais permitidos são o de Energia de Fenda básica do `Emblema de Madeira` e o controle simples do projétil scriptado de `Pulso de Energia I`.
 - Não alterar UUIDs existentes; novos UUIDs só podem ser criados para novos módulos quando necessário.
 
 ## Padrão de arquivos

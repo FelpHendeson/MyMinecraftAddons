@@ -79,7 +79,7 @@ Direção planejada:
 
 ## Catalisadores
 
-Catalisadores são itens futuros usados para lançar habilidades ativas. Eles não substituem o Emblema; o Emblema define o vínculo e a Energia de Fenda, enquanto o Catalisador executa a técnica.
+Catalisadores são itens usados para lançar habilidades ativas. Eles não substituem o Emblema; o Emblema define o vínculo e a Energia de Fenda, enquanto o Catalisador executa a técnica.
 
 Famílias iniciais planejadas:
 
@@ -118,8 +118,8 @@ Primeira lâmina:
 
 - `Lâmina de Madeira Fendida`: Catalisador de Lâmina de Grau I.
 - Base: espada de madeira vanilla infundida por Fragmento de Fenda.
-- Função planejada: executar Pergaminhos de Lâmina de Grau I.
-- Estado atual: item, textura, tradução e receita criados; ainda sem habilidade ativa.
+- Função atual: executar `Corte Instável I` com Pergaminho de Lâmina compatível.
+- Estado atual: item, textura, tradução, receita e primeira habilidade de lâmina integrados.
 
 Variações planejadas:
 
@@ -171,11 +171,11 @@ Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatí
 Primeiras habilidades:
 
 - Pulso de Energia I: primeira habilidade mágica funcional.
-- Corte Instável I: primeira habilidade de lâmina planejada.
+- Corte Instável I: primeira habilidade de lâmina funcional.
 
-`Corte Instável I` deve futuramente ser executado pela `Lâmina de Madeira Fendida` quando o jogador possuir Emblema ativo, Energia de Fenda suficiente e o Pergaminho de Lâmina compatível.
+`Corte Instável I` é executado pela `Lâmina de Madeira Fendida` quando o jogador possuir Emblema de Madeira ativo, Energia de Fenda suficiente e o Pergaminho de Lâmina compatível. A primeira versão é acionada por uso da lâmina, afeta área frontal curta, custa 5 Energia de Fenda, tem cooldown de 20 ticks, causa 5 de dano e aplica knockback leve horizontal normalizado.
 
-`Pulso de Energia I` já está implementado como habilidade inicial simples. Outras habilidades ainda são planejamento de design.
+`Pulso de Energia I` e `Corte Instável I` já estão implementados como habilidades iniciais simples. Outras habilidades ainda são planejamento de design.
 
 ## Passivas
 
@@ -208,7 +208,7 @@ Sequência recomendada para validar a nova arquitetura:
 4. Implementar Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
 5. Criar a Lâmina Mágica Grau I.
 6. Criar o Pergaminho de Lâmina: Corte Instável I.
-7. Implementar futuramente Corte Instável I usando Lâmina, Pergaminho e Emblema ativo.
+7. Implementar Corte Instável I usando Lâmina, Pergaminho e Emblema ativo.
 
 ## Caminhos planejados
 

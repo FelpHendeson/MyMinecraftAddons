@@ -31,6 +31,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Receita shapeless de crafting table para `riftborn:lamina_de_madeira_fendida`, usando espada de madeira vanilla e `Fragmento de Fenda`.
 - Item `riftborn:pergaminho_lamina_corte_instavel_i`, primeiro Pergaminho de Lâmina de Grau I, com textura placeholder e traduções em português e inglês.
 - Receita shapeless de crafting table para `riftborn:pergaminho_lamina_corte_instavel_i`, usando papel, `Fragmento de Fenda` e graveto.
+- Habilidade ativa `Corte Instável I`, executada pela `Lâmina de Madeira Fendida` quando o jogador possui `Emblema de Madeira` ativo, Energia de Fenda suficiente e o pergaminho compatível.
 
 ### Changed
 
@@ -68,6 +69,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Comportamento antigo de raycast instantâneo e partículas de encantamento foi removido.
 - Versão técnica dos manifests incrementada para `0.2.4` para importar o build com projétil mágico real.
 - Versão técnica dos manifests incrementada para `0.3.0` para importar o build com a base inicial de Habilidades de Lâmina.
+- `Lâmina de Madeira Fendida` atualizada com botão de toque `Usar` e custom component para executar `Corte Instável I`.
+- Versão técnica dos manifests incrementada para `0.3.1` para importar o build com a primeira habilidade de lâmina funcional.
 
 ### Fixed
 
@@ -79,7 +82,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - `Pulso de Energia I` é a primeira habilidade ativa funcional; ainda não existem novas famílias de habilidades, mana separada, UI customizada ou sistema avançado.
 - O `Emblema de Madeira` ativa tags e Energia de Fenda básica ao ser usado; técnicas dependem de Catalisadores e Pergaminhos compatíveis.
 - A actionbar é o primeiro feedback visual simples do sistema de Energia de Fenda.
-- A arquitetura de Catalisadores, Pergaminhos, Graus, XP, passivas e habilidades ativas ainda é planejamento; nenhum item, receita, script, mob, habilidade, projétil, efeito de dano, manifest ou UUID foi criado ou alterado nesta etapa de documentação.
+- A arquitetura de Catalisadores, Pergaminhos, Graus, XP, passivas e habilidades ativas começou como planejamento; desde então, `Pulso de Energia I` e `Corte Instável I` já foram implementados como habilidades iniciais.
 - O `Cajado de Madeira` agora executa `Pulso de Energia I` quando usado com os requisitos corretos.
 - O `Pergaminho Mágico: Pulso de Energia I` agora é requisito para lançar a habilidade, mas não é consumido.
 - `Pulso de Energia I` custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano em entidades válidas à frente e aplica repulsão horizontal normalizada.
@@ -87,7 +90,10 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Nenhum item, receita, mob, projétil customizado, UI customizada ou UUID foi criado ou alterado nesta etapa de habilidade.
 - O projétil do `Pulso de Energia I` é controlado por Script API em vez de `minecraft:shooter`, para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
 - O carregamento estilo arco completo ainda fica como melhoria futura; o disparo atual é imediato, mas o projétil viaja pelo mundo e expira ao atingir alvo, bloco ou alcance.
-- A `Lâmina de Madeira Fendida` e o `Pergaminho de Lâmina: Corte Instável I` ainda não executam habilidade, não causam dano de lâmina, não criam hitbox de corte e não alteram scripts.
+- A `Lâmina de Madeira Fendida` executa `Corte Instável I` por uso do item nesta primeira versão, uma escolha mais estável para Bedrock mobile do que depender de detecção de ataque.
+- O `Pergaminho de Lâmina: Corte Instável I` agora é requisito para lançar a técnica, mas não é consumido.
+- `Corte Instável I` custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano em área frontal curta e aplica knockback leve horizontal normalizado.
+- `Corte Instável I` não cria projétil, não quebra blocos, não cria mobs, não adiciona itens ou receitas e não altera UUIDs.
 - Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
 - As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.

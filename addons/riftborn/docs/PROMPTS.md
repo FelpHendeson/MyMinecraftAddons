@@ -198,3 +198,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não implementar `Corte Instável I`, dano de lâmina, hitbox de corte, partículas de corte, scripts novos, mobs, novas habilidades, alterar Energia de Fenda, alterar Emblema, alterar Pulso de Energia ou alterar UUIDs.
 - Resultado esperado: Lâmina de Madeira Fendida com stack máximo 1, Pergaminho de Lâmina: Corte Instável I com stack máximo 16, texturas 16x16 transparentes, traduções, receitas baratas e manifests na versão `[0, 3, 0]`.
 - Observações: a Lâmina usa `minecraft:wooden_sword` e Fragmento de Fenda; o Pergaminho usa papel, Fragmento de Fenda e graveto. A execução de `Corte Instável I` fica para etapa futura.
+
+## 2026-06-09 - Implementação do Corte Instável I
+
+- Área: Riftborn.
+- Objetivo: implementar `Corte Instável I`, primeira habilidade de lâmina funcional do Riftborn.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/lamina_de_madeira_fendida.json`, `packs/behavior_pack/scripts/main.js`, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, mobs, novas habilidades além do `Corte Instável I`, projéteis, UI customizada, renomear itens existentes, alterar Energia de Fenda, alterar o Emblema, alterar o Pulso de Energia ou alterar UUIDs.
+- Resultado esperado: usar `riftborn:lamina_de_madeira_fendida` tenta executar `Corte Instável I`, exigindo `Emblema de Madeira` ativo, 5 Energia de Fenda, `Pergaminho de Lâmina: Corte Instável I` no inventário e cooldown disponível.
+- Observações: a técnica custa 5 Energia de Fenda, tem cooldown de 20 ticks por jogador, causa 5 de dano, afeta área frontal curta de 3 blocos, aplica knockback horizontal normalizado leve e não consome o pergaminho. A ativação por uso da lâmina foi escolhida por estabilidade no Bedrock mobile; detecção por ataque fica para avaliação futura.

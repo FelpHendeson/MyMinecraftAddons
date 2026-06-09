@@ -74,8 +74,9 @@ Status: próxima etapa planejada.
 
 - Criar Lâmina Mágica Grau I a partir de espada vanilla.
 - Criar Pergaminho de Lâmina: Corte Instável I.
+- Implementar Corte Instável I como primeira habilidade de lâmina funcional.
 - Validar que Lâminas Mágicas expandem espadas vanilla sem inutilizá-las.
-- Preparar implementação futura de Corte Instável I.
+- Melhorar futuramente a detecção por ataque ou feedback visual da técnica.
 
 ### v0.10 Emblema de Cobre e caminhos
 

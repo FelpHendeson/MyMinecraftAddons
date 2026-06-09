@@ -102,7 +102,7 @@ Energia de Fenda atual:
 - A energia não passa do máximo e não fica abaixo de 0.
 - A actionbar exibe `Energia de Fenda: atual/max` enquanto o Emblema está ativo.
 - Desativar o Emblema para a exibição da actionbar, mas não apaga a energia armazenada.
-- Ainda não existem técnicas, custos de energia, habilidades, dano ou projéteis.
+- Custos e dano já são usados por habilidades ativas iniciais, como `Pulso de Energia I` e `Corte Instável I`.
 
 ## Catalisadores
 
@@ -161,8 +161,8 @@ Primeira lâmina:
 - Identificador: `riftborn:lamina_de_madeira_fendida`.
 - Grau: I.
 - Família: Catalisador de Lâmina, Lâmina Mágica.
-- Função planejada: executar Pergaminhos de Lâmina de Grau I quando o jogador tiver Emblema ativo, Energia de Fenda suficiente e pergaminho compatível.
-- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidade, não causa dano de lâmina, não cria hitbox de corte e não interage com scripts.
+- Função atual: executar `Corte Instável I` quando o jogador tiver Emblema de Madeira ativo, Energia de Fenda suficiente e pergaminho compatível.
+- Estado atual: item, textura, tradução, receita e primeira habilidade de lâmina integrados.
 - Design: deve expandir a espada de madeira vanilla, não inutilizar a progressão vanilla.
 
 Variações planejadas:
@@ -208,9 +208,9 @@ Primeiro pergaminho de lâmina:
 - Grau: I.
 - Família: Pergaminho de Lâmina.
 - Técnica registrada: `Corte Instável I`.
-- Função planejada: permitir futuramente que a `Lâmina de Madeira Fendida` lance `Corte Instável I` quando o jogador tiver Emblema ativo e Energia de Fenda suficiente.
-- Parâmetros planejados: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e área frontal curta.
-- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidade, não causa dano e não cria hitbox de corte.
+- Função atual: permitir que a `Lâmina de Madeira Fendida` lance `Corte Instável I` quando o jogador tiver Emblema de Madeira ativo e Energia de Fenda suficiente.
+- Parâmetros atuais: custo 5 Energia de Fenda, cooldown 20 ticks por jogador, dano 5, alcance frontal de 3 blocos, raio lateral aproximado de 1,5 bloco e knockback leve horizontal normalizado.
+- Estado atual: item, textura, tradução, receita e execução de habilidade criados. O pergaminho não é consumido.
 
 ## Graus
 
@@ -234,7 +234,7 @@ Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatí
 Primeiras habilidades:
 
 - `Pulso de Energia I`: primeira habilidade mágica funcional.
-- `Corte Instável I`: primeira habilidade de lâmina planejada.
+- `Corte Instável I`: primeira habilidade de lâmina funcional.
 
 `Pulso de Energia I` já existe no addon como habilidade simples de Grau I.
 
@@ -253,6 +253,20 @@ Pulso de Energia I:
 - Não atinge o próprio jogador.
 - Não cria entidade customizada de projétil por JSON nesta etapa.
 - O carregamento completo estilo arco ainda é melhoria futura; o disparo atual é imediato.
+
+Corte Instável I:
+
+- Requer `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- Requer pelo menos 1 `riftborn:pergaminho_lamina_corte_instavel_i` no inventário.
+- É executado ao usar `riftborn:lamina_de_madeira_fendida`.
+- Custa 5 Energia de Fenda mesmo se não atingir nenhum alvo.
+- Tem cooldown de 20 ticks por jogador.
+- Afeta entidades vivas em área frontal curta, com alcance de 3 blocos e raio lateral aproximado de 1,5 bloco.
+- Causa 5 de dano.
+- Aplica knockback leve horizontal normalizado para evitar força extra em diagonais.
+- Não atinge o próprio jogador e não atinge entidades atrás.
+- Não cria projétil, não quebra blocos e não consome o pergaminho.
+- A ativação por uso do item foi escolhida como primeira abordagem por estabilidade no Bedrock mobile; detecção por ataque pode ser avaliada futuramente.
 
 ## XP, níveis e passivas
 
@@ -347,7 +361,7 @@ Sequência recomendada:
 4. Implementar Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
 5. Criar a Lâmina Mágica Grau I.
 6. Criar o Pergaminho de Lâmina: Corte Instável I.
-7. Implementar futuramente `Corte Instável I` com Emblema ativo, Energia de Fenda, Lâmina de Madeira Fendida e Pergaminho de Lâmina compatível.
+7. Implementar `Corte Instável I` com Emblema ativo, Energia de Fenda, Lâmina de Madeira Fendida e Pergaminho de Lâmina compatível.
 
 ## Módulos futuros
 

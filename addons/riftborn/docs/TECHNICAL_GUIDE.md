@@ -56,7 +56,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 3, 0]`.
+- Versão atual dos packs: `[0, 3, 1]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -95,7 +95,9 @@ O `Cajado de Madeira` é um item de equipamento e usa o ícone `cajado_de_madeir
 
 O `Pergaminho Mágico: Pulso de Energia I` é um item simples e usa o ícone `pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica `Pulso de Energia I`. O pergaminho precisa existir no inventário do jogador para a habilidade ser executada e não é consumido.
 
-`Lâmina de Madeira Fendida` e `Pergaminho de Lâmina: Corte Instável I` são itens simples sem custom component. Eles criam a base de Habilidades de Lâmina, mas ainda não executam `Corte Instável I`, não causam dano de lâmina, não criam hitbox de corte e não alteram scripts.
+`Lâmina de Madeira Fendida` usa `format_version` `1.21.10`, expõe o botão de toque `Usar` por `minecraft:interact_button` e registra o custom component `riftborn:usar_lamina_de_madeira_fendida`. Usar a lâmina tenta executar `Corte Instável I`.
+
+O `Pergaminho de Lâmina: Corte Instável I` é um item simples e usa o ícone `pergaminho_lamina_corte_instavel_i`. Ele registra a técnica `Corte Instável I`. O pergaminho precisa existir no inventário do jogador para a habilidade ser executada e não é consumido.
 
 ## Loot tables atuais
 
@@ -124,7 +126,7 @@ As receitas iniciais de lâmina são baratas e usam a espada de madeira vanilla 
 
 ## Scripts atuais
 
-- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira`, `riftborn:desativar_emblema_madeira` e `riftborn:usar_cajado_de_madeira`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira` ou usar o `Cajado de Madeira`.
+- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira`, `riftborn:desativar_emblema_madeira`, `riftborn:usar_cajado_de_madeira` e `riftborn:usar_lamina_de_madeira_fendida`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira`, usar o `Cajado de Madeira` ou usar a `Lâmina de Madeira Fendida`.
 
 A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado ativo e envia uma mensagem ao jogador. A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, limpa a actionbar, troca o item na mão principal para o estado inativo e envia uma mensagem ao jogador. O script possui um debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso.
 
@@ -156,6 +158,23 @@ Pulso de Energia I:
 - Não cria entidade customizada, mob, item, receita, projétil customizado por JSON ou UI customizada.
 - A abordagem foi escolhida em Script API porque `minecraft:shooter` não oferece, neste escopo, um ponto simples e estável para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
 - Carregamento completo estilo arco ainda é melhoria futura; o uso atual dispara imediatamente após a validação.
+
+Corte Instável I:
+
+- É executado ao usar `riftborn:lamina_de_madeira_fendida`.
+- Requer `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- Requer energia atual de pelo menos 5.
+- Requer pelo menos 1 `riftborn:pergaminho_lamina_corte_instavel_i` no inventário ou hotbar.
+- Não consome o pergaminho.
+- Custa 5 Energia de Fenda ao lançar, mesmo quando não atinge alvo.
+- Tem cooldown de 20 ticks por jogador.
+- Usa a direção horizontal de `player.getViewDirection()` e filtra entidades vivas próximas com dot product.
+- Afeta apenas entidades à frente do jogador, com alcance de 3 blocos e raio lateral aproximado de 1,5 bloco.
+- Não atinge o próprio jogador, itens dropados, projéteis ou entidades sem componente de vida.
+- Aplica 5 de dano e knockback horizontal normalizado de força aproximada 1, com impulso vertical pequeno de 0,1.
+- Usa partículas vanilla simples não textuais, priorizando `minecraft:blue_flame_particle` e usando `minecraft:basic_flame_particle` como fallback, além de som vanilla simples quando disponível.
+- Não cria projétil, entidade customizada, mob, item, receita, bloco, UI customizada ou UUID.
+- A ativação por uso da lâmina foi escolhida para esta primeira versão por ser mais estável em Bedrock mobile do que depender de evento de ataque; detecção por ataque pode ser avaliada em etapa futura.
 
 ## Empacotamento futuro
 
