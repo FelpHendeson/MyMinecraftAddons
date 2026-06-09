@@ -152,21 +152,49 @@ function decodePng(buffer) {
 
 function resizeRgba(pixels, sourceWidth, sourceHeight, targetWidth, targetHeight) {
   const output = Buffer.alloc(targetWidth * targetHeight * 4);
-  const scaleX = sourceWidth / targetWidth;
-  const scaleY = sourceHeight / targetHeight;
+  const isDownscale = targetWidth < sourceWidth || targetHeight < sourceHeight;
 
   for (let y = 0; y < targetHeight; y += 1) {
-    const sourceY = Math.min(sourceHeight - 1, Math.floor(y * scaleY));
-
     for (let x = 0; x < targetWidth; x += 1) {
-      const sourceX = Math.min(sourceWidth - 1, Math.floor(x * scaleX));
-      const sourceIndex = (sourceY * sourceWidth + sourceX) * 4;
       const targetIndex = (y * targetWidth + x) * 4;
 
-      output[targetIndex] = pixels[sourceIndex];
-      output[targetIndex + 1] = pixels[sourceIndex + 1];
-      output[targetIndex + 2] = pixels[sourceIndex + 2];
-      output[targetIndex + 3] = pixels[sourceIndex + 3];
+      if (!isDownscale) {
+        const sourceX = Math.min(sourceWidth - 1, Math.floor((x * sourceWidth) / targetWidth));
+        const sourceY = Math.min(sourceHeight - 1, Math.floor((y * sourceHeight) / targetHeight));
+        const sourceIndex = (sourceY * sourceWidth + sourceX) * 4;
+
+        output[targetIndex] = pixels[sourceIndex];
+        output[targetIndex + 1] = pixels[sourceIndex + 1];
+        output[targetIndex + 2] = pixels[sourceIndex + 2];
+        output[targetIndex + 3] = pixels[sourceIndex + 3];
+        continue;
+      }
+
+      const x0 = Math.floor((x * sourceWidth) / targetWidth);
+      const x1 = Math.max(x0 + 1, Math.floor(((x + 1) * sourceWidth) / targetWidth));
+      const y0 = Math.floor((y * sourceHeight) / targetHeight);
+      const y1 = Math.max(y0 + 1, Math.floor(((y + 1) * sourceHeight) / targetHeight));
+      let red = 0;
+      let green = 0;
+      let blue = 0;
+      let alpha = 0;
+      let count = 0;
+
+      for (let sourceY = y0; sourceY < y1; sourceY += 1) {
+        for (let sourceX = x0; sourceX < x1; sourceX += 1) {
+          const sourceIndex = (sourceY * sourceWidth + sourceX) * 4;
+          red += pixels[sourceIndex];
+          green += pixels[sourceIndex + 1];
+          blue += pixels[sourceIndex + 2];
+          alpha += pixels[sourceIndex + 3];
+          count += 1;
+        }
+      }
+
+      output[targetIndex] = Math.round(red / count);
+      output[targetIndex + 1] = Math.round(green / count);
+      output[targetIndex + 2] = Math.round(blue / count);
+      output[targetIndex + 3] = Math.round(alpha / count);
     }
   }
 

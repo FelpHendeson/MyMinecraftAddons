@@ -12,7 +12,7 @@
       "minecraft:icon": "cajado_de_madeira",
       "minecraft:interact_button": "Mirar",
       "minecraft:use_modifiers": {
-        "use_duration": 1,
+        "use_duration": 72000,
         "movement_modifier": 0.35
       }
     }

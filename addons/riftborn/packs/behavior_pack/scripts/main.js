@@ -1,4 +1,4 @@
-import { system, world } from "@minecraft/server";
+import { EquipmentSlot, system, world } from "@minecraft/server";
 
 const ACTIVE_EMBLEM_TAG = "riftborn_emblema_ativo";
 const WOODEN_EMBLEM_TAG = "riftborn_emblema_madeira";
@@ -18,7 +18,8 @@ const ENERGY_PULSE_COST = 5;
 const ENERGY_PULSE_DAMAGE = 5;
 const ENERGY_PULSE_RANGE = 10;
 const ENERGY_PULSE_SPEED = 0.75;
-const ENERGY_PULSE_HIT_RADIUS = 1.1;
+const ENERGY_PULSE_HIT_RADIUS = 1.5;
+const ENERGY_PULSE_SPAWN_OFFSET = 1.5;
 const ENERGY_PULSE_PATH_SAMPLES = 6;
 const STAFF_MIN_CHARGE_TICKS = 4;
 const STAFF_MAX_CHARGE_TICKS = 20;
@@ -41,8 +42,10 @@ const UNSTABLE_SLASH_KNOCKBACK = 1;
 const UNSTABLE_SLASH_VERTICAL_KNOCKBACK = 0.1;
 const UNSTABLE_SLASH_COOLDOWN_TICKS = 20;
 const UNSTABLE_SLASH_PARTICLES = [
-  "minecraft:sweep_attack_particle",
-  "minecraft:basic_crit_particle"
+  "minecraft:dragon_breath_trail",
+  "minecraft:witch_spell_particle",
+  "minecraft:enchanting_table_particle",
+  "minecraft:basic_smoke_particle"
 ];
 const UNSTABLE_SLASH_MIN_FORWARD_DISTANCE = 0.5;
 const EMBLEM_LINEAGE_TAGS = [
@@ -287,7 +290,12 @@ function spawnEnergyPulseImpactParticle(dimension, location) {
 }
 
 function spawnUnstableSlashParticle(dimension, location) {
-  spawnParticleFromList(dimension, location, UNSTABLE_SLASH_PARTICLES);
+  for (const particleId of UNSTABLE_SLASH_PARTICLES) {
+    try {
+      dimension.spawnParticle(particleId, location);
+    } catch {
+    }
+  }
 }
 
 function getPlayerAimOrigin(player) {
@@ -391,10 +399,30 @@ function findEnergyPulseHit(projectile, location) {
   return undefined;
 }
 
+function findEnergyPulseHitAlongRay(dimension, ownerId, origin, direction, maxDistance) {
+  const projectile = {
+    ownerId,
+    dimension,
+    hitEntityIds: new Set()
+  };
+  const steps = Math.ceil(maxDistance / 0.5);
+
+  for (let step = 0; step <= steps; step++) {
+    const location = addVectors(origin, scaleVector(direction, step * 0.5));
+    const target = findEnergyPulseHit(projectile, location);
+
+    if (target) {
+      return { target, location };
+    }
+  }
+
+  return undefined;
+}
+
 function spawnEnergyPulseProjectile(player, chargeRatio = 1) {
   const direction = normalizeVector(player.getViewDirection());
   const headLocation = player.getHeadLocation();
-  const origin = addVectors(headLocation, scaleVector(direction, 1.2));
+  const origin = addVectors(headLocation, scaleVector(direction, ENERGY_PULSE_SPAWN_OFFSET));
   const speed = ENERGY_PULSE_SPEED * (0.65 + chargeRatio * 0.35);
   const projectile = {
     id: nextEnergyPulseProjectileId++,
@@ -409,11 +437,18 @@ function spawnEnergyPulseProjectile(player, chargeRatio = 1) {
     hitEntityIds: new Set()
   };
 
-  const immediateHit = findEnergyPulseHit(projectile, origin);
+  const rayHit = findEnergyPulseHitAlongRay(
+    player.dimension,
+    player.id,
+    headLocation,
+    direction,
+    ENERGY_PULSE_RANGE
+  );
 
-  if (immediateHit) {
-    projectile.hitEntityIds.add(immediateHit.id);
-    applyEnergyPulseImpact(projectile, immediateHit);
+  if (rayHit) {
+    projectile.location = rayHit.location;
+    projectile.hitEntityIds.add(rayHit.target.id);
+    applyEnergyPulseImpact(projectile, rayHit.target);
     return;
   }
 
@@ -490,13 +525,23 @@ function releaseEnergyPulse(player, chargeRatio) {
   return true;
 }
 
+function isHoldingWoodenStaff(player) {
+  const equippable = player.getComponent("minecraft:equippable");
+  const mainhand = equippable?.getEquipment(EquipmentSlot.Mainhand);
+  return mainhand?.typeId === WOODEN_STAFF_ITEM_ID;
+}
+
 function beginStaffCharge(player) {
+  if (!isHoldingWoodenStaff(player) || staffChargeByPlayer.has(player.id)) {
+    return;
+  }
+
   staffChargeByPlayer.set(player.id, {
     startTick: system.currentTick
   });
 }
 
-function finishStaffCharge(player, forceFullCharge = false) {
+function finishStaffCharge(player) {
   const charge = staffChargeByPlayer.get(player.id);
   staffChargeByPlayer.delete(player.id);
 
@@ -504,7 +549,7 @@ function finishStaffCharge(player, forceFullCharge = false) {
     return;
   }
 
-  const chargeRatio = forceFullCharge ? 1 : getStaffChargeRatio(charge.startTick);
+  const chargeRatio = getStaffChargeRatio(charge.startTick);
   releaseEnergyPulse(player, chargeRatio);
 }
 
@@ -587,18 +632,25 @@ function spawnUnstableSlashFeedback(player) {
   const right = { x: -direction.z, z: direction.x };
   const baseLocation = getPlayerAimOrigin(player);
 
-  for (let distance = 1; distance <= UNSTABLE_SLASH_RANGE; distance++) {
+  for (let distance = 0.5; distance <= UNSTABLE_SLASH_RANGE; distance += 0.5) {
     const arcScale = distance / UNSTABLE_SLASH_RANGE;
 
-    for (const offset of [-0.75, 0, 0.75]) {
-      const location = {
-        x: baseLocation.x + direction.x * distance + right.x * offset * arcScale,
-        y: baseLocation.y + 1.1,
-        z: baseLocation.z + direction.z * distance + right.z * offset * arcScale
-      };
+    for (const offset of [-1, -0.5, 0, 0.5, 1]) {
+      for (const height of [0.8, 1.2, 1.6]) {
+        const location = {
+          x: baseLocation.x + direction.x * distance + right.x * offset * arcScale,
+          y: baseLocation.y + height,
+          z: baseLocation.z + direction.z * distance + right.z * offset * arcScale
+        };
 
-      spawnUnstableSlashParticle(player.dimension, location);
+        spawnUnstableSlashParticle(player.dimension, location);
+      }
     }
+  }
+
+  try {
+    player.dimension.playSound("random.anvil_land", player.location, { volume: 0.15, pitch: 1.8 });
+  } catch {
   }
 }
 
@@ -751,29 +803,35 @@ world.afterEvents.itemUse.subscribe((event) => {
   }
 });
 
-world.afterEvents.itemStartUse.subscribe((event) => {
+function handleStaffStart(event) {
   if (!event.source || event.source.typeId !== "minecraft:player" || event.itemStack?.typeId !== WOODEN_STAFF_ITEM_ID) {
     return;
   }
 
   beginStaffCharge(event.source);
-});
+}
 
-world.afterEvents.itemStopUse.subscribe((event) => {
+function handleStaffRelease(event) {
   if (!event.source || event.source.typeId !== "minecraft:player" || event.itemStack?.typeId !== WOODEN_STAFF_ITEM_ID) {
     return;
   }
 
-  finishStaffCharge(event.source, false);
-});
+  finishStaffCharge(event.source);
+}
 
-world.afterEvents.itemCompleteUse.subscribe((event) => {
-  if (!event.source || event.source.typeId !== "minecraft:player" || event.itemStack?.typeId !== WOODEN_STAFF_ITEM_ID) {
+world.beforeEvents.playerInteractWithEntity.subscribe((event) => {
+  if (!event.player || !isHoldingWoodenStaff(event.player)) {
     return;
   }
 
-  finishStaffCharge(event.source, true);
+  event.cancel = true;
+  beginStaffCharge(event.player);
 });
+
+world.afterEvents.itemStartUse.subscribe(handleStaffStart);
+world.afterEvents.itemStartUseOn.subscribe(handleStaffStart);
+world.afterEvents.itemReleaseUse.subscribe(handleStaffRelease);
+world.afterEvents.itemStopUse.subscribe(handleStaffRelease);
 
 world.afterEvents.playerSpawn.subscribe((event) => {
   if (!event.player) {

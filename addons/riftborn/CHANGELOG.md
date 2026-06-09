@@ -2,6 +2,21 @@
 
 Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
+## [0.3.4] - 2026-06-09
+
+### Fixed
+
+- Cajado de Madeira agora concentra mesmo com a mira em cima de mobs, cancelando a interação vanilla com entidades.
+- Pulso de Energia I só dispara ao soltar a mira (`itemReleaseUse`/`itemStopUse`), sem reiniciar carga ao atingir 100%.
+- Detecção de alvo do projétil melhorada com raycast a partir dos olhos do jogador.
+- Corte Instável I recebeu VFX mais denso com partículas vanilla mais visíveis.
+- Texturas restauradas das versões originais em alta resolução e redimensionadas para 32x32 com filtro box.
+
+### Changed
+
+- `use_duration` do Cajado de Madeira aumentado para evitar auto-complete da mira.
+- Versão técnica dos manifests incrementada para `0.3.4`.
+
 ## [0.3.3] - 2026-06-09
 
 ### Added
