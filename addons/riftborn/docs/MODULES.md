@@ -71,9 +71,12 @@ Regras planejadas:
 Ativação atual:
 
 - Usar o `Emblema de Madeira` remove preventivamente tags de outros Emblemas planejados.
-- No mobile, o item expõe o botão de toque `Ativar`.
+- No mobile, o item inativo expõe o botão de toque `Ativar`.
+- Quando ativo, o estado técnico do item expõe o botão de toque `Desativar`.
 - A ativação adiciona `riftborn_emblema_ativo`.
 - A ativação adiciona `riftborn_emblema_madeira`.
+- A desativação remove `riftborn_emblema_ativo`.
+- A desativação remove `riftborn_emblema_madeira`.
 - Uma mensagem informa que o Emblema respondeu.
 - O item não é consumido.
 - A ativação ainda não concede mana, habilidades, Energia de Fenda mecânica ou benefícios de combate.

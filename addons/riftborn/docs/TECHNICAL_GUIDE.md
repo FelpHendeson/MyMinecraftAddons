@@ -80,9 +80,10 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 
 - `riftborn:fragmento_de_fenda`: material mágico raro ligado às fendas dimensionais.
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1 e botão de interação `Ativar`.
+- `riftborn:emblema_de_madeira_ativo`: estado técnico ativo do `Emblema de Madeira`, com stack máximo 1 e botão de interação `Desativar`.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 
-O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ele ainda não possui mana, habilidades, benefícios de combate ou funções. Esses comportamentos pertencem a etapas futuras.
+O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele ainda não possui mana, habilidades, benefícios de combate ou funções. Esses comportamentos pertencem a etapas futuras.
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
@@ -103,9 +104,9 @@ A receita usa apenas madeira e Fragmentos de Fenda para manter o primeiro Emblem
 
 ## Scripts atuais
 
-- `scripts/main.js`: registra o item custom component `riftborn:ativar_emblema_madeira` e também escuta `world.afterEvents.itemUse` como fallback para ativar o `Emblema de Madeira` quando o jogador usa o item.
+- `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira` e `riftborn:desativar_emblema_madeira`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira` quando o jogador usa o item.
 
-A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, e envia uma mensagem ao jogador. O script possui um debounce curto para evitar ativação duplicada quando o custom component e o fallback disparam no mesmo uso. O script não consome o item, não cria mana, não concede habilidades e não aplica benefícios de combate.
+A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado ativo e envia uma mensagem ao jogador. A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado inativo e envia uma mensagem ao jogador. O script possui um debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso. O script não consome o item, não cria mana, não concede habilidades e não aplica benefícios de combate.
 
 ## Empacotamento futuro
 

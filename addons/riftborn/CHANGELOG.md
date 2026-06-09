@@ -44,10 +44,14 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - `Emblema de Madeira` atualizado com botão de toque `Ativar` para facilitar o uso no mobile.
 - Script de ativação do `Emblema de Madeira` atualizado com fallback por `world.afterEvents.itemUse` e debounce contra ativação duplicada.
 - Versão técnica dos manifests incrementada para `0.1.10` para importar o build com a correção de ativação do `Emblema de Madeira`.
+- Estado técnico `riftborn:emblema_de_madeira_ativo`, usado para exibir o botão `Desativar` quando o Emblema está ativo.
+- Script do `Emblema de Madeira` atualizado para alternar entre ativação e desativação, trocando o item na mão principal e atualizando as tags do jogador.
+- Versão técnica dos manifests incrementada para `0.1.11` para importar o build com o botão `Desativar`.
 
 ### Fixed
 
 - Ativação do `Emblema de Madeira` podia não oferecer feedback de uso claro no mobile por falta de `minecraft:interact_button`.
+- Botão do `Emblema de Madeira` permanecia como `Ativar` depois da ativação, sem refletir o estado ativo do Emblema.
 
 ### Notes
 
