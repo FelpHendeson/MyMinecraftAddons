@@ -162,3 +162,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar Pergaminhos, habilidades, mobs, scripts, projéteis, efeitos de dano, alterar Energia de Fenda, alterar ativação de Emblema, renomear itens existentes ou alterar UUIDs.
 - Resultado esperado: item com stack máximo 1, textura placeholder 16x16 transparente, nome em PT-BR e EN-US, receita shaped com `Fragmento de Fenda` e gravetos, manifests na versão `[0, 2, 0]` e build funcionando.
 - Observações: o `Cajado de Madeira` ainda não lança habilidades, não consome Energia de Fenda e não interage com Pergaminhos nesta etapa.
+
+## 2026-06-09 - Criação do Pergaminho Mágico: Pulso de Energia I
+
+- Área: Riftborn.
+- Objetivo: criar `riftborn:pergaminho_magico_pulso_de_energia_i`, primeiro Pergaminho Mágico de Grau I.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/pergaminho_magico_pulso_de_energia_i.json`, `packs/behavior_pack/recipes/pergaminho_magico_pulso_de_energia_i.json`, `textures/item_texture.json`, `textures/items/pergaminho_magico_pulso_de_energia_i.png`, arquivos de idioma, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não implementar habilidade, dano, projétil, partículas, scripts, mobs, alterar Energia de Fenda, alterar ativação de Emblema, alterar Cajado de Madeira, renomear itens existentes ou alterar UUIDs.
+- Resultado esperado: item com stack máximo 16, textura placeholder 16x16 transparente, nome em PT-BR e EN-US, receita shapeless com papel e `Fragmento de Fenda`, manifests na versão `[0, 2, 1]` e build funcionando.
+- Observações: o pergaminho registra `Pulso de Energia I`, mas ainda não executa habilidade. Parâmetros planejados futuros: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e repulsão horizontal normalizada de aproximadamente 2 blocos.

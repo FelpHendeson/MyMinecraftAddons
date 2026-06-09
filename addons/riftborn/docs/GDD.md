@@ -137,6 +137,14 @@ Regras planejadas:
 - O sistema deve futuramente definir prioridade de seleção.
 - Sugestão inicial: detectar pergaminhos compatíveis na hotbar antes do inventário.
 
+Primeiro pergaminho:
+
+- `Pergaminho Mágico: Pulso de Energia I`: Pergaminho Mágico de Grau I.
+- Técnica registrada: `Pulso de Energia I`.
+- Função planejada: permitir futuramente que o `Cajado de Madeira` lance a primeira habilidade mágica ofensiva.
+- Parâmetros planejados da habilidade: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Estado atual: item, textura, tradução e receita criados; ainda sem execução de habilidade.
+
 ## Graus
 
 Graus representam tiers de Catalisadores, Pergaminhos e habilidades. Eles vão de I a V.
@@ -186,7 +194,7 @@ Sequência recomendada para validar a nova arquitetura:
 
 1. Documentar o sistema de Emblemas, Catalisadores, Pergaminhos, Graus, Energia de Fenda, XP e passivas.
 2. Criar o Cajado de Madeira Grau I.
-3. Criar futuramente o Pergaminho Mágico: Pulso de Energia I.
+3. Criar o Pergaminho Mágico: Pulso de Energia I.
 4. Implementar futuramente Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
 5. Criar futuramente a Lâmina Mágica Grau I.
 6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.

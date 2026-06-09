@@ -13,6 +13,9 @@
     },
     "cajado_de_madeira": {
       "textures": "textures/items/cajado_de_madeira"
+    },
+    "pergaminho_magico_pulso_de_energia_i": {
+      "textures": "textures/items/pergaminho_magico_pulso_de_energia_i"
     }
   }
 }

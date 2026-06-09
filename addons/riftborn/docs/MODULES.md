@@ -24,6 +24,7 @@ Item inicial:
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, feito de madeira marcada pela Energia de Fenda, com stack máximo 1 e receita survival inicial.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial, um relato antigo de alguém que também caiu neste mundo, com stack máximo 1 e sem entrega automática nesta etapa.
 - `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, feito de madeira comum e Fragmentos de Fenda, com stack máximo 1 e receita survival inicial.
+- `riftborn:pergaminho_magico_pulso_de_energia_i`: primeiro Pergaminho Mágico de Grau I, que registra a técnica planejada `Pulso de Energia I`, com stack máximo 16 e receita survival inicial.
 
 Direção visual:
 
@@ -167,7 +168,7 @@ Pergaminhos definem habilidades ativas. O jogador deve precisar de um pergaminho
 
 Famílias planejadas:
 
-- Pergaminhos Mágicos.
+- Pergaminhos Mágicos. O primeiro item implementado é `riftborn:pergaminho_magico_pulso_de_energia_i`.
 - Pergaminhos de Lâmina.
 
 Regras planejadas:
@@ -176,6 +177,17 @@ Regras planejadas:
 - O pergaminho precisa ser compatível com o catalisador.
 - A prioridade de seleção deve ser definida futuramente.
 - Sugestão inicial: procurar pergaminhos compatíveis na hotbar antes do inventário.
+
+Primeiro pergaminho:
+
+- Nome: `Pergaminho Mágico: Pulso de Energia I`.
+- Identificador: `riftborn:pergaminho_magico_pulso_de_energia_i`.
+- Grau: I.
+- Família: Pergaminho Mágico.
+- Técnica registrada: `Pulso de Energia I`.
+- Função planejada: permitir futuramente que o `Cajado de Madeira` lance `Pulso de Energia I` quando o jogador tiver Emblema ativo e Energia de Fenda suficiente.
+- Parâmetros planejados: custo 5 Energia de Fenda, cooldown 20 ticks, dano 5 e repulsão horizontal normalizada de aproximadamente 2 blocos.
+- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidade, não causa dano, não cria projéteis e não dispara partículas.
 
 ## Graus
 
@@ -231,6 +243,8 @@ Regras:
 - A receita não usa lápis-lazúli, ametista, ferro ou recursos de mineração avançada.
 - `Cajado de Madeira` usa receita shaped na crafting table com padrão `.F./.G./.G.`.
 - No `Cajado de Madeira`, `F` representa `riftborn:fragmento_de_fenda` e `G` representa `minecraft:stick`.
+- `Pergaminho Mágico: Pulso de Energia I` usa receita shapeless na crafting table com 1 `minecraft:paper` e 1 `riftborn:fragmento_de_fenda`.
+- A receita do primeiro Pergaminho Mágico não usa lápis-lazúli, ametista, ferro, diamante, Emblema ou Cajado.
 
 ## Loot Customizado
 
@@ -287,7 +301,7 @@ Sequência recomendada:
 
 1. Documentar o sistema.
 2. Criar o Cajado de Madeira Grau I.
-3. Criar futuramente o Pergaminho Mágico: Pulso de Energia I.
+3. Criar o Pergaminho Mágico: Pulso de Energia I.
 4. Implementar futuramente Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
 5. Criar futuramente a Lâmina Mágica Grau I.
 6. Criar futuramente o Pergaminho de Lâmina: Corte Instável I.

@@ -56,7 +56,9 @@ Catalisadores são itens futuros usados para executar habilidades ativas. Eles n
 
 O primeiro Catalisador Mágico é o `Cajado de Madeira`, com identificador `riftborn:cajado_de_madeira`. Ele é um cajado rudimentar de Grau I feito de gravetos e Fragmento de Fenda. No estado atual, é apenas item, textura, tradução e receita; habilidades com cajado dependem de Pergaminhos e etapas futuras.
 
-Pergaminhos são itens futuros que definem quais habilidades ativas podem ser usadas. Eles devem existir em famílias mágicas e de lâmina, possuir grau e exigir compatibilidade com o catalisador usado.
+Pergaminhos são itens que definem quais habilidades ativas podem ser usadas. Eles devem existir em famílias mágicas e de lâmina, possuir grau e exigir compatibilidade com o catalisador usado.
+
+O primeiro Pergaminho Mágico é o `Pergaminho Mágico: Pulso de Energia I`, com identificador `riftborn:pergaminho_magico_pulso_de_energia_i`. Ele registra a técnica planejada `Pulso de Energia I`. No estado atual, é apenas item, textura, tradução e receita; a execução da habilidade depende de uma etapa futura com Emblema ativo, Energia de Fenda e Cajado compatível.
 
 Graus vão de I a V. Grau I é a entrada do sistema, com baixo custo de Energia de Fenda. Graus maiores aumentam custo, poder e efeitos. Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente por causa do consumo elevado.
 
