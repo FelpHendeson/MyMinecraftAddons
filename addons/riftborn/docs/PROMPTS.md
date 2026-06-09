@@ -99,3 +99,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar receitas, scripts, `tick.json`, funções de entrega automática, mobs, habilidades ou UUIDs.
 - Resultado esperado: item com stack máximo 1, textura 16x16 transparente, nome em PT-BR e EN-US e build funcionando.
 - Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 4]` para `[0, 1, 5]` para evitar rebaixar a versão técnica.
+
+## 2026-06-08 - Substituição de texturas dos itens iniciais
+
+- Área: Riftborn.
+- Objetivo: substituir diretamente as texturas de `Fragmento de Fenda`, `Emblema de Madeira` e `Livro do Perdido` pelos PNGs transparentes fornecidos.
+- Arquivos afetados: `textures/items/fragmento_de_fenda.png`, `textures/items/emblema_de_madeira.png`, `textures/items/livro_do_perdido.png`, manifests, `CHANGELOG.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não remover fundo, recortar, redimensionar, recriar arte, criar itens, receitas, scripts, funções, mobs, habilidades ou UUIDs.
+- Resultado esperado: assets substituídos diretamente e build funcionando com manifests na versão `[0, 1, 6]`.
+- Observações: os arquivos fornecidos já tinham transparência real e foram copiados para os nomes usados pelo Resource Pack.

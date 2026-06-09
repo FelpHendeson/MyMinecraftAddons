@@ -55,7 +55,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 5]`.
+- Versão atual dos packs: `[0, 1, 6]`.
 - `min_engine_version`: `[1, 20, 0]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 

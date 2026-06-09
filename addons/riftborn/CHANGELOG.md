@@ -31,6 +31,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Versão técnica dos manifests incrementada para `0.1.3` para importar o novo build com o `Emblema de Madeira`.
 - Versão técnica dos manifests incrementada para `0.1.4` para importar o build com o primeiro drop survival de `Fragmento de Fenda`.
 - Versão técnica dos manifests incrementada para `0.1.5` para importar o build com o `Livro do Perdido`.
+- Texturas de `Fragmento de Fenda`, `Emblema de Madeira` e `Livro do Perdido` substituídas pelos PNGs transparentes fornecidos.
+- Versão técnica dos manifests incrementada para `0.1.6` para importar o build com as texturas atualizadas.
 
 ### Fixed
 
@@ -44,6 +46,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - A loot table do zumbi substitui o arquivo vanilla do mesmo caminho; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em um pool separado.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.
 - Nenhuma receita, script, `tick.json`, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa do livro.
+- Nenhum item, receita, loot table, script, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa de substituição de texturas.
 - Nenhum UUID foi alterado.
 - A textura do `Fragmento de Fenda` ainda pode evoluir, mas já representa melhor o conceito de material mágico raro.
 - Se o Minecraft Bedrock detectar duplicação ao importar novo build, a versão técnica pode precisar ser incrementada em uma etapa separada.
