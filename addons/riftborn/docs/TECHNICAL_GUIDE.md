@@ -38,7 +38,7 @@ Conteúdos ainda não implementados:
 - Sons customizados.
 - Textos de tradução adicionais além de `pt_BR` e `en_US`.
 
-Todas as texturas de item atuais usam PNG 16x16 em `textures/items/`. A ferramenta `shared/tools/resize_png.js` pode normalizar novas texturas quando necessário.
+Todas as texturas de item atuais usam PNG 32x32 em `textures/items/`. A ferramenta `shared/tools/resize_png.js` pode normalizar novas texturas quando necessário.
 
 ## Estrutura esperada
 
@@ -76,7 +76,6 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 
 - `riftborn:fragmento_de_fenda`: material mágico raro ligado às fendas dimensionais.
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1 e botão de interação `Emblema`.
-- `riftborn:emblema_de_madeira_ativo`: item legado de compatibilidade; não é mais entregue pelo script.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 - `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, com stack máximo 1.
 - `riftborn:pergaminho_magico_pulso_de_energia_i`: primeiro Pergaminho Mágico de Grau I, com stack máximo 16.

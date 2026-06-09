@@ -22,7 +22,7 @@ Base técnica do addon:
 
 ## Itens RPG
 
-Status: **Implementado** (8 itens; `emblema_de_madeira_ativo` é legado de compatibilidade).
+Status: **Implementado** (7 itens).
 
 Primeiros itens usados para validar progressão e identidade do addon.
 
@@ -94,7 +94,6 @@ Ativação atual:
 - O script não troca mais o item da mão principal; o estado ativo depende de tags, não do item equipado.
 - A ativação adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
 - A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
-- `riftborn:emblema_de_madeira_ativo` permanece apenas para compatibilidade com saves antigos.
 - Mensagens e actionbar informam o estado.
 - O item não é consumido.
 - Após morte, as tags persistem e a actionbar é restaurada no respawn.
