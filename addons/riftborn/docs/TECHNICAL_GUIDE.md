@@ -81,6 +81,12 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 
 O `Emblema de Madeira` ainda não possui receita, ativação de Energia de Fenda, habilidades, scripts ou funções. Esses comportamentos pertencem a etapas futuras.
 
+## Loot tables atuais
+
+- `loot_tables/entities/zombie.json`: substitui a loot table vanilla do zumbi para adicionar uma chance base aproximada de 8% de dropar 1 `riftborn:fragmento_de_fenda` quando morto por jogador ou pet.
+
+A tabela do zumbi reproduz os pools vanilla básicos e adiciona o Fragmento de Fenda em um pool separado. Esta é a primeira fonte survival planejada para Fragmentos de Fenda e deve ser revisada após testes de balanceamento.
+
 ## Empacotamento futuro
 
 Quando houver arquivos funcionais, o projeto poderá gerar:

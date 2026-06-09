@@ -81,6 +81,16 @@ Regras:
 
 Recompensas ligadas à exploração e combate.
 
+Status: iniciado.
+
+Primeira fonte survival:
+
+- Zumbis podem dropar 1 `Fragmento de Fenda`.
+- Chance base planejada: aproximadamente 8%.
+- O drop exige morte por jogador ou pet.
+- Esta é uma etapa de teste antes de expandir Fragmentos de Fenda para outros mobs, estruturas ou recompensas.
+- Como a loot table vanilla do zumbi precisa ser substituída no caminho `loot_tables/entities/zombie.json`, os drops vanilla básicos foram reproduzidos e o Fragmento de Fenda foi adicionado em um pool separado.
+
 Direção futura:
 
 - Loot simples antes de tabelas complexas.

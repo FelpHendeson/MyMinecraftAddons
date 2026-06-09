@@ -15,6 +15,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Primeiros arquivos exportados em `dist/` para teste de importação no Minecraft Bedrock.
 - Primeiro item customizado: `riftborn:fragmento_de_fenda`, com textura placeholder e traduções em português e inglês.
 - Item `riftborn:emblema_de_madeira`, primeiro Emblema universal do jogador, com stack máximo 1, textura e traduções em português e inglês.
+- Loot table de zumbi com chance inicial aproximada de 8% de dropar 1 `Fragmento de Fenda` quando morto por jogador ou pet.
 
 ### Changed
 
@@ -27,6 +28,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Conceito de progressão refinado: Rift/Fenda passa a representar fonte, energia ou fenômeno dimensional, enquanto Emblema passa a ser o item físico central do jogador.
 - Primeiro item central planejado renomeado conceitualmente para `Emblema de Madeira`, com identificador planejado `riftborn:emblema_de_madeira`.
 - Versão técnica dos manifests incrementada para `0.1.3` para importar o novo build com o `Emblema de Madeira`.
+- Versão técnica dos manifests incrementada para `0.1.4` para importar o build com o primeiro drop survival de `Fragmento de Fenda`.
 
 ### Fixed
 
@@ -34,8 +36,10 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 ### Notes
 
-- Nenhuma receita, loot table, mob, script funcional, função, habilidade ou gameplay foi criado.
+- Nenhuma receita, mob, script funcional, função, habilidade ou gameplay foi criado.
 - O `Emblema de Madeira` ainda não ativa Energia de Fenda e ainda não concede habilidades.
+- Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de loot.
+- A loot table do zumbi substitui o arquivo vanilla do mesmo caminho; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em um pool separado.
 - Nenhum UUID foi alterado.
 - A textura do `Fragmento de Fenda` ainda pode evoluir, mas já representa melhor o conceito de material mágico raro.
 - Se o Minecraft Bedrock detectar duplicação ao importar novo build, a versão técnica pode precisar ser incrementada em uma etapa separada.

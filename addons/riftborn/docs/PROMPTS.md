@@ -81,3 +81,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar receitas, scripts, `tick.json`, funções, mana, habilidades, ativação de Emblema, mobs ou UUIDs.
 - Resultado esperado: item com stack máximo 1, textura 16x16 transparente, nome em PT-BR e EN-US, manifests na versão `[0, 1, 3]` e build funcionando.
 - Observações: a textura foi derivada da imagem fornecida, com fundo removido e nome final alinhado ao conceito de Emblema.
+
+## 2026-06-08 - Drop raro de Fragmento de Fenda em zumbis
+
+- Área: Riftborn.
+- Objetivo: adicionar a primeira forma survival de obter `Fragmento de Fenda`, fazendo zumbis terem uma pequena chance de dropar o item.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/loot_tables/entities/zombie.json`, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar receitas, novos itens, mobs customizados, scripts, funções, texturas ou UUIDs; não alterar a identidade dos itens existentes.
+- Resultado esperado: zumbis podem dropar 1 `riftborn:fragmento_de_fenda` com chance base aproximada de 8%, preservando os drops vanilla básicos do zumbi.
+- Observações: esta é uma etapa de teste antes de expandir drops para outros mobs ou fontes de recompensa.
