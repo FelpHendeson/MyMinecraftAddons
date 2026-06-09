@@ -15,7 +15,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Primeiros arquivos exportados em `dist/` para teste de importação no Minecraft Bedrock.
 - Primeiro item customizado: `riftborn:fragmento_de_fenda`, com textura placeholder e traduções em português e inglês.
 - Item `riftborn:emblema_de_madeira`, primeiro Emblema universal do jogador, com stack máximo 1, textura e traduções em português e inglês.
-- Loot table de zumbi com chance inicial aproximada de 8% de dropar 1 `Fragmento de Fenda` quando morto por jogador ou pet.
+- Loot table de zumbi com chance inicial de dropar 1 `Fragmento de Fenda` quando morto por jogador ou pet.
+- Loot tables de esqueleto, aranha e creeper com chance de dropar 1 `Fragmento de Fenda` quando mortos por jogador ou pet.
 - Item narrativo `riftborn:livro_do_perdido`, com stack máximo 1, textura placeholder e traduções em português e inglês.
 
 ### Changed
@@ -33,6 +34,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Versão técnica dos manifests incrementada para `0.1.5` para importar o build com o `Livro do Perdido`.
 - Texturas de `Fragmento de Fenda`, `Emblema de Madeira` e `Livro do Perdido` substituídas pelos PNGs transparentes fornecidos.
 - Versão técnica dos manifests incrementada para `0.1.6` para importar o build com as texturas atualizadas.
+- Drop de `Fragmento de Fenda` rebalanceado para melhorar o início solo: zumbi 15%, esqueleto 15%, aranha 12% e creeper 18%.
+- Versão técnica dos manifests incrementada para `0.1.7` para importar o build com o rebalanceamento de loot.
 
 ### Fixed
 
@@ -42,8 +45,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 - Nenhuma receita, mob, script funcional, função, habilidade ou gameplay foi criado.
 - O `Emblema de Madeira` ainda não ativa Energia de Fenda e ainda não concede habilidades.
-- Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de loot.
-- A loot table do zumbi substitui o arquivo vanilla do mesmo caminho; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em um pool separado.
+- Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
+- As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.
 - Nenhuma receita, script, `tick.json`, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa do livro.
 - Nenhum item, receita, loot table, script, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa de substituição de texturas.

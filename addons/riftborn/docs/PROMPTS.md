@@ -108,3 +108,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não remover fundo, recortar, redimensionar, recriar arte, criar itens, receitas, scripts, funções, mobs, habilidades ou UUIDs.
 - Resultado esperado: assets substituídos diretamente e build funcionando com manifests na versão `[0, 1, 6]`.
 - Observações: os arquivos fornecidos já tinham transparência real e foram copiados para os nomes usados pelo Resource Pack.
+
+## 2026-06-08 - Rebalanceamento inicial de Fragmentos de Fenda
+
+- Área: Riftborn.
+- Objetivo: rebalancear a obtenção inicial de `Fragmento de Fenda` para jogador solo, aumentando a chance do zumbi e adicionando drops em mobs hostis comuns.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `loot_tables/entities/zombie.json`, `loot_tables/entities/skeleton.json`, `loot_tables/entities/spider.json`, `loot_tables/entities/creeper.json`, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, mobs customizados, scripts, funções, texturas ou UUIDs; não alterar nomes ou identidade dos itens existentes.
+- Resultado esperado: zumbi e esqueleto com chance aproximada de 15%, aranha com 12% e creeper com 18%, preservando os drops vanilla básicos.
+- Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 6]` para `[0, 1, 7]` para evitar rebaixar a versão técnica.

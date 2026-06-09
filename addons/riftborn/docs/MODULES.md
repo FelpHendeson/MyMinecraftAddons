@@ -86,11 +86,13 @@ Status: iniciado.
 
 Primeira fonte survival:
 
-- Zumbis podem dropar 1 `Fragmento de Fenda`.
-- Chance base planejada: aproximadamente 8%.
+- Zumbis podem dropar 1 `Fragmento de Fenda` com chance aproximada de 15%.
+- Esqueletos podem dropar 1 `Fragmento de Fenda` com chance aproximada de 15%.
+- Aranhas podem dropar 1 `Fragmento de Fenda` com chance aproximada de 12%.
+- Creepers podem dropar 1 `Fragmento de Fenda` com chance aproximada de 18%.
 - O drop exige morte por jogador ou pet.
 - Esta é uma etapa de teste antes de expandir Fragmentos de Fenda para outros mobs, estruturas ou recompensas.
-- Como a loot table vanilla do zumbi precisa ser substituída no caminho `loot_tables/entities/zombie.json`, os drops vanilla básicos foram reproduzidos e o Fragmento de Fenda foi adicionado em um pool separado.
+- Como as loot tables vanilla precisam ser substituídas nos caminhos `loot_tables/entities/*.json`, os drops vanilla básicos foram reproduzidos e o Fragmento de Fenda foi adicionado em pools separados.
 
 Direção futura:
 

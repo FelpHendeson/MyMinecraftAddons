@@ -55,7 +55,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 6]`.
+- Versão atual dos packs: `[0, 1, 7]`.
 - `min_engine_version`: `[1, 20, 0]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -86,9 +86,12 @@ O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega 
 
 ## Loot tables atuais
 
-- `loot_tables/entities/zombie.json`: substitui a loot table vanilla do zumbi para adicionar uma chance base aproximada de 8% de dropar 1 `riftborn:fragmento_de_fenda` quando morto por jogador ou pet.
+- `loot_tables/entities/zombie.json`: substitui a loot table vanilla do zumbi para adicionar uma chance base aproximada de 15% de dropar 1 `riftborn:fragmento_de_fenda` quando morto por jogador ou pet.
+- `loot_tables/entities/skeleton.json`: substitui a loot table vanilla do esqueleto para adicionar uma chance base aproximada de 15% de dropar 1 `riftborn:fragmento_de_fenda` quando morto por jogador ou pet.
+- `loot_tables/entities/spider.json`: substitui a loot table vanilla da aranha para adicionar uma chance base aproximada de 12% de dropar 1 `riftborn:fragmento_de_fenda` quando morta por jogador ou pet.
+- `loot_tables/entities/creeper.json`: substitui a loot table vanilla do creeper para adicionar uma chance base aproximada de 18% de dropar 1 `riftborn:fragmento_de_fenda` quando morto por jogador ou pet.
 
-A tabela do zumbi reproduz os pools vanilla básicos e adiciona o Fragmento de Fenda em um pool separado. Esta é a primeira fonte survival planejada para Fragmentos de Fenda e deve ser revisada após testes de balanceamento.
+Essas tabelas reproduzem os pools vanilla básicos e adicionam o Fragmento de Fenda em pools separados. Esta é a primeira família de fontes survival planejada para Fragmentos de Fenda e deve ser revisada após testes de balanceamento.
 
 ## Empacotamento futuro
 
