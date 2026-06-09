@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.0",
+  "format_version": "1.21.10",
   "minecraft:item": {
     "description": {
       "identifier": "riftborn:pergaminho_magico_pulso_de_energia_i",

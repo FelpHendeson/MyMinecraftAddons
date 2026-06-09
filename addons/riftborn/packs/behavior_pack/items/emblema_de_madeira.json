@@ -10,7 +10,7 @@
     "components": {
       "minecraft:max_stack_size": 1,
       "minecraft:icon": "emblema_de_madeira",
-      "minecraft:interact_button": "Ativar",
+      "minecraft:interact_button": "Emblema",
       "minecraft:use_modifiers": {
         "use_duration": 0.1
       },

@@ -8,20 +8,17 @@ O Behavior Pack deve conter regras e comportamento do addon.
 
 Estrutura atual:
 
-- Manifest inicial.
-- Pastas reservadas para itens, receitas, loot tables, funções, scripts e entidades.
-- Itens customizados simples em `items/`.
-- Script em `scripts/main.js` para ativação, desativação e Energia de Fenda básica do `Emblema de Madeira`.
+- Manifest ativo na versão `0.3.2`.
+- Itens, receitas, loot tables e script em `scripts/main.js`.
+- Script cobre Emblema de Madeira, Energia de Fenda, `Pulso de Energia I` e `Corte Instável I`.
 
-Conteúdos futuros possíveis, ainda não implementados:
+Conteúdos ainda não implementados:
 
-- Receitas.
-- Loot tables.
 - Funções.
-- Scripts adicionais.
 - Entidades customizadas.
+- Scripts adicionais além de `main.js`.
 
-O manifest inicial já existe em `packs/behavior_pack/manifest.json`. Novos conteúdos de comportamento só devem ser criados quando solicitados.
+O manifest existe em `packs/behavior_pack/manifest.json`. Novos conteúdos de comportamento só devem ser criados quando solicitados.
 
 ## Resource Pack
 
@@ -35,14 +32,13 @@ Estrutura atual:
 - Texturas de itens em `textures/items/`.
 - Pasta reservada para sons.
 
-Conteúdos futuros possíveis, ainda não implementados:
+Conteúdos ainda não implementados:
 
-- Modelos.
-- Sons.
-- Textos de tradução adicionais.
-- Ícones adicionais.
+- Modelos customizados.
+- Sons customizados.
+- Textos de tradução adicionais além de `pt_BR` e `en_US`.
 
-Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando solicitados.
+Todas as texturas de item atuais usam PNG 16x16 em `textures/items/`. A ferramenta `shared/tools/resize_png.js` pode normalizar novas texturas quando necessário.
 
 ## Estrutura esperada
 
@@ -56,7 +52,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 3, 1]`.
+- Versão atual dos packs: `[0, 3, 2]`.
 - `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -79,15 +75,15 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 ## Itens atuais
 
 - `riftborn:fragmento_de_fenda`: material mágico raro ligado às fendas dimensionais.
-- `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1 e botão de interação `Ativar`.
-- `riftborn:emblema_de_madeira_ativo`: estado técnico ativo do `Emblema de Madeira`, com stack máximo 1 e botão de interação `Desativar`.
+- `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1 e botão de interação `Emblema`.
+- `riftborn:emblema_de_madeira_ativo`: item legado de compatibilidade; não é mais entregue pelo script.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 - `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, com stack máximo 1.
 - `riftborn:pergaminho_magico_pulso_de_energia_i`: primeiro Pergaminho Mágico de Grau I, com stack máximo 16.
 - `riftborn:lamina_de_madeira_fendida`: primeira Lâmina Mágica de Grau I, com stack máximo 1.
 - `riftborn:pergaminho_lamina_corte_instavel_i`: primeiro Pergaminho de Lâmina de Grau I, com stack máximo 16.
 
-O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por uso do item. O item usa `format_version` `1.21.10` para suportar o componente customizado e expõe o botão de toque `Ativar` por `minecraft:interact_button`. Ao ativar, o script troca o item na mão principal pelo estado técnico `riftborn:emblema_de_madeira_ativo`, que expõe o botão `Desativar`. Ele possui Energia de Fenda básica exibida na actionbar e permite a execução de `Pulso de Energia I` quando combinado com Cajado e Pergaminho compatíveis.
+O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e alterna ativo/inativo por tags ao ser usado. O item usa `format_version` `1.21.10`, expõe o botão de toque `Emblema` por `minecraft:interact_button` e não troca mais o item da mão principal. Ele possui Energia de Fenda básica exibida na actionbar e permite a execução de `Pulso de Energia I` e `Corte Instável I` quando combinado com Catalisador e Pergaminho compatíveis.
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
@@ -128,7 +124,7 @@ As receitas iniciais de lâmina são baratas e usam a espada de madeira vanilla 
 
 - `scripts/main.js`: registra os item custom components `riftborn:ativar_emblema_madeira`, `riftborn:desativar_emblema_madeira`, `riftborn:usar_cajado_de_madeira` e `riftborn:usar_lamina_de_madeira_fendida`, e também escuta `world.afterEvents.itemUse` como fallback para alternar o `Emblema de Madeira`, usar o `Cajado de Madeira` ou usar a `Lâmina de Madeira Fendida`.
 
-A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, troca o item na mão principal para o estado ativo e envia uma mensagem ao jogador. A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, limpa a actionbar, troca o item na mão principal para o estado inativo e envia uma mensagem ao jogador. O script possui um debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso.
+O uso do Emblema chama `toggleWoodenEmblem`, que ativa ou desativa com base nas tags atuais. A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira` e envia uma mensagem ao jogador. A desativação remove essas tags e limpa a actionbar. O script escuta `world.afterEvents.playerSpawn` para restaurar a actionbar após respawn e `world.afterEvents.playerLeave` para limpar Maps de cooldown em memória. Há debounce curto para evitar alternância duplicada quando o custom component e o fallback disparam no mesmo uso.
 
 Energia de Fenda básica:
 
@@ -158,6 +154,8 @@ Pulso de Energia I:
 - Não cria entidade customizada, mob, item, receita, projétil customizado por JSON ou UI customizada.
 - A abordagem foi escolhida em Script API porque `minecraft:shooter` não oferece, neste escopo, um ponto simples e estável para validar Emblema, Pergaminho, Energia de Fenda e cooldown antes do disparo.
 - Carregamento completo estilo arco ainda é melhoria futura; o uso atual dispara imediatamente após a validação.
+- O projétil existe apenas em memória do script (`activeEnergyPulseProjectiles`). Ele não sobrevive a `/reload`, reinício do mundo ou recarga do script; projéteis em voo são perdidos nesses casos. Esta é uma limitação técnica aceita nesta etapa.
+- O feedback de cast combina o nome da habilidade e a Energia de Fenda restante na mesma actionbar.
 
 Corte Instável I:
 
@@ -176,9 +174,9 @@ Corte Instável I:
 - Não cria projétil, entidade customizada, mob, item, receita, bloco, UI customizada ou UUID.
 - A ativação por uso da lâmina foi escolhida para esta primeira versão por ser mais estável em Bedrock mobile do que depender de evento de ataque; detecção por ataque pode ser avaliada em etapa futura.
 
-## Empacotamento futuro
+## Empacotamento
 
-Quando houver arquivos funcionais, o projeto poderá gerar:
+O projeto gera:
 
 - `.mcpack` para behavior pack ou resource pack separado.
 - `.mcaddon` para um pacote contendo behavior pack e resource pack juntos.

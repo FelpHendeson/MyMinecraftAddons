@@ -1,4 +1,4 @@
-import { EquipmentSlot, ItemStack, system, world } from "@minecraft/server";
+import { system, world } from "@minecraft/server";
 
 const ACTIVE_EMBLEM_TAG = "riftborn_emblema_ativo";
 const WOODEN_EMBLEM_TAG = "riftborn_emblema_madeira";
@@ -291,8 +291,12 @@ function spawnUnstableSlashParticle(dimension, location) {
   }
 }
 
-function showEnergyPulseCastFeedback(player) {
-  player.onScreenDisplay.setActionBar("\u00a7dPulso de Energia I!");
+function showAbilityActionbar(player, abilityName, current, max) {
+  player.onScreenDisplay.setActionBar(`\u00a7d${abilityName} \u00a77| \u00a7dEnergia de Fenda: \u00a7f${current}\u00a77/\u00a7f${max}`);
+}
+
+function showEnergyPulseCastFeedback(player, current, max) {
+  showAbilityActionbar(player, "Pulso de Energia I!", current, max);
 
   try {
     player.dimension.playSound("random.orb", player.location, { volume: 0.8, pitch: 1.4 });
@@ -300,8 +304,8 @@ function showEnergyPulseCastFeedback(player) {
   }
 }
 
-function showUnstableSlashCastFeedback(player) {
-  player.onScreenDisplay.setActionBar("\u00a7dCorte Inst\u00e1vel I!");
+function showUnstableSlashCastFeedback(player, current, max) {
+  showAbilityActionbar(player, "Corte Inst\u00e1vel I!", current, max);
 
   try {
     player.dimension.playSound("random.pop", player.location, { volume: 0.8, pitch: 1.6 });
@@ -439,10 +443,10 @@ function tryCastEnergyPulse(player) {
     return;
   }
 
-  setWoodenEmblemEnergy(player, current - ENERGY_PULSE_COST);
+  const energyState = setWoodenEmblemEnergy(player, current - ENERGY_PULSE_COST);
   startEnergyPulseCooldown(player);
   spawnEnergyPulseProjectile(player);
-  showEnergyPulseCastFeedback(player);
+  showEnergyPulseCastFeedback(player, energyState.current, energyState.max);
 }
 
 function findUnstableSlashTargets(player) {
@@ -548,7 +552,7 @@ function tryCastUnstableSlash(player) {
     return;
   }
 
-  setWoodenEmblemEnergy(player, current - UNSTABLE_SLASH_COST);
+  const energyState = setWoodenEmblemEnergy(player, current - UNSTABLE_SLASH_COST);
   startUnstableSlashCooldown(player);
 
   for (const target of findUnstableSlashTargets(player)) {
@@ -556,19 +560,7 @@ function tryCastUnstableSlash(player) {
   }
 
   spawnUnstableSlashFeedback(player);
-  showUnstableSlashCastFeedback(player);
-}
-
-function setMainhandItem(player, itemId) {
-  system.run(() => {
-    const equippable = player.getComponent("minecraft:equippable");
-
-    if (!equippable) {
-      return;
-    }
-
-    equippable.setEquipment(EquipmentSlot.Mainhand, new ItemStack(itemId, 1));
-  });
+  showUnstableSlashCastFeedback(player, energyState.current, energyState.max);
 }
 
 function activateWoodenEmblem(player) {
@@ -584,8 +576,7 @@ function activateWoodenEmblem(player) {
   player.addTag(WOODEN_EMBLEM_TAG);
   const { current, max } = ensureWoodenEmblemEnergy(player);
   showEnergyActionbar(player, current, max);
-  player.sendMessage("\u00a7dO Emblema de Madeira pulsa fracamente. A Fenda reconhece sua presenca.");
-  setMainhandItem(player, ACTIVE_WOODEN_EMBLEM_ITEM_ID);
+  player.sendMessage("\u00a7dO Emblema de Madeira pulsa fracamente. A Fenda reconhece sua presen\u00e7a.");
 }
 
 function deactivateWoodenEmblem(player) {
@@ -597,7 +588,33 @@ function deactivateWoodenEmblem(player) {
   player.removeTag(WOODEN_EMBLEM_TAG);
   clearEnergyActionbar(player);
   player.sendMessage("\u00a77O Emblema de Madeira silencia. A Fenda se afasta por enquanto.");
-  setMainhandItem(player, WOODEN_EMBLEM_ITEM_ID);
+}
+
+function toggleWoodenEmblem(player) {
+  if (hasActiveWoodenEmblem(player)) {
+    deactivateWoodenEmblem(player);
+    return;
+  }
+
+  activateWoodenEmblem(player);
+}
+
+function clearPlayerRuntimeState(playerId) {
+  lastActivationTickByPlayer.delete(playerId);
+  lastStaffUseTickByPlayer.delete(playerId);
+  lastBladeUseTickByPlayer.delete(playerId);
+  energyPulseCooldownTickByPlayer.delete(playerId);
+  unstableSlashCooldownTickByPlayer.delete(playerId);
+  lastFailureMessageTickByPlayer.delete(playerId);
+}
+
+function restoreActiveEmblemFeedback(player) {
+  if (!hasActiveWoodenEmblem(player)) {
+    return;
+  }
+
+  const { current, max } = ensureWoodenEmblemEnergy(player);
+  showEnergyActionbar(player, current, max);
 }
 
 function updateActiveWoodenEmblemEnergy() {
@@ -627,7 +644,7 @@ system.beforeEvents.startup.subscribe((event) => {
         return;
       }
 
-      activateWoodenEmblem(source);
+      toggleWoodenEmblem(source);
     }
   });
 
@@ -637,7 +654,7 @@ system.beforeEvents.startup.subscribe((event) => {
         return;
       }
 
-      deactivateWoodenEmblem(source);
+      toggleWoodenEmblem(source);
     }
   });
 
@@ -667,13 +684,8 @@ world.afterEvents.itemUse.subscribe((event) => {
     return;
   }
 
-  if (event.itemStack?.typeId === WOODEN_EMBLEM_ITEM_ID) {
-    activateWoodenEmblem(event.source);
-    return;
-  }
-
-  if (event.itemStack?.typeId === ACTIVE_WOODEN_EMBLEM_ITEM_ID) {
-    deactivateWoodenEmblem(event.source);
+  if (event.itemStack?.typeId === WOODEN_EMBLEM_ITEM_ID || event.itemStack?.typeId === ACTIVE_WOODEN_EMBLEM_ITEM_ID) {
+    toggleWoodenEmblem(event.source);
     return;
   }
 
@@ -685,6 +697,18 @@ world.afterEvents.itemUse.subscribe((event) => {
   if (event.itemStack?.typeId === RIFTED_WOODEN_BLADE_ITEM_ID) {
     tryCastUnstableSlash(event.source);
   }
+});
+
+world.afterEvents.playerSpawn.subscribe((event) => {
+  if (!event.player) {
+    return;
+  }
+
+  restoreActiveEmblemFeedback(event.player);
+});
+
+world.afterEvents.playerLeave.subscribe((event) => {
+  clearPlayerRuntimeState(event.playerId);
 });
 
 system.runInterval(updateActiveWoodenEmblemEnergy, ENERGY_ACTIONBAR_INTERVAL_TICKS);

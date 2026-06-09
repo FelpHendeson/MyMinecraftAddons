@@ -2,13 +2,13 @@
 
 Roadmap planejado para o desenvolvimento incremental do Riftborn.
 
-O roadmap descreve visão futura. Ele não indica que as funcionalidades já existem.
+O roadmap combina histórico, estado atual e visão futura. Cada versão indica se já foi concluída, está parcial ou ainda é planejada.
 
 ## Versões planejadas
 
 ### v0.1 Base técnica
 
-Status: iniciada, parcialmente concluída.
+Status: concluída.
 
 - Manifests iniciais criados.
 - Estrutura mínima dos packs criada.
@@ -17,28 +17,36 @@ Status: iniciada, parcialmente concluída.
 
 ### v0.2 Primeiros itens
 
-Status: próxima etapa planejada.
+Status: concluída.
 
 - Criar itens simples para validar namespace e fluxo de teste.
 - Evitar itens complexos ou sistemas dependentes de scripts.
 
 ### v0.3 Receitas iniciais
 
+Status: concluída.
+
 - Adicionar receitas simples para os primeiros itens.
 - Testar integração com o mundo de sobrevivência.
 
 ### v0.4 Loot customizado
+
+Status: concluída.
 
 - Introduzir loot básico ligado à exploração.
 - Manter recompensas simples e fáceis de ajustar.
 
 ### v0.5 Origem do jogador
 
+Status: parcial (`Livro do Perdido` existe; entrega automática ainda pendente).
+
 - Definir a primeira camada narrativa do Riftborn.
 - Criar elementos simples que comuniquem a chegada pela fenda.
 - Planejar o `Emblema de Madeira` como primeiro vínculo do jogador com a Fenda.
 
 ### v0.6 Sistema de Emblemas inicial
+
+Status: parcial (ativação por tags, energia básica e persistência pós-morte; XP/níveis/passivas pendentes).
 
 - Adicionar progressão inicial baseada no `Emblema de Madeira`.
 - Usar o identificador planejado `riftborn:emblema_de_madeira`.
@@ -53,6 +61,8 @@ Status: próxima etapa planejada.
 
 ### v0.7 Catalisadores e Pergaminhos iniciais
 
+Status: concluída (Cajado, Lâmina, Pergaminhos Grau I e receitas).
+
 - Planejar Catalisadores como canal de execução de habilidades.
 - Criar o Cajado de Madeira Grau I como primeiro Catalisador Mágico.
 - Planejar Lâminas Mágicas como primeira família de lâmina.
@@ -64,6 +74,8 @@ Status: próxima etapa planejada.
 
 ### v0.8 Primeira habilidade mágica
 
+Status: concluída (projétil scriptado funcional; carregamento estilo arco e VFX dedicados ficam para depois).
+
 - Pulso de Energia I usa Emblema ativo, Energia de Fenda, Cajado compatível e Pergaminho compatível.
 - Pulso de Energia I foi refatorado para projétil mágico scriptado alinhado à mira.
 - Validar custo, regeneração, cooldown e feedback visual simples.
@@ -71,6 +83,8 @@ Status: próxima etapa planejada.
 - Manter o escopo sem árvore de habilidades completa.
 
 ### v0.9 Lâmina Mágica inicial
+
+Status: concluída (ativação por uso do item; detecção por ataque pode evoluir depois).
 
 - Criar Lâmina Mágica Grau I a partir de espada vanilla.
 - Criar Pergaminho de Lâmina: Corte Instável I.
@@ -125,6 +139,8 @@ Direção planejada:
 
 MVP recomendado:
 
+Status: concluído.
+
 1. Documentar o sistema.
 2. Criar Cajado de Madeira Grau I.
 3. Criar Pergaminho Mágico: Pulso de Energia I.
@@ -132,6 +148,8 @@ MVP recomendado:
 5. Criar Lâmina Mágica Grau I.
 6. Criar Pergaminho de Lâmina: Corte Instável I.
 7. Implementar Corte Instável I.
+
+Próximo foco recomendado: estabilização (v0.3.2), XP/nível do Emblema (v0.10+) ou Emblema de Cobre.
 
 ## Controle de escopo
 

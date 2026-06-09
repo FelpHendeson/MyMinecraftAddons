@@ -10,21 +10,24 @@ O jogador é um Riftborn: alguém trazido por uma fenda dimensional para um mund
 
 ## Status atual
 
-O projeto possui base técnica funcional com manifests, estrutura de Behavior Pack e Resource Pack, itens iniciais e empacotamento local.
+Versão técnica atual: `0.3.2`.
 
-Já existem itens customizados simples para validar o fluxo do addon. Ainda não há receitas, scripts, mobs, funções, habilidades, ativação de Emblemas ou sistemas de gameplay implementados.
+### Implementado
 
-## Escopo inicial futuro
+- Manifests, Behavior Pack, Resource Pack e empacotamento local (`.mcpack` / `.mcaddon`).
+- 8 itens customizados, 5 receitas, 4 loot tables e traduções `pt_BR` / `en_US`.
+- Script API em `scripts/main.js` com Emblema de Madeira, Energia de Fenda, `Pulso de Energia I` e `Corte Instável I`.
+- Drops de `Fragmento de Fenda` em zumbi, esqueleto, aranha e creeper.
 
-A primeira fase funcional deve focar em:
+### Parcial
 
-- Base técnica.
-- Manifests.
-- Itens simples.
-- Receitas simples.
-- Empacotamento.
+- Persistência do Emblema ativo por tags (sobrevive à morte); feedback visual restaurado no respawn.
+- `Livro do Perdido` sem entrega automática.
+- Projétil de `Pulso de Energia I` simulado por script (não é entidade JSON).
 
-Sistemas avançados devem esperar versões posteriores.
+### Planejado
+
+- XP e níveis de Emblema, passivas, Emblema de Cobre, mobs customizados, narrativa expandida e UI avançada.
 
 ## Estrutura local
 
@@ -37,8 +40,8 @@ Sistemas avançados devem esperar versões posteriores.
 - `packs/behavior_pack/`: pasta reservada para o behavior pack.
 - `packs/resource_pack/`: pasta reservada para o resource pack.
 - `assets/`: referências e materiais de apoio.
-- `dist/`: exports futuros para teste e distribuição.
+- `dist/`: exports gerados pelo build para teste e distribuição.
 
-## Testes futuros
+## Testes
 
-Quando houver conteúdo funcional, o addon deverá ser empacotado como `.mcpack` ou `.mcaddon`, enviado para o celular, importado no Minecraft Bedrock e testado em um mundo separado de desenvolvimento.
+Empacotar com `node shared/tools/build_addon.js riftborn`, importar o `.mcaddon` no Minecraft Bedrock 1.21.10+ e validar em um mundo de desenvolvimento separado. Incrementar a versão dos manifests ou remover packs antigos antes de reimportar.

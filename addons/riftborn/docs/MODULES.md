@@ -1,20 +1,28 @@
-# Módulos Planejados
+# Módulos do Riftborn
 
-Este documento organiza os módulos previstos para o Riftborn. Ele não representa implementação atual.
+Este documento organiza os módulos do Riftborn e separa o que já existe do que ainda é planejado.
+
+Legenda de status:
+
+- **Implementado**: funcional no addon atual.
+- **Parcial**: base existe, mas faltam partes importantes.
+- **Planejado**: ainda não implementado.
 
 ## Núcleo do Projeto
+
+Status: **Implementado**.
 
 Base técnica do addon:
 
 - Estrutura de Behavior Pack.
 - Estrutura de Resource Pack.
-- Manifests futuros.
+- Manifests ativos na versão `0.3.2`.
 - Namespace `riftborn`.
-- Empacotamento e teste.
+- Empacotamento e teste via `shared/tools/build_addon.js`.
 
 ## Itens RPG
 
-Status: iniciado.
+Status: **Implementado** (8 itens; `emblema_de_madeira_ativo` é legado de compatibilidade).
 
 Primeiros itens usados para validar progressão e identidade do addon.
 
@@ -43,7 +51,7 @@ Escopo planejado:
 
 ## Sistema de Emblemas
 
-Status: iniciado.
+Status: **Parcial**.
 
 Sistema central de progressão do jogador. O Emblema é o item físico carregado, ativado e evoluído pelo jogador. Rift e Fenda representam a Energia de Fenda e o fenômeno dimensional; Emblema representa o objeto que canaliza essa energia.
 
@@ -54,7 +62,7 @@ Primeiro emblema planejado:
 - Função: primeiro emblema universal.
 - Material: madeira e Fragmentos de Fenda.
 - Direção: primeiro vínculo do jogador com a Fenda, sem representar classe fixa.
-- Estado atual: item criado com textura, traduções, receita survival inicial, ativação simples por tags e Energia de Fenda básica exibida na actionbar; ainda sem técnicas, custos de energia, mana, habilidades ou benefícios de combate.
+- Estado atual: item criado com textura, traduções, receita survival inicial, ativação por tags, Energia de Fenda básica e integração com `Pulso de Energia I` e `Corte Instável I`. Ainda sem XP, níveis, passivas ou benefícios permanentes de progressão.
 
 Progressão planejada:
 
@@ -81,16 +89,15 @@ Regras planejadas:
 
 Ativação atual:
 
-- Usar o `Emblema de Madeira` remove preventivamente tags de outros Emblemas planejados.
-- No mobile, o item inativo expõe o botão de toque `Ativar`.
-- Quando ativo, o estado técnico do item expõe o botão de toque `Desativar`.
-- A ativação adiciona `riftborn_emblema_ativo`.
-- A ativação adiciona `riftborn_emblema_madeira`.
-- A desativação remove `riftborn_emblema_ativo`.
-- A desativação remove `riftborn_emblema_madeira`.
-- Uma mensagem informa que o Emblema respondeu.
+- Usar o `Emblema de Madeira` alterna entre ativo e inativo por tags (`toggleWoodenEmblem`).
+- No mobile, o item expõe o botão de toque neutro `Emblema`.
+- O script não troca mais o item da mão principal; o estado ativo depende de tags, não do item equipado.
+- A ativação adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- A desativação remove `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- `riftborn:emblema_de_madeira_ativo` permanece apenas para compatibilidade com saves antigos.
+- Mensagens e actionbar informam o estado.
 - O item não é consumido.
-- A ativação não concede mana, habilidades, técnicas ou benefícios de combate.
+- Após morte, as tags persistem e a actionbar é restaurada no respawn.
 
 Energia de Fenda atual:
 
@@ -106,9 +113,9 @@ Energia de Fenda atual:
 
 ## Catalisadores
 
-Status: planejado.
+Status: **Parcial** (famílias iniciais implementadas; graus II–V e passivas ainda planejados).
 
-Catalisadores são itens futuros usados para executar habilidades ativas. Eles não substituem o Emblema: o Emblema mantém o vínculo, a Energia de Fenda e a progressão persistente; o Catalisador canaliza a técnica usada no momento.
+Catalisadores são itens usados para executar habilidades ativas. Eles não substituem o Emblema: o Emblema mantém o vínculo, a Energia de Fenda e a progressão persistente; o Catalisador canaliza a técnica usada no momento.
 
 Famílias iniciais:
 
@@ -174,7 +181,7 @@ Variações planejadas:
 
 ## Pergaminhos
 
-Status: planejado.
+Status: **Parcial** (dois pergaminhos Grau I implementados; família completa e graus superiores planejados).
 
 Pergaminhos definem habilidades ativas. O jogador deve precisar de um pergaminho compatível para usar a habilidade correspondente.
 
@@ -214,7 +221,7 @@ Primeiro pergaminho de lâmina:
 
 ## Graus
 
-Status: planejado.
+Status: **Planejado** (apenas Grau I funcional hoje).
 
 Graus vão de I a V e organizam Catalisadores, Pergaminhos e habilidades.
 
@@ -225,9 +232,9 @@ Direção planejada:
 - Graus II a V aumentam custo, poder e efeitos.
 - Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente.
 
-## Habilidades ativas planejadas
+## Habilidades ativas
 
-Status: planejado.
+Status: **Parcial** (`Pulso de Energia I` e `Corte Instável I` implementadas).
 
 Habilidades ativas são executadas por Catalisadores usando Pergaminhos compatíveis.
 
@@ -270,7 +277,7 @@ Corte Instável I:
 
 ## XP, níveis e passivas
 
-Status: planejado.
+Status: **Planejado**.
 
 Emblemas devem ganhar XP ao matar monstros e subir de nível. Cada nível deve melhorar atributos extras ou passivas dadas pelo Emblema.
 
@@ -306,7 +313,7 @@ Regras:
 
 Recompensas ligadas à exploração e combate.
 
-Status: iniciado.
+Status: **Implementado** (primeira família de drops em 4 mobs hostis).
 
 Primeira fonte survival:
 
@@ -351,7 +358,7 @@ Caminhos previstos:
 
 ## MVP recomendado
 
-Status: planejado.
+Status: **Concluído**.
 
 Sequência recomendada:
 

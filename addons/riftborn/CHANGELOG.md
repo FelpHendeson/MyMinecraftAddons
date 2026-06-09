@@ -2,6 +2,35 @@
 
 Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
+## [0.3.2] - 2026-06-09
+
+### Added
+
+- Ferramenta `shared/tools/resize_png.js` para normalizar texturas PNG RGBA para 16x16 sem dependências externas.
+- Handler `world.afterEvents.playerSpawn` para restaurar a actionbar de Energia de Fenda após respawn com Emblema ativo.
+- Handler `world.afterEvents.playerLeave` para limpar Maps de cooldown e debounce em memória.
+
+### Changed
+
+- `Emblema de Madeira` passou a alternar ativo/inativo apenas por tags, sem trocar o item da mão principal.
+- Botão de toque do `Emblema de Madeira` atualizado para o rótulo neutro `Emblema`.
+- Feedback de `Pulso de Energia I` e `Corte Instável I` unificado com a Energia de Fenda na mesma actionbar.
+- Texturas `emblema_de_madeira`, `fragmento_de_fenda` e `livro_do_perdido` redimensionadas de 1254x1254 para 16x16.
+- `format_version` dos itens simples padronizado para `1.21.10`.
+- Documentação atualizada em `README.md`, `ROADMAP.md`, `docs/MODULES.md` e `docs/TECHNICAL_GUIDE.md`.
+- Versão técnica dos manifests incrementada para `0.3.2`.
+
+### Fixed
+
+- Ativação/desativação do Emblema podia sobrescrever o item equipado na mão principal.
+- Typo `presenca` corrigido para `presença` na mensagem de ativação do Emblema.
+
+### Notes
+
+- `riftborn:emblema_de_madeira_ativo` permanece no pack apenas para compatibilidade com saves antigos; o script não entrega mais esse item.
+- O projétil scriptado de `Pulso de Energia I` continua em memória e não sobrevive a `/reload` ou reinício do mundo.
+- As loot tables de zumbi, esqueleto, aranha e creeper foram revisadas e já reproduzem corretamente os pools vanilla do Bedrock; nenhuma alteração foi necessária.
+
 ## Unreleased
 
 ### Added
