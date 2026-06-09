@@ -22,6 +22,7 @@ Item inicial:
 
 - `riftborn:fragmento_de_fenda`: estilhaço cristalino arrancado das rachaduras entre mundos, usado para validar o fluxo de item customizado e representar um material mágico raro.
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, feito de madeira marcada pela Energia de Fenda, com stack máximo 1 e sem receita ou ativação nesta etapa.
+- `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial, um relato antigo de alguém que também caiu neste mundo, com stack máximo 1 e sem entrega automática nesta etapa.
 
 Direção visual:
 
@@ -104,6 +105,7 @@ Camada narrativa que apresenta o jogador como Riftborn.
 Possíveis elementos futuros:
 
 - Fragmentos de lore.
+- Livro do Perdido como primeiro contato narrativo/tutorial do jogador.
 - Emblemas ligados à Energia de Fenda.
 - Primeiros sinais do mundo antigo.
 

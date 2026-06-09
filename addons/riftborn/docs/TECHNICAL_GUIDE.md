@@ -55,7 +55,7 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 3]`.
+- Versão atual dos packs: `[0, 1, 5]`.
 - `min_engine_version`: `[1, 20, 0]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
@@ -78,8 +78,11 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 
 - `riftborn:fragmento_de_fenda`: material mágico raro ligado às fendas dimensionais.
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1.
+- `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 
 O `Emblema de Madeira` ainda não possui receita, ativação de Energia de Fenda, habilidades, scripts ou funções. Esses comportamentos pertencem a etapas futuras.
+
+O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
 ## Loot tables atuais
 

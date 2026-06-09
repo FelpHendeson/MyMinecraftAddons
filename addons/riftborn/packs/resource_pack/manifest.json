@@ -4,14 +4,14 @@
     "name": "Riftborn RP",
     "description": "Resource Pack do addon Riftborn: Crônicas do Novo Mundo.",
     "uuid": "18b8c365-1426-4ab9-8e78-e09b573b299e",
-    "version": [0, 1, 4],
+    "version": [0, 1, 5],
     "min_engine_version": [1, 20, 0]
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "c4c97fc6-137d-48b0-b529-20ae2a41a483",
-      "version": [0, 1, 4]
+      "version": [0, 1, 5]
     }
   ]
 }

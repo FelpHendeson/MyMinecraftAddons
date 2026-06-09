@@ -7,6 +7,9 @@
     },
     "emblema_de_madeira": {
       "textures": "textures/items/emblema_de_madeira"
+    },
+    "livro_do_perdido": {
+      "textures": "textures/items/livro_do_perdido"
     }
   }
 }

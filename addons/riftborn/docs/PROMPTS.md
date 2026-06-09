@@ -90,3 +90,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar receitas, novos itens, mobs customizados, scripts, funções, texturas ou UUIDs; não alterar a identidade dos itens existentes.
 - Resultado esperado: zumbis podem dropar 1 `riftborn:fragmento_de_fenda` com chance base aproximada de 8%, preservando os drops vanilla básicos do zumbi.
 - Observações: esta é uma etapa de teste antes de expandir drops para outros mobs ou fontes de recompensa.
+
+## 2026-06-08 - Criação do Livro do Perdido
+
+- Área: Riftborn.
+- Objetivo: criar o item `riftborn:livro_do_perdido`, primeiro item narrativo/tutorial do Riftborn.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/livro_do_perdido.json`, `textures/item_texture.json`, `textures/items/livro_do_perdido.png`, arquivos de idioma, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md` e este registro de prompt.
+- Restrições: não criar receitas, scripts, `tick.json`, funções de entrega automática, mobs, habilidades ou UUIDs.
+- Resultado esperado: item com stack máximo 1, textura 16x16 transparente, nome em PT-BR e EN-US e build funcionando.
+- Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 4]` para `[0, 1, 5]` para evitar rebaixar a versão técnica.
