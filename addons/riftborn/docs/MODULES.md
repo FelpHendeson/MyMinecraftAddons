@@ -71,6 +71,7 @@ Regras planejadas:
 Ativação atual:
 
 - Usar o `Emblema de Madeira` remove preventivamente tags de outros Emblemas planejados.
+- No mobile, o item expõe o botão de toque `Ativar`.
 - A ativação adiciona `riftborn_emblema_ativo`.
 - A ativação adiciona `riftborn_emblema_madeira`.
 - Uma mensagem informa que o Emblema respondeu.
