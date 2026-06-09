@@ -54,6 +54,8 @@ Energia de Fenda é a energia do sistema. Ela só existe com Emblema ativo e dev
 
 Catalisadores são itens futuros usados para executar habilidades ativas. Eles não substituem o Emblema; servem como canal de execução das técnicas. As famílias iniciais planejadas são Cajados, para habilidades mágicas, e Lâminas Mágicas, para habilidades de lâmina.
 
+O primeiro Catalisador Mágico é o `Cajado de Madeira`, com identificador `riftborn:cajado_de_madeira`. Ele é um cajado rudimentar de Grau I feito de gravetos e Fragmento de Fenda. No estado atual, é apenas item, textura, tradução e receita; habilidades com cajado dependem de Pergaminhos e etapas futuras.
+
 Pergaminhos são itens futuros que definem quais habilidades ativas podem ser usadas. Eles devem existir em famílias mágicas e de lâmina, possuir grau e exigir compatibilidade com o catalisador usado.
 
 Graus vão de I a V. Grau I é a entrada do sistema, com baixo custo de Energia de Fenda. Graus maiores aumentam custo, poder e efeitos. Emblemas fracos podem usar habilidades de grau alto, mas de forma ineficiente por causa do consumo elevado.

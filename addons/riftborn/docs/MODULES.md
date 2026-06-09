@@ -23,6 +23,7 @@ Item inicial:
 - `riftborn:fragmento_de_fenda`: estilhaço cristalino arrancado das rachaduras entre mundos, usado para validar o fluxo de item customizado e representar um material mágico raro.
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, feito de madeira marcada pela Energia de Fenda, com stack máximo 1 e receita survival inicial.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial, um relato antigo de alguém que também caiu neste mundo, com stack máximo 1 e sem entrega automática nesta etapa.
+- `riftborn:cajado_de_madeira`: primeiro Catalisador Mágico de Grau I, feito de madeira comum e Fragmentos de Fenda, com stack máximo 1 e receita survival inicial.
 
 Direção visual:
 
@@ -108,7 +109,7 @@ Catalisadores são itens futuros usados para executar habilidades ativas. Eles n
 
 Famílias iniciais:
 
-- Cajados: catalisadores mágicos.
+- Cajados: catalisadores mágicos. O primeiro item implementado é `riftborn:cajado_de_madeira`.
 - Lâminas Mágicas: catalisadores de lâmina.
 
 Regras planejadas:
@@ -120,9 +121,23 @@ Regras planejadas:
 
 ### Cajados
 
-Status: planejado.
+Status: iniciado.
 
 Cajados são catalisadores mágicos. Futuramente devem usar gravetos, materiais progressivos e Fragmentos de Fenda.
+
+Primeiro cajado:
+
+- Nome: `Cajado de Madeira`.
+- Identificador: `riftborn:cajado_de_madeira`.
+- Grau: I.
+- Família: Catalisador Mágico, Cajado.
+- Função planejada: lançar Pergaminhos Mágicos de Grau I quando o jogador tiver Emblema ativo e pergaminho compatível.
+- Estado atual: item, textura, tradução e receita criados; ainda não lança habilidades, não consome Energia de Fenda e não interage com Pergaminhos.
+
+Descrição narrativa:
+
+- Um cajado simples, entalhado às pressas, com pequenas rachaduras violetas e ciano próximas à ponta.
+- A madeira não produz magia sozinha; ela apenas dá forma à Energia de Fenda que atravessa o Riftborn.
 
 Variações planejadas:
 
@@ -214,6 +229,8 @@ Regras:
 - `F` representa `riftborn:fragmento_de_fenda`.
 - `M` representa tábuas de madeira pela tag `minecraft:planks`.
 - A receita não usa lápis-lazúli, ametista, ferro ou recursos de mineração avançada.
+- `Cajado de Madeira` usa receita shaped na crafting table com padrão `.F./.G./.G.`.
+- No `Cajado de Madeira`, `F` representa `riftborn:fragmento_de_fenda` e `G` representa `minecraft:stick`.
 
 ## Loot Customizado
 
@@ -269,7 +286,7 @@ Status: planejado.
 Sequência recomendada:
 
 1. Documentar o sistema.
-2. Criar futuramente o Cajado de Madeira Grau I.
+2. Criar o Cajado de Madeira Grau I.
 3. Criar futuramente o Pergaminho Mágico: Pulso de Energia I.
 4. Implementar futuramente Pulso de Energia I com Cajado, Pergaminho e Emblema ativo.
 5. Criar futuramente a Lâmina Mágica Grau I.

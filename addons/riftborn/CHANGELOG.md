@@ -22,6 +22,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Script mínimo de ativação do `Emblema de Madeira`, aplicando tags ao jogador e exibindo mensagem ao usar o item.
 - Sistema básico de `Energia de Fenda` para jogadores com `Emblema de Madeira` ativo, usando scoreboards `rb_energy` e `rb_energy_max`.
 - Documentação oficial da arquitetura planejada de Emblemas, Catalisadores, Pergaminhos, Graus, XP de Emblema, níveis, passivas e habilidades ativas.
+- Item `riftborn:cajado_de_madeira`, primeiro Catalisador Mágico de Grau I, com textura placeholder e traduções em português e inglês.
+- Receita shaped de crafting table para `riftborn:cajado_de_madeira`, usando `Fragmento de Fenda` e gravetos.
 
 ### Changed
 
@@ -52,6 +54,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - `Emblema de Madeira` ativo agora garante energia máxima 20, inicializa energia atual em 20 quando necessário, regenera 1 ponto a cada 40 ticks e exibe a energia na actionbar.
 - Versão técnica dos manifests incrementada para `0.1.12` para importar o build com Energia de Fenda básica.
 - Documentação de design atualizada para tratar o Emblema ativo como estado persistente, separar Catalisadores e Pergaminhos do Emblema, e registrar o MVP recomendado com Cajado de Madeira Grau I e Pulso de Energia I.
+- Versão técnica dos manifests incrementada para `0.2.0` para importar o build com o primeiro Catalisador Mágico.
 
 ### Fixed
 
@@ -64,6 +67,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - O `Emblema de Madeira` agora ativa tags simples e Energia de Fenda básica ao ser usado, mas ainda não possui técnicas, custos de energia, mana, habilidades ou benefícios de combate.
 - A actionbar é o primeiro feedback visual simples do sistema de Energia de Fenda.
 - A arquitetura de Catalisadores, Pergaminhos, Graus, XP, passivas e habilidades ativas ainda é planejamento; nenhum item, receita, script, mob, habilidade, projétil, efeito de dano, manifest ou UUID foi criado ou alterado nesta etapa de documentação.
+- O `Cajado de Madeira` ainda não lança habilidades, não consome Energia de Fenda, não usa Pergaminhos e não altera o sistema de Emblemas.
 - Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
 - As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.

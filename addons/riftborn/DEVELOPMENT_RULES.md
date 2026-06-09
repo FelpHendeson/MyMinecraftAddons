@@ -55,6 +55,7 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 - Catalisadores futuros executam habilidades, mas não substituem Emblemas.
 - Cajados devem ser a família inicial de catalisadores mágicos.
 - Lâminas Mágicas devem ser a família inicial de catalisadores de lâmina.
+- O primeiro cajado deve usar o identificador `riftborn:cajado_de_madeira`.
 - Pergaminhos futuros definem habilidades ativas disponíveis.
 - Pergaminhos devem ser compatíveis com o catalisador usado.
 - Graus devem ir de I a V.

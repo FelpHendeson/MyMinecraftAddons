@@ -54,11 +54,11 @@ Status: próxima etapa planejada.
 ### v0.7 Catalisadores e Pergaminhos iniciais
 
 - Planejar Catalisadores como canal de execução de habilidades.
-- Planejar Cajados como primeira família mágica.
+- Criar o Cajado de Madeira Grau I como primeiro Catalisador Mágico.
 - Planejar Lâminas Mágicas como primeira família de lâmina.
 - Planejar Pergaminhos Mágicos e Pergaminhos de Lâmina.
 - Definir Graus I a V para Catalisadores, Pergaminhos e habilidades.
-- Preparar o MVP com Cajado de Madeira Grau I e Pergaminho Mágico: Pulso de Energia I.
+- Preparar o próximo passo do MVP com Pergaminho Mágico: Pulso de Energia I.
 - Evitar implementar muitas habilidades antes de validar a primeira.
 
 ### v0.8 Primeira habilidade mágica

@@ -10,6 +10,9 @@
     },
     "livro_do_perdido": {
       "textures": "textures/items/livro_do_perdido"
+    },
+    "cajado_de_madeira": {
+      "textures": "textures/items/cajado_de_madeira"
     }
   }
 }

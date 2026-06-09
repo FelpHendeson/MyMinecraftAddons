@@ -153,3 +153,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não criar itens, receitas, scripts, mobs, habilidades, projéteis, efeitos de dano, UI customizada, manifests ou UUIDs.
 - Resultado esperado: documentação registra Emblema ativo persistente, Catalisadores como canal de execução, Pergaminhos como definição de habilidades, Graus I a V, XP e níveis de Emblema, passivas de Emblema e Catalisador, e MVP recomendado.
 - Observações: o MVP recomendado documentado é Cajado de Madeira Grau I, Pergaminho Mágico: Pulso de Energia I, implementação futura de Pulso de Energia I, Lâmina Mágica Grau I e Pergaminho de Lâmina: Corte Instável I. Nenhum gameplay foi implementado nesta etapa.
+
+## 2026-06-09 - Criação do Cajado de Madeira
+
+- Área: Riftborn.
+- Objetivo: criar `riftborn:cajado_de_madeira`, primeiro Catalisador Mágico de Grau I.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/cajado_de_madeira.json`, `packs/behavior_pack/recipes/cajado_de_madeira.json`, `textures/item_texture.json`, `textures/items/cajado_de_madeira.png`, arquivos de idioma, `CHANGELOG.md`, `PROJECT_CONTEXT.md`, `docs/GDD.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md`, `ROADMAP.md`, `DEVELOPMENT_RULES.md` e este registro de prompt.
+- Restrições: não criar Pergaminhos, habilidades, mobs, scripts, projéteis, efeitos de dano, alterar Energia de Fenda, alterar ativação de Emblema, renomear itens existentes ou alterar UUIDs.
+- Resultado esperado: item com stack máximo 1, textura placeholder 16x16 transparente, nome em PT-BR e EN-US, receita shaped com `Fragmento de Fenda` e gravetos, manifests na versão `[0, 2, 0]` e build funcionando.
+- Observações: o `Cajado de Madeira` ainda não lança habilidades, não consome Energia de Fenda e não interage com Pergaminhos nesta etapa.

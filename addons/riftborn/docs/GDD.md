@@ -97,6 +97,12 @@ Regras planejadas:
 
 Cajados são catalisadores mágicos. Eles devem ser craftados futuramente com gravetos, materiais progressivos e Fragmentos de Fenda.
 
+Primeiro cajado:
+
+- `Cajado de Madeira`: Catalisador Mágico de Grau I.
+- Função planejada: lançar Pergaminhos Mágicos de Grau I.
+- Estado atual: item, textura, tradução e receita criados; ainda sem habilidade ativa.
+
 Variações planejadas:
 
 - Cajado Condutor: menor custo de energia.
@@ -179,7 +185,7 @@ O `Emblema de Madeira` não representa uma classe. Ele serve como o primeiro ví
 Sequência recomendada para validar a nova arquitetura:
 
 1. Documentar o sistema de Emblemas, Catalisadores, Pergaminhos, Graus, Energia de Fenda, XP e passivas.
-2. Criar futuramente o Cajado de Madeira Grau I.
+2. Criar o Cajado de Madeira Grau I.
 3. Criar futuramente o Pergaminho Mágico: Pulso de Energia I.
 4. Implementar futuramente Pulso de Energia I usando Cajado, Pergaminho e Emblema ativo.
 5. Criar futuramente a Lâmina Mágica Grau I.
