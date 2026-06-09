@@ -126,3 +126,12 @@ Use este formato para registrar novos prompts do Riftborn:
 - Restrições: não usar lápis-lazúli, ametista, ferro ou recursos de mineração avançada; não criar itens, mobs customizados, scripts, funções, `tick.json`, mana, habilidades, ativação de Emblema, texturas ou UUIDs.
 - Resultado esperado: receita shaped na crafting table com padrão `FMF/MMM/FMF`, usando `riftborn:fragmento_de_fenda` e a tag `minecraft:planks`, com build funcionando.
 - Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 7]` para `[0, 1, 8]` para evitar rebaixar a versão técnica.
+
+## 2026-06-08 - Ativação simples do Emblema de Madeira
+
+- Área: Riftborn.
+- Objetivo: implementar a primeira ativação simples do `Emblema de Madeira`, sem sistema completo de mana ou habilidades.
+- Arquivos afetados: manifests do Behavior Pack e Resource Pack, `packs/behavior_pack/items/emblema_de_madeira.json`, `packs/behavior_pack/scripts/main.js`, `CHANGELOG.md`, `docs/MODULES.md`, `docs/TECHNICAL_GUIDE.md`, `DEVELOPMENT_RULES.md` e este registro de prompt.
+- Restrições: não criar itens, receitas, mobs, funções, `tick.json`, mana, habilidades, UI customizada, sistemas avançados, texturas ou renomear itens existentes; não alterar UUIDs existentes.
+- Resultado esperado: usar `riftborn:emblema_de_madeira` remove tags futuras de outros Emblemas, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, envia mensagem ao jogador e não consome o item.
+- Observações: no estado atual do repositório, os manifests avançaram de `[0, 1, 8]` para `[0, 1, 9]` para evitar rebaixar a versão técnica; um UUID novo foi criado somente para o novo módulo de script.

@@ -4,9 +4,9 @@ Estas regras guiam a evolução técnica do Riftborn.
 
 ## Estado atual
 
-Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack e itens customizados simples.
+Base técnica inicial criada, com manifests, estrutura mínima de Behavior Pack e Resource Pack, itens customizados simples e Script API mínima.
 
-Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas e os primeiros itens customizados. Ainda não existem receitas, loot tables funcionais, mobs, scripts funcionais, funções, habilidades, ativação de Emblemas ou gameplay.
+Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas reservadas, itens customizados, loot tables, receita inicial e um script mínimo de ativação do `Emblema de Madeira`. Ainda não existem mobs customizados, funções, mana, habilidades, UI customizada, benefícios de combate ou sistemas avançados.
 
 ## Desenvolvimento incremental
 
@@ -40,7 +40,16 @@ Já existem manifests, atlas de itens, arquivos de idioma, pastas técnicas rese
 - Benefícios só acumulam dentro da mesma linhagem de Emblemas.
 - Não empilhar benefícios de Emblemas diferentes.
 - Caminhos devem ser definidos pelo Emblema ativo, não por classe fixa.
-- Não implementar Emblemas, técnicas, efeitos ou gameplay sem uma etapa solicitada.
+- Não implementar técnicas, efeitos, mana, habilidades ou gameplay avançado sem uma etapa solicitada.
+- A ativação simples atual só pode marcar tags e enviar mensagem.
+
+## Regras para Script API
+
+- Manter scripts pequenos, isolados e documentados.
+- Usar Script API apenas quando componentes JSON simples não resolverem a etapa.
+- Não criar arquitetura complexa antes de necessidade real.
+- Não implementar loops, sistemas globais, mana, habilidades ou UI customizada sem escopo explícito.
+- Não alterar UUIDs existentes; novos UUIDs só podem ser criados para novos módulos quando necessário.
 
 ## Padrão de arquivos
 
@@ -80,7 +89,6 @@ Não criar:
 - Itens.
 - Receitas.
 - Texturas.
-- Scripts.
 - Mobs.
 - Loot tables.
 - Funções.

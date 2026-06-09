@@ -50,7 +50,7 @@ Primeiro emblema planejado:
 - Função: primeiro emblema universal.
 - Material: madeira e Fragmentos de Fenda.
 - Direção: primeiro vínculo do jogador com a Fenda, sem representar classe fixa.
-- Estado atual: item criado com textura, traduções e receita survival inicial; ainda sem ativação, Energia de Fenda ou habilidades.
+- Estado atual: item criado com textura, traduções, receita survival inicial e ativação simples por tags; ainda sem Energia de Fenda mecânica, mana, habilidades ou benefícios de combate.
 
 Progressão planejada:
 
@@ -67,6 +67,15 @@ Regras planejadas:
 - Benefícios só acumulam dentro da mesma linhagem.
 - Benefícios de Emblemas diferentes não podem ser empilhados.
 - O Emblema ativo define o caminho ativo, técnicas disponíveis e benefícios futuros.
+
+Ativação atual:
+
+- Usar o `Emblema de Madeira` remove preventivamente tags de outros Emblemas planejados.
+- A ativação adiciona `riftborn_emblema_ativo`.
+- A ativação adiciona `riftborn_emblema_madeira`.
+- Uma mensagem informa que o Emblema respondeu.
+- O item não é consumido.
+- A ativação ainda não concede mana, habilidades, Energia de Fenda mecânica ou benefícios de combate.
 
 ## Receitas
 

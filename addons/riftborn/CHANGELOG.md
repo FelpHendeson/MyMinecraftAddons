@@ -19,6 +19,7 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Loot tables de esqueleto, aranha e creeper com chance de dropar 1 `Fragmento de Fenda` quando mortos por jogador ou pet.
 - Item narrativo `riftborn:livro_do_perdido`, com stack máximo 1, textura placeholder e traduções em português e inglês.
 - Receita shaped de crafting table para `riftborn:emblema_de_madeira`, usando apenas tábuas de madeira e `Fragmento de Fenda`.
+- Script mínimo de ativação do `Emblema de Madeira`, aplicando tags ao jogador e exibindo mensagem ao usar o item.
 
 ### Changed
 
@@ -38,6 +39,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Drop de `Fragmento de Fenda` rebalanceado para melhorar o início solo: zumbi 15%, esqueleto 15%, aranha 12% e creeper 18%.
 - Versão técnica dos manifests incrementada para `0.1.7` para importar o build com o rebalanceamento de loot.
 - Versão técnica dos manifests incrementada para `0.1.8` para importar o build com a receita survival do `Emblema de Madeira`.
+- Behavior Pack atualizado com módulo JavaScript mínimo para ativação simples do `Emblema de Madeira`.
+- Versão técnica dos manifests incrementada para `0.1.9` para importar o build com a ativação simples do `Emblema de Madeira`.
 
 ### Fixed
 
@@ -45,8 +48,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 
 ### Notes
 
-- Nenhuma receita, mob, script funcional, função, habilidade ou gameplay foi criado.
-- O `Emblema de Madeira` ainda não ativa Energia de Fenda e ainda não concede habilidades.
+- Nenhuma nova receita, item, mob, função, habilidade, mana, UI customizada ou sistema avançado foi criado.
+- O `Emblema de Madeira` agora ativa tags simples ao ser usado, mas ainda não ativa Energia de Fenda mecânica, mana, habilidades ou benefícios de combate.
 - Nenhuma receita, novo item, mob customizado, script, função, textura ou UUID foi criado ou alterado nesta etapa de rebalanceamento de loot.
 - As loot tables de zumbi, esqueleto, aranha e creeper substituem os arquivos vanilla dos mesmos caminhos; os pools vanilla básicos foram reproduzidos e o drop de `Fragmento de Fenda` foi adicionado em pools separados.
 - O `Livro do Perdido` ainda não é entregue automaticamente ao jogador; a entrega automática fica para uma etapa futura.
@@ -54,6 +57,8 @@ Todas as mudanças relevantes do projeto Riftborn devem ser registradas aqui.
 - Nenhum item, receita, loot table, script, função, mob, habilidade ou UUID foi criado ou alterado nesta etapa de substituição de texturas.
 - Nenhum item novo, mob customizado, script, função, `tick.json`, mana, habilidade, ativação de Emblema, textura ou UUID foi criado ou alterado nesta etapa de receita.
 - A receita do `Emblema de Madeira` não usa lápis-lazúli, ametista, ferro ou recursos de mineração avançada.
+- A ativação simples remove preventivamente tags de outros Emblemas e adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`.
+- Um novo UUID foi criado apenas para o novo módulo de script; UUIDs existentes não foram alterados.
 - Nenhum UUID foi alterado.
 - A textura do `Fragmento de Fenda` ainda pode evoluir, mas já representa melhor o conceito de material mágico raro.
 - Se o Minecraft Bedrock detectar duplicação ao importar novo build, a versão técnica pode precisar ser incrementada em uma etapa separada.

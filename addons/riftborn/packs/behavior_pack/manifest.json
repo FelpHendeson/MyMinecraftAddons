@@ -4,20 +4,31 @@
     "name": "Riftborn BP",
     "description": "Behavior Pack do addon Riftborn: Crônicas do Novo Mundo.",
     "uuid": "736b3a47-6b63-4645-8561-add453b60a67",
-    "version": [0, 1, 8],
-    "min_engine_version": [1, 20, 0]
+    "version": [0, 1, 9],
+    "min_engine_version": [1, 21, 10]
   },
   "modules": [
     {
       "type": "data",
       "uuid": "30d5092e-c227-419d-b2e0-30103067f02a",
-      "version": [0, 1, 8]
+      "version": [0, 1, 9]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "34bff15a-c852-4f3a-b4fe-a04113a1a236",
+      "entry": "scripts/main.js",
+      "version": [0, 1, 9]
     }
   ],
   "dependencies": [
     {
       "uuid": "18b8c365-1426-4ab9-8e78-e09b573b299e",
-      "version": [0, 1, 8]
+      "version": [0, 1, 9]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.1.0"
     }
   ]
 }

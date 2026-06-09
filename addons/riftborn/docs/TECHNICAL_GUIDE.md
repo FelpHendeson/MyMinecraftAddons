@@ -11,13 +11,14 @@ Estrutura atual:
 - Manifest inicial.
 - Pastas reservadas para itens, receitas, loot tables, funções, scripts e entidades.
 - Itens customizados simples em `items/`.
+- Script mínimo em `scripts/main.js` para ativação simples do `Emblema de Madeira`.
 
 Conteúdos futuros possíveis, ainda não implementados:
 
 - Receitas.
 - Loot tables.
 - Funções.
-- Scripts.
+- Scripts adicionais.
 - Entidades customizadas.
 
 O manifest inicial já existe em `packs/behavior_pack/manifest.json`. Novos conteúdos de comportamento só devem ser criados quando solicitados.
@@ -55,8 +56,8 @@ Texturas finais, modelos, sons e ícones adicionais só devem ser criados quando
 
 - Behavior Pack: `packs/behavior_pack/manifest.json`.
 - Resource Pack: `packs/resource_pack/manifest.json`.
-- Versão atual dos packs: `[0, 1, 8]`.
-- `min_engine_version`: `[1, 20, 0]`.
+- Versão atual dos packs: `[0, 1, 9]`.
+- `min_engine_version`: `[1, 21, 10]`.
 - O Behavior Pack declara dependência do Resource Pack pelo UUID do header do Resource Pack.
 
 UUIDs atuais:
@@ -65,6 +66,7 @@ UUIDs atuais:
 - Módulo do Behavior Pack: `30d5092e-c227-419d-b2e0-30103067f02a`.
 - Header do Resource Pack: `18b8c365-1426-4ab9-8e78-e09b573b299e`.
 - Módulo do Resource Pack: `c4c97fc6-137d-48b0-b529-20ae2a41a483`.
+- Módulo de script do Behavior Pack: `34bff15a-c852-4f3a-b4fe-a04113a1a236`.
 
 Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e solicitação explícita.
 
@@ -80,7 +82,7 @@ Esses UUIDs não devem ser alterados ou regenerados sem necessidade clara e soli
 - `riftborn:emblema_de_madeira`: primeiro Emblema universal do jogador, com stack máximo 1.
 - `riftborn:livro_do_perdido`: primeiro item narrativo/tutorial do addon, com stack máximo 1.
 
-O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json`. Ele ainda não possui ativação de Energia de Fenda, habilidades, scripts ou funções. Esses comportamentos pertencem a etapas futuras.
+O `Emblema de Madeira` possui receita survival inicial em `recipes/emblema_de_madeira.json` e ativação simples por item custom component. O item usa `format_version` `1.21.10` para suportar o componente customizado. Ele ainda não possui mana, habilidades, benefícios de combate ou funções. Esses comportamentos pertencem a etapas futuras.
 
 O `Livro do Perdido` ainda não é entregue automaticamente ao jogador. Entrega automática, funções ou scripts de tutorial pertencem a etapas futuras.
 
@@ -98,6 +100,12 @@ Essas tabelas reproduzem os pools vanilla básicos e adicionam o Fragmento de Fe
 - `recipes/emblema_de_madeira.json`: receita shaped de crafting table para `riftborn:emblema_de_madeira`, usando 4 `riftborn:fragmento_de_fenda` e 5 tábuas de madeira pela tag `minecraft:planks`.
 
 A receita usa apenas madeira e Fragmentos de Fenda para manter o primeiro Emblema acessível ao jogador solo nas primeiras noites.
+
+## Scripts atuais
+
+- `scripts/main.js`: registra o item custom component `riftborn:ativar_emblema_madeira` e ativa o `Emblema de Madeira` quando o jogador usa o item.
+
+A ativação remove preventivamente tags de Emblemas planejados, adiciona `riftborn_emblema_ativo` e `riftborn_emblema_madeira`, e envia uma mensagem ao jogador. O script não consome o item, não cria mana, não concede habilidades e não aplica benefícios de combate.
 
 ## Empacotamento futuro
 
